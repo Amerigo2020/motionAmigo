@@ -1,0 +1,17 @@
+[package]
+name = "motionamigo-wasm"
+description = "WebAssembly bindings for the motionAmigo browser demo"
+publish = false
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+motionamigo.workspace = true
+wasm-bindgen = "0.2"

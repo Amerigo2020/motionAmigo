@@ -1,0 +1,29 @@
+name: WASM
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - uses: Swatinem/rust-cache@v2
+      - name: Install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+      - name: Build (simd128 enabled via .cargo/config.toml)
+        run: wasm-pack build crates/motionamigo-wasm --release --target web --out-dir ../../web/pkg
+      - name: Check that the module uses SIMD instructions
+        run: |
+          cargo install wasm-tools --locked
+          wasm-tools print web/pkg/motionamigo_wasm_bg.wasm | grep -c "f32x4" 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web
+          path: web
+          retention-days: 7

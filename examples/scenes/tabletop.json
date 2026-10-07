@@ -1,0 +1,14 @@
+{
+  "version": "0.1",
+  "frame": "world",
+  "objects": [
+    {"id": "table_1", "label": "table", "center": [0.55, 0.0, 0.2], "size": [0.6, 1.0, 0.4], "yaw": 0.0},
+    {"id": "laptop_1", "label": "laptop", "center": [0.6, 0.1, 0.41], "size": [0.24, 0.32, 0.02], "yaw": 0.0, "front": [1.0, 0.0, 0.0]},
+    {"id": "mug_1", "label": "mug", "center": [0.4, -0.2, 0.45], "size": [0.08, 0.08, 0.1], "yaw": 0.0},
+    {"id": "mug_2", "label": "mug", "center": [0.75, 0.38, 0.45], "size": [0.08, 0.08, 0.1], "yaw": 0.0},
+    {"id": "bowl_1", "label": "bowl", "center": [0.7, -0.3, 0.43], "size": [0.16, 0.16, 0.06], "yaw": 0.0},
+    {"id": "book_1", "label": "book", "center": [0.38, 0.3, 0.415], "size": [0.16, 0.22, 0.03], "yaw": 0.0},
+    {"id": "chair_1", "label": "chair", "center": [1.15, 0.0, 0.45], "size": [0.45, 0.45, 0.9], "yaw": 0.0, "front": [-1.0, 0.0, 0.0]}
+  ],
+  "viewpoint": {"position": [-0.3, 0.0, 1.2], "look_at": [0.55, 0.0, 0.4]}
+}

@@ -1,0 +1,15 @@
+[package]
+name = "motionamigo-bench"
+description = "Reproducible benchmark suite for motionAmigo"
+publish = false
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+motionamigo.workspace = true
+serde.workspace = true
+serde_json.workspace = true

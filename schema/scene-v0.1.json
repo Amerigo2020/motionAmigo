@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Amerigo2020/motionAmigo/blob/main/schema/scene-v0.1.json",
+  "title": "Amigo scene format v0.1",
+  "description": "Shared scene format of motionAmigo and spatialAmigo. Units are meters and radians. The world frame is right-handed with z pointing up. Every object is an oriented box: center is the box center, size holds the full edge lengths along the object's local x, y and z axes, and yaw rotates the box about the world z axis. Changes to this format require a version bump.",
+  "type": "object",
+  "required": ["version", "frame", "objects"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "description": "Format version. Exactly \"0.1\" for this schema.",
+      "const": "0.1"
+    },
+    "frame": {
+      "description": "Name of the frame all coordinates are expressed in.",
+      "type": "string",
+      "minLength": 1
+    },
+    "objects": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/object" }
+    },
+    "viewpoint": {
+      "description": "Optional camera viewpoint, e.g. the observer used to resolve egocentric relations such as 'left of'.",
+      "type": "object",
+      "required": ["position", "look_at"],
+      "additionalProperties": false,
+      "properties": {
+        "position": { "$ref": "#/$defs/vec3" },
+        "look_at": { "$ref": "#/$defs/vec3" }
+      }
+    }
+  },
+  "$defs": {
+    "vec3": {
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "object": {
+      "type": "object",
+      "required": ["id", "label", "center", "size", "yaw"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Unique object identifier within the scene.",
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "description": "Object category, e.g. 'mug'.",
+          "type": "string",
+          "minLength": 1
+        },
+        "center": {
+          "description": "Box center in meters.",
+          "$ref": "#/$defs/vec3"
+        },
+        "size": {
+          "description": "Full edge lengths in meters along the object's local x, y, z axes.",
+          "type": "array",
+          "items": { "type": "number", "exclusiveMinimum": 0 },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "yaw": {
+          "description": "Rotation about the world z axis in radians.",
+          "type": "number"
+        },
+        "front": {
+          "description": "Optional unit vector in the object frame that points to the object's intrinsic front.",
+          "$ref": "#/$defs/vec3"
+        }
+      }
+    }
+  }
+}

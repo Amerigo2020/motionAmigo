@@ -1,0 +1,22 @@
+motionAmigo
+Copyright (c) 2026 Amerigo Velletti
+Licensed under either of the MIT license or the Apache License, Version 2.0, at your option.
+
+This project is an independent Rust implementation of ideas published in
+
+  W. Thomason, Z. Kingston, L. E. Kavraki,
+  "Motions in Microseconds via Vectorized Sampling-Based Planning", ICRA 2024.
+  https://github.com/KavrakiLab/vamp (Apache-2.0)
+
+No VAMP source code is included. The following third-party data is used:
+
+* robots/panda.toml: the collision sphere decomposition of the Franka Emika Panda is
+  derived from resources/panda/panda_spherized.urdf in the VAMP repository
+  (Apache-2.0, Copyright Kavraki Lab, Rice University), which in turn originates from
+  robowflex_resources (https://github.com/KavrakiLab/robowflex_resources, MIT License,
+  Copyright (c) 2020 Kavraki Lab). The self-collision pairs are derived from the
+  panda.srdf in the same repositories.
+* The Denavit-Hartenberg parameters and joint limits of the Panda are taken from the
+  public Franka robot documentation.
+* bench/vamp/: scripts that download the MotionBenchMaker problem set shipped with VAMP
+  at benchmark time. The problem files are not redistributed in this repository.

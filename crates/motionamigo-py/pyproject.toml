@@ -1,0 +1,35 @@
+[build-system]
+requires = ["maturin>=1.7,<2"]
+build-backend = "maturin"
+
+[project]
+name = "motionamigo"
+description = "Fast SIMD-vectorized sampling-based motion planning for robot arms (Rust core)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT OR Apache-2.0" }
+authors = [{ name = "Amerigo Velletti" }]
+dependencies = ["numpy>=1.21"]
+dynamic = ["version"]
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Robotics",
+]
+
+[project.urls]
+Repository = "https://github.com/Amerigo2020/motionAmigo"
+
+[dependency-groups]
+build = ["maturin>=1.7,<2"]
+dev = ["maturin>=1.7,<2", "pytest>=8", "numpy>=1.21"]
+
+[tool.uv]
+# The extension is built explicitly with `uv run maturin develop --uv`.
+package = false
+default-groups = ["dev"]
+
+[tool.maturin]
+python-source = "python"
+module-name = "motionamigo._motionamigo"
+features = ["pyo3/extension-module"]

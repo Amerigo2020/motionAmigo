@@ -1,0 +1,32 @@
+name: Python
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  wheel:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: astral-sh/setup-uv@v6
+      - name: Build wheel
+        working-directory: crates/motionamigo-py
+        run: uv run --only-group build maturin build --release --out dist
+      - name: Develop install and test
+        working-directory: crates/motionamigo-py
+        run: |
+          uv sync
+          uv run maturin develop --release --uv
+          uv run pytest -q
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wheel-${{ matrix.os }}
+          path: crates/motionamigo-py/dist/*.whl
+          retention-days: 7
