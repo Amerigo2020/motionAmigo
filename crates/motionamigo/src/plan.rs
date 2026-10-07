@@ -1,20 +1,25 @@
 //! High-level planning API.
 
-use crate::checker::{CollisionChecker, ScalarChecker, DEFAULT_RESOLUTION};
+use crate::checker::{CollisionChecker, ScalarChecker, SimdChecker, DEFAULT_RESOLUTION};
 use crate::environment::Environment;
 use crate::planner::path_length;
 use crate::planner::rrtc::{rrt_connect, RrtcSettings};
 use crate::planner::simplify::{simplify, SimplifySettings};
 use crate::rng::Rng;
 use crate::robot::RobotModel;
+use crate::simd::Backend;
 use crate::time::Stopwatch;
 use core::time::Duration;
 
 /// Which collision checker implementation to use.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
 pub enum CheckerKind {
-    /// Scalar reference implementation.
+    /// Vectorized checker with the best backend for this machine.
     #[default]
+    Simd,
+    /// Vectorized checker with a specific backend (falls back to portable if unavailable).
+    SimdBackend(Backend),
+    /// Scalar reference implementation.
     Scalar,
 }
 
@@ -170,6 +175,13 @@ pub fn make_checker(
 ) -> Box<dyn CollisionChecker + Send + Sync> {
     match settings.checker {
         CheckerKind::Scalar => Box::new(ScalarChecker::new(robot, env, settings.resolution)),
+        CheckerKind::Simd => Box::new(SimdChecker::new(robot, env, settings.resolution)),
+        CheckerKind::SimdBackend(b) => Box::new(SimdChecker::with_backend(
+            robot,
+            env,
+            settings.resolution,
+            b,
+        )),
     }
 }
 

@@ -107,3 +107,34 @@ Newest entries are appended at the bottom of each section.
   never lengthens a path.
 * **Time measurement compiles on wasm32**, where `std::time::Instant` is unavailable: the core
   reports zero there and the WASM bindings measure with `performance.now()`.
+
+## SIMD (M3)
+
+* **Own abstraction over `std::arch`, no `wide` crate.** Runtime dispatch on x86_64 requires
+  control over `#[target_feature]` boundaries, and bit-identical results require control over
+  min/max semantics (see below). Both are awkward with `wide`, whose backend is fixed at compile
+  time. The abstraction is one trait (`Real`) with five implementations, about 200 lines each.
+* **Runtime dispatch for AVX2.** Python wheels and native binaries must run on any x86_64 CPU,
+  so AVX2 is not enabled at compile time. Two small `#[target_feature(enable = "avx2")]` entry
+  points (edge validation and block check) instantiate the generic kernel with the AVX2 type.
+  Disassembly confirms the whole kernel is inlined into AVX code without calls.
+* **NEON and WASM are compile-time backends.** NEON is part of the aarch64 baseline; WASM SIMD is
+  enabled for the web build via `.cargo/config.toml`.
+* **Min/max are compare plus select.** `fmin`/`fmax` style instructions treat `-0.0`/`+0.0` and NaN
+  differently across ISAs. x86 `minps` happens to be exactly `if a < b { a } else { b }`; NEON and
+  WASM use an explicit compare plus bit-select to match it.
+* **`unsafe` is confined to `simd/`.** x86 intrinsics are unsafe to call outside a
+  `#[target_feature]` context and are guarded by the runtime check; NEON loads and stores take raw
+  pointers; `simd/stack.rs` is a fixed-capacity stack vector over `MaybeUninit`. Profiling
+  (callgrind) showed that zero-initializing the per-call scratch arrays of eight-lane vectors cost
+  more instructions than the kinematics itself, so the kernel uses that buffer instead.
+* **Obstacle hit lists.** A link's bounding sphere test records which obstacles it touches; the
+  link's spheres are then only tested against those. This halved the cost per edge.
+* **Three-level self-collision.** Bounding sphere against bounding sphere, then each sphere of one
+  link against the other link's bounding sphere (both directions, as bit masks), then the remaining
+  sphere pairs.
+* **Equivalence is tested on all backends,** including NEON (aarch64 runner in CI, qemu locally)
+  and WASM SIMD (the whole test suite runs on `wasm32-wasip1` under wasmtime in CI). Tests compare
+  FK sphere centers bit for bit, block results, edge results and complete plans.
+* **The SIMD checker is the default.** Single configurations are still checked with the scalar
+  kernel (nothing to vectorize); edges are checked eight configurations at a time.

@@ -7,6 +7,7 @@
 
 use crate::math::{sin_cos, Pose};
 use crate::robot::{DhConvention, RobotModel, MAX_DOF};
+use crate::simd::stack::StackVec;
 use crate::simd::Real;
 
 /// How the constant twist `alpha` of a joint is applied. The common multiples of `pi/2` are
@@ -50,7 +51,6 @@ pub(crate) struct CompiledJoint {
 }
 
 #[derive(Debug, Clone, Copy)]
-#[allow(dead_code)] // `bound` is consumed by the collision checker
 pub(crate) struct CompiledLink {
     pub frame: usize,
     pub start: usize,
@@ -60,7 +60,6 @@ pub(crate) struct CompiledLink {
 
 /// `f32` representation of a [`RobotModel`] used by the collision kernels.
 #[derive(Debug, Clone)]
-#[allow(dead_code)] // limits and self-collision pairs are consumed by the collision checker
 pub struct CompiledRobot {
     pub(crate) dof: usize,
     pub(crate) convention: DhConvention,
@@ -156,6 +155,11 @@ impl CompiledRobot {
     /// Number of collision spheres.
     pub fn num_spheres(&self) -> usize {
         self.spheres.len()
+    }
+
+    /// Smallest and largest collision sphere radius.
+    pub fn sphere_radius_range(&self) -> (f32, f32) {
+        (self.min_radius, self.max_radius)
     }
 }
 
@@ -272,27 +276,22 @@ impl<R: Real> Frame<R> {
 pub(crate) struct Fk<'a, R: Real> {
     robot: &'a CompiledRobot,
     q: &'a [R],
-    frames: [Frame<R>; MAX_DOF + 1],
-    computed: usize,
+    frames: StackVec<Frame<R>, { MAX_DOF + 1 }>,
 }
 
 impl<'a, R: Real> Fk<'a, R> {
     #[inline(always)]
     pub fn new(robot: &'a CompiledRobot, q: &'a [R]) -> Self {
-        let base = Frame::from_rows(&robot.base);
-        Fk {
-            robot,
-            q,
-            frames: [base; MAX_DOF + 1],
-            computed: 0,
-        }
+        let mut frames = StackVec::new();
+        frames.push(Frame::from_rows(&robot.base));
+        Fk { robot, q, frames }
     }
 
     /// Frame `i` (0 = base), computing intermediate frames on demand.
     #[inline(always)]
     pub fn frame(&mut self, i: usize) -> &Frame<R> {
-        while self.computed < i {
-            let k = self.computed;
+        while self.frames.len() <= i {
+            let k = self.frames.len() - 1;
             let j = &self.robot.joints[k];
             let theta = if j.theta_offset == 0.0 {
                 self.q[k]
@@ -300,10 +299,13 @@ impl<'a, R: Real> Fk<'a, R> {
                 self.q[k] + R::splat(j.theta_offset)
             };
             let (s, c) = sin_cos(theta);
-            self.frames[k + 1] = self.frames[k].apply_joint(self.robot.convention, j, s, c);
-            self.computed += 1;
+            let next = self
+                .frames
+                .get(k)
+                .apply_joint(self.robot.convention, j, s, c);
+            self.frames.push(next);
         }
-        &self.frames[i]
+        self.frames.get(i)
     }
 }
 
@@ -344,5 +346,49 @@ pub fn frame_pose_f32(robot: &CompiledRobot, q: &[f32], frame_index: usize) -> P
     Pose {
         rot,
         trans: f.p.map(|v| v as f64),
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::rng::Rng;
+    use crate::simd::{portable, LANES};
+
+    fn check_centers<R: Real>(robot: &CompiledRobot, rng: &mut Rng) {
+        let n = robot.num_spheres();
+        for _ in 0..200 {
+            let qs: Vec<[f32; LANES]> = (0..robot.dof())
+                .map(|_| core::array::from_fn(|_| rng.uniform(-4.0, 4.0)))
+                .collect();
+            let qv: Vec<R> = qs.iter().map(|row| R::load(row)).collect();
+            let mut vec_out = vec![[R::splat(0.0); 3]; n];
+            sphere_centers(robot, &qv, &mut vec_out);
+            for lane in 0..LANES {
+                let q1: Vec<f32> = qs.iter().map(|row| row[lane]).collect();
+                let mut s_out = vec![[0.0f32; 3]; n];
+                sphere_centers::<f32>(robot, &q1, &mut s_out);
+                for i in 0..n {
+                    for k in 0..3 {
+                        assert_eq!(vec_out[i][k].lane(lane).to_bits(), s_out[i][k].to_bits());
+                    }
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn vectorized_fk_is_bit_identical_to_scalar() {
+        let robot = CompiledRobot::new(&RobotModel::panda());
+        let mut rng = Rng::new(1);
+        check_centers::<portable::F32x8>(&robot, &mut rng);
+        #[cfg(target_arch = "x86_64")]
+        if crate::simd::x86::available() {
+            crate::simd::x86::with_avx2(|| {
+                check_centers::<crate::simd::x86::F32x8>(&robot, &mut rng)
+            });
+        }
+        #[cfg(target_arch = "aarch64")]
+        check_centers::<crate::simd::neon::F32x8>(&robot, &mut rng);
     }
 }

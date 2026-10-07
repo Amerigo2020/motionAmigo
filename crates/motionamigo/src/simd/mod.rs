@@ -17,15 +17,23 @@
 //! |------------------------|---------------------------|-----------------------|
 //! | `f32`                  | any                       | scalar reference      |
 //! | [`portable::F32x8`]    | any                       | `[f32; 8]`, autovectorized |
-//! | `x86::F32x8`           | x86_64, runtime detected  | AVX2 (256 bit)        |
+//! | `x86::F32x8` (internal) | x86_64, runtime detected | AVX2 (256 bit)        |
 //! | `neon::F32x8`          | aarch64                   | NEON (2 x 128 bit)    |
 //! | `wasm::F32x8`          | wasm32 with `simd128`     | WASM SIMD (2 x 128 bit) |
 
 use core::ops::{Add, BitAnd, BitOr, Mul, Neg, Sub};
 
 pub mod portable;
+pub(crate) mod stack;
 
-// Architecture-specific backends: added in milestone M3.
+#[cfg(target_arch = "x86_64")]
+pub(crate) mod x86;
+
+#[cfg(target_arch = "aarch64")]
+pub mod neon;
+
+#[cfg(all(target_arch = "wasm32", target_feature = "simd128"))]
+pub mod wasm;
 
 /// Number of lanes of the vectorized backends (and therefore the rake width).
 pub const LANES: usize = 8;
@@ -205,7 +213,26 @@ impl Backend {
 
     #[allow(unreachable_code)]
     fn detect_native() -> Backend {
+        #[cfg(target_arch = "x86_64")]
+        if x86::available() {
+            return Backend::Avx2;
+        }
+        #[cfg(target_arch = "aarch64")]
+        return Backend::Neon;
+        #[cfg(all(target_arch = "wasm32", target_feature = "simd128"))]
+        return Backend::Wasm128;
         Backend::Portable
+    }
+
+    /// All backends usable on this machine, best first.
+    pub fn available() -> Vec<Backend> {
+        let mut out = Vec::new();
+        let native = Self::detect_native();
+        if native != Backend::Portable {
+            out.push(native);
+        }
+        out.push(Backend::Portable);
+        out
     }
 
     /// Human-readable backend name.
@@ -269,5 +296,25 @@ pub(crate) mod tests {
     #[test]
     fn portable_backend() {
         check_backend::<portable::F32x8>();
+    }
+
+    #[cfg(target_arch = "x86_64")]
+    #[test]
+    fn avx2_backend() {
+        if x86::available() {
+            x86::with_avx2(check_backend::<x86::F32x8>);
+        }
+    }
+
+    #[cfg(target_arch = "aarch64")]
+    #[test]
+    fn neon_backend() {
+        check_backend::<neon::F32x8>();
+    }
+
+    #[cfg(all(target_arch = "wasm32", target_feature = "simd128"))]
+    #[test]
+    fn wasm_backend() {
+        check_backend::<wasm::F32x8>();
     }
 }

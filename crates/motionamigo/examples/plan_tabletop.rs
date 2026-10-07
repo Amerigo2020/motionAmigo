@@ -3,7 +3,7 @@
 //! Run with `cargo run --release -p motionamigo --example plan_tabletop`.
 
 use motionamigo::{
-    plan_with, Environment, PlanSettings, RobotModel, ScalarChecker, Scene, PANDA_READY,
+    plan_with, Environment, PlanSettings, RobotModel, Scene, SimdChecker, PANDA_READY,
 };
 
 fn main() {
@@ -33,7 +33,8 @@ fn main() {
         ),
         ("ready", PANDA_READY),
     ];
-    let checker = ScalarChecker::new(&robot, &env, 32.0);
+    let checker = SimdChecker::new(&robot, &env, 32.0);
+    println!("collision checker: {:?} backend", checker.backend());
     let settings = PlanSettings::default();
     let mut current = PANDA_READY.to_vec();
     for (name, goal) in waypoints {

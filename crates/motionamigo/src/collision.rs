@@ -8,9 +8,11 @@
 //! link pairs, again bounding spheres first.
 
 use crate::environment::Environment;
-use crate::kinematics::{CompiledRobot, Fk};
+use crate::kinematics::{CompiledRobot, Fk, Frame};
 use crate::pointcloud::PointCloud;
-use crate::robot::MAX_SPHERES;
+use crate::robot::MAX_LINKS;
+use crate::simd::stack::StackVec;
+
 use crate::simd::{Mask, Real};
 use std::sync::Arc;
 
@@ -139,16 +141,112 @@ pub(crate) fn sphere_env_any<R: Real>(env: &EnvBlock<R>, p: [R; 3], r: R) -> boo
             return true;
         }
     }
-    if !env.pointclouds.is_empty() {
-        for lane in 0..R::LANES {
-            let c = [p[0].lane(lane), p[1].lane(lane), p[2].lane(lane)];
-            let rl = r.lane(lane);
-            if env.pointclouds.iter().any(|pc| pc.collides(c, rl)) {
-                return true;
-            }
+    (0..env.pointclouds.len()).any(|i| pointcloud_any(env, i, p, r))
+}
+
+#[inline(always)]
+fn pointcloud_any<R: Real>(env: &EnvBlock<R>, i: usize, p: [R; 3], r: R) -> bool {
+    let pc = &env.pointclouds[i];
+    (0..R::LANES).any(|lane| {
+        let c = [p[0].lane(lane), p[1].lane(lane), p[2].lane(lane)];
+        pc.collides(c, r.lane(lane))
+    })
+}
+
+const MAX_HITS: usize = 16;
+
+/// Obstacles touched by a link's bounding sphere. The link's own spheres only need to be tested
+/// against these (a sphere inside the bounding sphere cannot touch anything else).
+pub(crate) struct Hits {
+    len: usize,
+    overflow: bool,
+    items: [(u8, u32); MAX_HITS],
+}
+
+const SPHERE: u8 = 0;
+const CAPSULE: u8 = 1;
+const CUBOID: u8 = 2;
+const CLOUD: u8 = 3;
+
+impl Hits {
+    #[inline(always)]
+    fn new() -> Hits {
+        Hits {
+            len: 0,
+            overflow: false,
+            items: [(0, 0); MAX_HITS],
+        }
+    }
+
+    #[inline(always)]
+    fn push(&mut self, kind: u8, i: usize) {
+        if self.len < MAX_HITS {
+            self.items[self.len] = (kind, i as u32);
+            self.len += 1;
+        } else {
+            self.overflow = true;
+        }
+    }
+}
+
+/// Records every obstacle the sphere `(p, r)` touches in any lane. Returns true if there is one.
+#[inline(always)]
+fn sphere_env_hits<R: Real>(env: &EnvBlock<R>, p: [R; 3], r: R, hits: &mut Hits) -> bool {
+    for (i, s) in env.spheres.iter().enumerate() {
+        if sphere_sphere(p, r, s).any() {
+            hits.push(SPHERE, i);
+        }
+    }
+    for (i, c) in env.capsules.iter().enumerate() {
+        if sphere_capsule(p, r, c).any() {
+            hits.push(CAPSULE, i);
+        }
+    }
+    for (i, b) in env.cuboids.iter().enumerate() {
+        if sphere_cuboid(p, r, b).any() {
+            hits.push(CUBOID, i);
+        }
+    }
+    for i in 0..env.pointclouds.len() {
+        if pointcloud_any(env, i, p, r) {
+            hits.push(CLOUD, i);
+        }
+    }
+    hits.len > 0 || hits.overflow
+}
+
+/// Like [`sphere_env_any`] but restricted to the recorded obstacles.
+#[inline(always)]
+fn sphere_hits_any<R: Real>(env: &EnvBlock<R>, p: [R; 3], r: R, hits: &Hits) -> bool {
+    if hits.overflow {
+        return sphere_env_any(env, p, r);
+    }
+    for &(kind, i) in &hits.items[..hits.len] {
+        let i = i as usize;
+        let hit = match kind {
+            SPHERE => sphere_sphere(p, r, &env.spheres[i]).any(),
+            CAPSULE => sphere_capsule(p, r, &env.capsules[i]).any(),
+            CUBOID => sphere_cuboid(p, r, &env.cuboids[i]).any(),
+            _ => pointcloud_any(env, i, p, r),
+        };
+        if hit {
+            return true;
         }
     }
     false
+}
+
+/// Center and radius of the sphere used for the first-level test of a link: its bounding
+/// sphere, or the link's only sphere.
+#[inline(always)]
+fn link_bound<R: Real>(robot: &CompiledRobot, li: usize, f: &Frame<R>) -> ([R; 3], f32) {
+    let l = &robot.links[li];
+    if l.len == 1 {
+        let s = robot.spheres[l.start];
+        (f.point([s[0], s[1], s[2]]), s[3])
+    } else {
+        (f.point([l.bound[0], l.bound[1], l.bound[2]]), l.bound[3])
+    }
 }
 
 /// Forward kinematics plus collision check for a block of configurations.
@@ -158,55 +256,62 @@ pub(crate) fn sphere_env_any<R: Real>(env: &EnvBlock<R>, p: [R; 3], r: R) -> boo
 #[inline(always)]
 pub(crate) fn fkcc<R: Real>(robot: &CompiledRobot, env: &EnvBlock<R>, q: &[R]) -> bool {
     let mut fk = Fk::new(robot, q);
-    let zero = R::splat(0.0);
-    let mut centers = [[zero; 3]; MAX_SPHERES];
-    let mut bounds = [[zero; 3]; crate::robot::MAX_LINKS];
+    let mut bounds = StackVec::<[R; 3], MAX_LINKS>::new();
     for (li, l) in robot.links.iter().enumerate() {
         let f = *fk.frame(l.frame);
-        let spheres = &robot.spheres[l.start..l.start + l.len];
-        for (k, s) in spheres.iter().enumerate() {
-            centers[l.start + k] = f.point([s[0], s[1], s[2]]);
-        }
-        let single = l.len == 1;
-        if single {
-            bounds[li] = centers[l.start];
-        } else {
-            bounds[li] = f.point([l.bound[0], l.bound[1], l.bound[2]]);
-        }
-        let bound_r = R::splat(if single { spheres[0][3] } else { l.bound[3] });
-        if !sphere_env_any(env, bounds[li], bound_r) {
+        let (bc, br) = link_bound(robot, li, &f);
+        bounds.push(bc);
+        if l.len == 1 {
+            if sphere_env_any(env, bc, R::splat(br)) {
+                return true;
+            }
             continue;
         }
-        if single {
-            return true;
+        let mut hits = Hits::new();
+        if !sphere_env_hits(env, bc, R::splat(br), &mut hits) {
+            continue;
         }
-        for (k, s) in spheres.iter().enumerate() {
-            if sphere_env_any(env, centers[l.start + k], R::splat(s[3])) {
+        for s in &robot.spheres[l.start..l.start + l.len] {
+            if sphere_hits_any(env, f.point([s[0], s[1], s[2]]), R::splat(s[3]), &hits) {
                 return true;
             }
         }
     }
+    // All frames are computed at this point (every link was visited).
     for &(a, b) in &robot.self_pairs {
         let (la, lb) = (&robot.links[a], &robot.links[b]);
-        let ra = if la.len == 1 {
-            robot.spheres[la.start][3]
-        } else {
-            la.bound[3]
-        };
-        let rb = if lb.len == 1 {
-            robot.spheres[lb.start][3]
-        } else {
-            lb.bound[3]
-        };
-        let d = sub(bounds[a], bounds[b]);
+        let (ra, rb) = (robot.links[a].bound[3], robot.links[b].bound[3]);
+        let (ca, cb) = (*bounds.get(a), *bounds.get(b));
+        let d = sub(ca, cb);
         let rs = R::splat(ra + rb);
         if !dot(d, d).lt(rs * rs).any() {
             continue;
         }
-        for i in la.start..la.start + la.len {
-            for j in lb.start..lb.start + lb.len {
-                let d = sub(centers[i], centers[j]);
-                let rs = R::splat(robot.spheres[i][3] + robot.spheres[j][3]);
+        // Second level: the spheres of each link against the bounding sphere of the other.
+        let fa = *fk.frame(la.frame);
+        let fb = *fk.frame(lb.frame);
+        let near_a = spheres_near(robot, a, &fa, cb, rb);
+        if near_a == 0 {
+            continue;
+        }
+        let near_b = spheres_near(robot, b, &fb, ca, ra);
+        if near_b == 0 {
+            continue;
+        }
+        // Third level: the remaining sphere pairs.
+        let mut ma = near_a;
+        while ma != 0 {
+            let i = la.start + ma.trailing_zeros() as usize;
+            ma &= ma - 1;
+            let sa = robot.spheres[i];
+            let pa = fa.point([sa[0], sa[1], sa[2]]);
+            let mut mb = near_b;
+            while mb != 0 {
+                let j = lb.start + mb.trailing_zeros() as usize;
+                mb &= mb - 1;
+                let sb = robot.spheres[j];
+                let d = sub(pa, fb.point([sb[0], sb[1], sb[2]]));
+                let rs = R::splat(sa[3] + sb[3]);
                 if dot(d, d).lt(rs * rs).any() {
                     return true;
                 }
@@ -214,4 +319,19 @@ pub(crate) fn fkcc<R: Real>(robot: &CompiledRobot, env: &EnvBlock<R>, q: &[R]) -
         }
     }
     false
+}
+
+/// Bit `k` is set if sphere `k` of link `li` touches the sphere `(c, r)` in any lane.
+#[inline(always)]
+fn spheres_near<R: Real>(robot: &CompiledRobot, li: usize, f: &Frame<R>, c: [R; 3], r: f32) -> u64 {
+    let l = &robot.links[li];
+    let mut mask = 0u64;
+    for (k, s) in robot.spheres[l.start..l.start + l.len].iter().enumerate() {
+        let d = sub(f.point([s[0], s[1], s[2]]), c);
+        let rs = R::splat(s[3] + r);
+        if dot(d, d).lt(rs * rs).any() {
+            mask |= 1 << k;
+        }
+    }
+    mask
 }

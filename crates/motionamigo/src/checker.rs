@@ -3,7 +3,7 @@
 //! Two implementations of [`CollisionChecker`] exist:
 //!
 //! * [`ScalarChecker`] is the reference: it checks one configuration at a time.
-//! * `SimdChecker` (milestone M3) checks an edge eight configurations at a time ("raked" checking): the eight
+//! * [`SimdChecker`] checks an edge eight configurations at a time ("raked" checking): the eight
 //!   lanes start spread evenly along the edge and then step backwards together, so a collision
 //!   anywhere on the edge is found after few iterations.
 //!
@@ -14,7 +14,7 @@ use crate::collision::{fkcc, EnvBlock};
 use crate::environment::Environment;
 use crate::kinematics::CompiledRobot;
 use crate::robot::{RobotModel, MAX_DOF};
-use crate::simd::{Real, LANES};
+use crate::simd::{portable, Backend, Real, LANES};
 use std::sync::Arc;
 
 /// Default edge resolution: checked configurations per radian of joint-space distance.
@@ -102,7 +102,6 @@ fn edge_setup(a: &[f32], b: &[f32]) -> ([f32; MAX_DOF], f32) {
 }
 
 /// Raked edge validation with lane type `R` (eight lanes).
-#[allow(dead_code)] // used by the SIMD checker
 #[inline(always)]
 pub(crate) fn motion_valid_rake<R: Real>(
     robot: &CompiledRobot,
@@ -143,6 +142,20 @@ pub(crate) fn motion_valid_rake<R: Real>(
         }
     }
     true
+}
+
+/// Collision check of an explicit block of eight configurations (`block[k][lane]`).
+#[inline(always)]
+pub(crate) fn block_in_collision<R: Real>(
+    robot: &CompiledRobot,
+    env: &EnvBlock<R>,
+    block: &[[f32; LANES]],
+) -> bool {
+    let mut q = [R::splat(0.0); MAX_DOF];
+    for (k, row) in block.iter().enumerate() {
+        q[k] = R::load(row);
+    }
+    fkcc(robot, env, &q[..block.len()])
 }
 
 /// The same discretization as [`motion_valid_rake`], one configuration at a time.
@@ -242,5 +255,134 @@ impl CollisionChecker for ScalarChecker {
     }
     fn name(&self) -> String {
         "scalar".into()
+    }
+}
+
+#[derive(Debug, Clone)]
+enum SimdEnv {
+    Portable(EnvBlock<portable::F32x8>),
+    #[cfg(target_arch = "x86_64")]
+    Avx2(EnvBlock<crate::simd::x86::F32x8>),
+    #[cfg(target_arch = "aarch64")]
+    Neon(EnvBlock<crate::simd::neon::F32x8>),
+    #[cfg(all(target_arch = "wasm32", target_feature = "simd128"))]
+    Wasm(EnvBlock<crate::simd::wasm::F32x8>),
+}
+
+/// Vectorized checker with raked edge validation.
+///
+/// Single configurations are checked with the scalar kernel (there is nothing to vectorize);
+/// edges are checked eight configurations at a time.
+#[derive(Debug, Clone)]
+pub struct SimdChecker {
+    robot: CompiledRobot,
+    scalar_env: EnvBlock<f32>,
+    env: SimdEnv,
+    resolution: f32,
+    backend: Backend,
+}
+
+impl SimdChecker {
+    /// Creates a checker using the best backend for this machine (see [`Backend::detect`]).
+    pub fn new(robot: &RobotModel, env: &Environment, resolution: f32) -> SimdChecker {
+        Self::with_backend(robot, env, resolution, Backend::detect())
+    }
+
+    /// Creates a checker with an explicit backend. Falls back to the portable backend if the
+    /// requested one is not available on this machine.
+    pub fn with_backend(
+        robot: &RobotModel,
+        env: &Environment,
+        resolution: f32,
+        backend: Backend,
+    ) -> SimdChecker {
+        let pcs: Arc<[_]> = env.pointclouds.clone().into();
+        let (backend, simd_env) = match backend {
+            #[cfg(target_arch = "x86_64")]
+            Backend::Avx2 if crate::simd::x86::available() => (
+                Backend::Avx2,
+                // Building the block broadcasts constants with AVX instructions; AVX2 support
+                // was checked in the match guard.
+                SimdEnv::Avx2(crate::simd::x86::with_avx2(|| {
+                    EnvBlock::new(env, pcs.clone())
+                })),
+            ),
+            #[cfg(target_arch = "aarch64")]
+            Backend::Neon => (
+                Backend::Neon,
+                SimdEnv::Neon(EnvBlock::new(env, pcs.clone())),
+            ),
+            #[cfg(all(target_arch = "wasm32", target_feature = "simd128"))]
+            Backend::Wasm128 => (
+                Backend::Wasm128,
+                SimdEnv::Wasm(EnvBlock::new(env, pcs.clone())),
+            ),
+            _ => (
+                Backend::Portable,
+                SimdEnv::Portable(EnvBlock::new(env, pcs.clone())),
+            ),
+        };
+        SimdChecker {
+            robot: CompiledRobot::new(robot),
+            scalar_env: EnvBlock::new(env, pcs),
+            env: simd_env,
+            resolution,
+            backend,
+        }
+    }
+
+    /// The backend in use.
+    pub fn backend(&self) -> Backend {
+        self.backend
+    }
+
+    /// True if `q` is in collision (ignores joint limits).
+    pub fn in_collision(&self, q: &[f32]) -> bool {
+        fkcc(&self.robot, &self.scalar_env, q)
+    }
+
+    /// Checks eight configurations at once. `block[k][lane]` is joint `k` of configuration `lane`.
+    /// Returns true if any of them is in collision.
+    pub fn any_in_collision(&self, block: &[[f32; LANES]]) -> bool {
+        assert_eq!(block.len(), self.robot.dof, "block needs one row per joint");
+        match &self.env {
+            SimdEnv::Portable(env) => block_in_collision(&self.robot, env, block),
+            #[cfg(target_arch = "x86_64")]
+            SimdEnv::Avx2(env) => crate::simd::x86::block_in_collision(&self.robot, env, block),
+            #[cfg(target_arch = "aarch64")]
+            SimdEnv::Neon(env) => block_in_collision(&self.robot, env, block),
+            #[cfg(all(target_arch = "wasm32", target_feature = "simd128"))]
+            SimdEnv::Wasm(env) => block_in_collision(&self.robot, env, block),
+        }
+    }
+}
+
+impl CollisionChecker for SimdChecker {
+    fn dof(&self) -> usize {
+        self.robot.dof
+    }
+    fn lower(&self) -> &[f32] {
+        &self.robot.lower
+    }
+    fn upper(&self) -> &[f32] {
+        &self.robot.upper
+    }
+    fn config_valid(&self, q: &[f32]) -> bool {
+        within(q, &self.robot.lower, &self.robot.upper) && !fkcc(&self.robot, &self.scalar_env, q)
+    }
+    fn motion_valid(&self, a: &[f32], b: &[f32]) -> bool {
+        let (robot, res) = (&self.robot, self.resolution);
+        match &self.env {
+            SimdEnv::Portable(env) => motion_valid_rake(robot, env, a, b, res),
+            #[cfg(target_arch = "x86_64")]
+            SimdEnv::Avx2(env) => crate::simd::x86::motion_valid(robot, env, a, b, res),
+            #[cfg(target_arch = "aarch64")]
+            SimdEnv::Neon(env) => motion_valid_rake(robot, env, a, b, res),
+            #[cfg(all(target_arch = "wasm32", target_feature = "simd128"))]
+            SimdEnv::Wasm(env) => motion_valid_rake(robot, env, a, b, res),
+        }
+    }
+    fn name(&self) -> String {
+        format!("simd-{}", self.backend.name())
     }
 }

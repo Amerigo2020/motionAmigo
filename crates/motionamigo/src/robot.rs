@@ -37,6 +37,8 @@ pub const MAX_DOF: usize = 8;
 pub const MAX_SPHERES: usize = 128;
 /// Maximum number of collision links per robot.
 pub const MAX_LINKS: usize = 24;
+/// Maximum number of spheres per collision link.
+pub const MAX_LINK_SPHERES: usize = 64;
 
 /// Errors raised while loading a robot description.
 #[derive(Debug, thiserror::Error)]

@@ -46,6 +46,25 @@ jobs:
         env:
           MOTIONAMIGO_SIMD: portable
 
+  test-wasi:
+    # Runs the full test suite as WebAssembly (simd128 backend) under wasmtime.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-wasip1
+      - uses: Swatinem/rust-cache@v2
+      - name: Install wasmtime
+        run: |
+          curl -sSL https://github.com/bytecodealliance/wasmtime/releases/download/v25.0.0/wasmtime-v25.0.0-x86_64-linux.tar.xz | tar xJ
+          echo "$PWD/wasmtime-v25.0.0-x86_64-linux" >> "$GITHUB_PATH"
+      - name: Test
+        run: cargo test -p motionamigo --release --target wasm32-wasip1 --lib --tests
+        env:
+          CARGO_TARGET_WASM32_WASIP1_RUNNER: wasmtime --dir=.
+          CARGO_TARGET_WASM32_WASIP1_RUSTFLAGS: -C target-feature=+simd128
+
   docs:
     runs-on: ubuntu-latest
     steps:

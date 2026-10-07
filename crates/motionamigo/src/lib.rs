@@ -33,9 +33,10 @@ pub mod scene;
 pub mod simd;
 pub mod time;
 
-pub use checker::{CollisionChecker, ScalarChecker};
+pub use checker::{CollisionChecker, ScalarChecker, SimdChecker};
 pub use environment::{Capsule, Cuboid, Environment, Sphere};
 pub use plan::{plan, plan_with, CheckerKind, Plan, PlanError, PlanSettings};
 pub use pointcloud::PointCloud;
 pub use robot::{RobotModel, PANDA_READY};
 pub use scene::Scene;
+pub use simd::Backend;
