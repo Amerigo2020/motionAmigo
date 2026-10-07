@@ -175,3 +175,27 @@ Newest entries are appended at the bottom of each section.
 * **The GIL is released** during planning and batch validity checks, tested with threads.
 * **Type stubs and `py.typed`** ship with the package for editor support.
 * **Not published to PyPI**; building from source with uv is documented instead.
+
+## WebAssembly and browser demo (M6)
+
+* **wasm-bindgen via wasm-pack, `--target web`.** No bundler: the demo is plain ES modules with an
+  import map, so GitHub Pages can serve `web/` directly.
+* **three.js 0.170 is vendored** (`web/vendor/three`, MIT license included) instead of loaded from a
+  CDN, so the demo works offline, in headless CI and without third-party requests.
+* **The robot is drawn as capsules** between the joint origins plus a box hand and two finger
+  capsules, no manufacturer meshes. The 59 collision spheres can be overlaid.
+* **Timing in the browser** uses `performance.now()` imported into the WASM module, measured around
+  RRT-Connect and shortcutting separately. Browsers coarsen this timer (about 0.1 ms), which the
+  stats panel inherits. The module plans a few warm-up queries at startup so the first measured
+  plan is not dominated by tier-up of the JIT.
+* **Dragging** moves objects in the horizontal plane through their grab point; every move rebuilds
+  the collision environment (cheap: a few broadcasts) and recolors the robot red if it is now in
+  collision.
+* **wasm-opt is run by `web/build.sh`**, not by wasm-pack: wasm-pack's own binaryen download did
+  not work behind the build sandbox's TLS proxy, and binaryen releases older than 116 corrupt the
+  externref table emitted by current wasm-bindgen. The script only uses wasm-opt 116 or newer.
+* **The README GIF is recorded deterministically**: a Playwright script plans, then steps through
+  the dense trajectory frame by frame and screenshots each frame; Pillow assembles a 128-color GIF
+  (about 0.5 MB). Headless Chromium renders WebGL through SwiftShader.
+* **CI smoke tests the demo** in headless Chromium: it must load, plan successfully, and a scripted
+  mouse drag must move an object both in three.js and in the WASM scene.

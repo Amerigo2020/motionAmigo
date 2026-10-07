@@ -2,6 +2,11 @@
 
 **A fast, SIMD-vectorized sampling-based motion planner for robot arms, written in Rust, with Python bindings and a live browser demo.**
 
+![motionAmigo planning a Franka Panda into the compartments of a bookshelf, in the browser](docs/media/demo.gif)
+
+*The browser demo: Rust compiled to WebAssembly with SIMD, planning into the shelf compartments in
+about 0.2 to 2 ms. Recorded headlessly with Playwright (`web/tools/record.mjs`).*
+
 motionAmigo plans collision-free motions for a Franka Emika Panda (7 DoF) with RRT-Connect and
 shortcutting. Following [VAMP](https://github.com/KavrakiLab/vamp) (Thomason, Kingston, Kavraki,
 ICRA 2024), the robot is approximated by spheres, and forward kinematics plus collision checking run
@@ -72,6 +77,20 @@ cargo run --release -p motionamigo --example plan_tabletop
 cargo test --workspace --exclude motionamigo-py
 cargo bench -p motionamigo --bench collision
 ```
+
+### Browser demo
+
+The demo in [`web/`](web/) runs the planner as WebAssembly (with `simd128`) next to a three.js
+scene: pick a scene and a goal, press Plan, drag obstacles around and plan again. The robot is drawn
+as capsules; the collision spheres can be shown as an overlay.
+
+```bash
+web/build.sh                          # needs wasm-pack, optionally wasm-opt >= 116
+cd web && python3 -m http.server 8000 # then open http://localhost:8000
+```
+
+Once GitHub Pages is enabled for this repository, the workflow in `.github/workflows/pages.yml`
+publishes the demo at https://amerigo2020.github.io/motionAmigo/.
 
 ## Benchmarks
 

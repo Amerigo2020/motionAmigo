@@ -11,5 +11,6 @@ dist/
 /bench/vamp/.venv/
 /bench/vamp/vamp-src/
 /bench/data/mbm/
-node_modules/
+node_modules
 .DS_Store
+/web/scenes/

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>motionAmigo, motion planning in the browser</title>
+  <meta name="description" content="SIMD-vectorized motion planning for a Franka Panda, compiled from Rust to WebAssembly.">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    { "imports": { "three": "./vendor/three/three.module.min.js" } }
+  </script>
+</head>
+<body>
+  <div id="viewport" aria-label="3D view"></div>
+
+  <aside id="panel">
+    <header>
+      <h1>motionAmigo</h1>
+      <p class="tagline">RRT-Connect with SIMD collision checking, compiled from Rust to WebAssembly.</p>
+    </header>
+
+    <section>
+      <label for="scene">Scene</label>
+      <select id="scene">
+        <option value="tabletop">Tabletop</option>
+        <option value="shelf">Shelf</option>
+        <option value="cage">Cage</option>
+      </select>
+
+      <label for="goal">Goal</label>
+      <div class="row">
+        <select id="goal"></select>
+        <button id="random" type="button" title="Sample a random collision-free goal with the hand pointing down">Random</button>
+      </div>
+
+      <div class="row">
+        <button id="plan" type="button" class="primary">Plan</button>
+        <button id="reset" type="button" title="Move the robot back to the ready pose">Reset</button>
+      </div>
+
+      <div class="row options">
+        <label><input id="show-spheres" type="checkbox"> collision spheres</label>
+        <label><input id="show-goal" type="checkbox" checked> goal ghost</label>
+      </div>
+    </section>
+
+    <section id="stats" aria-live="polite">
+      <div class="stat"><span>planning</span><strong id="t-plan">n/a</strong></div>
+      <div class="stat"><span>shortcutting</span><strong id="t-simp">n/a</strong></div>
+      <div class="stat"><span>waypoints</span><strong id="waypoints">n/a</strong></div>
+      <div class="stat"><span>path length</span><strong id="length">n/a</strong></div>
+      <div class="stat"><span>iterations</span><strong id="iterations">n/a</strong></div>
+      <div class="stat"><span>seed</span><strong id="seed">0</strong></div>
+      <p id="status">Loading WebAssembly module...</p>
+    </section>
+
+    <footer>
+      <p>Drag objects to move them, drag the background to orbit. The robot is drawn as capsules,
+        collision checking uses its 59 spheres.</p>
+      <p><span id="backend"></span> &middot;
+        <a href="https://github.com/Amerigo2020/motionAmigo">source on GitHub</a></p>
+    </footer>
+  </aside>
+
+  <div id="tooltip" hidden></div>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

@@ -14,16 +14,31 @@ jobs:
         with:
           targets: wasm32-unknown-unknown
       - uses: Swatinem/rust-cache@v2
-      - name: Install wasm-pack
-        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-      - name: Build (simd128 enabled via .cargo/config.toml)
-        run: wasm-pack build crates/motionamigo-wasm --release --target web --out-dir ../../web/pkg
+      - name: Install wasm-pack and binaryen
+        run: |
+          curl -sSL https://github.com/rustwasm/wasm-pack/releases/download/v0.13.1/wasm-pack-v0.13.1-x86_64-unknown-linux-musl.tar.gz | tar xz
+          curl -sSL https://github.com/WebAssembly/binaryen/releases/download/version_123/binaryen-version_123-x86_64-linux.tar.gz | tar xz
+          echo "$PWD/wasm-pack-v0.13.1-x86_64-unknown-linux-musl" >> "$GITHUB_PATH"
+          echo "$PWD/binaryen-version_123/bin" >> "$GITHUB_PATH"
+      - name: Build WASM module and copy scenes
+        run: web/build.sh
       - name: Check that the module uses SIMD instructions
         run: |
-          cargo install wasm-tools --locked
-          wasm-tools print web/pkg/motionamigo_wasm_bg.wasm | grep -c "f32x4" 
+          curl -sSL https://github.com/bytecodealliance/wasm-tools/releases/download/v1.219.1/wasm-tools-1.219.1-x86_64-linux.tar.gz | tar xz
+          count=$(wasm-tools-1.219.1-x86_64-linux/wasm-tools print web/pkg/motionamigo_wasm_bg.wasm | grep -c "f32x4")
+          echo "f32x4 instructions: $count"
+          test "$count" -gt 1000
+      - name: Smoke test in headless Chromium
+        run: |
+          cd web/tools && npm install --no-audit --no-fund && npx playwright install --with-deps chromium && cd ../..
+          (cd web && python3 -m http.server 8765 &) && sleep 1
+          node web/tools/screenshot.mjs http://localhost:8765 demo.png shelf "upper" | tee smoke.log
+          grep -q "Found a path" smoke.log
+          node web/tools/drag_test.mjs http://localhost:8765
       - uses: actions/upload-artifact@v4
         with:
           name: web
-          path: web
+          path: |
+            web
+            demo.png
           retention-days: 7
