@@ -1,0 +1,228 @@
+{
+  "version": "0.1",
+  "frame": "world",
+  "objects": [
+    {
+      "id": "shelf_back",
+      "label": "shelf_panel",
+      "center": [
+        0.865,
+        0,
+        0.65
+      ],
+      "size": [
+        0.02,
+        1.0,
+        1.3
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "shelf_side_left",
+      "label": "shelf_panel",
+      "center": [
+        0.7,
+        0.49,
+        0.65
+      ],
+      "size": [
+        0.35,
+        0.02,
+        1.3
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "shelf_side_right",
+      "label": "shelf_panel",
+      "center": [
+        0.7,
+        -0.49,
+        0.65
+      ],
+      "size": [
+        0.35,
+        0.02,
+        1.3
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "shelf_board_0",
+      "label": "shelf_board",
+      "center": [
+        0.7,
+        0,
+        0.01
+      ],
+      "size": [
+        0.35,
+        0.96,
+        0.02
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "shelf_board_1",
+      "label": "shelf_board",
+      "center": [
+        0.7,
+        0,
+        0.35
+      ],
+      "size": [
+        0.35,
+        0.96,
+        0.02
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "shelf_board_2",
+      "label": "shelf_board",
+      "center": [
+        0.7,
+        0,
+        0.68
+      ],
+      "size": [
+        0.35,
+        0.96,
+        0.02
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "shelf_board_3",
+      "label": "shelf_board",
+      "center": [
+        0.7,
+        0,
+        1.0
+      ],
+      "size": [
+        0.35,
+        0.96,
+        0.02
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "shelf_board_4",
+      "label": "shelf_board",
+      "center": [
+        0.7,
+        0,
+        1.29
+      ],
+      "size": [
+        0.35,
+        0.96,
+        0.02
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "shelf_divider",
+      "label": "shelf_panel",
+      "center": [
+        0.7,
+        0,
+        0.515
+      ],
+      "size": [
+        0.35,
+        0.02,
+        0.31
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "book_1",
+      "label": "book",
+      "center": [
+        0.77,
+        0.3,
+        0.79
+      ],
+      "size": [
+        0.16,
+        0.04,
+        0.2
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "book_2",
+      "label": "book",
+      "center": [
+        0.77,
+        0.25,
+        0.79
+      ],
+      "size": [
+        0.16,
+        0.04,
+        0.2
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "box_1",
+      "label": "box",
+      "center": [
+        0.75,
+        -0.3,
+        0.44
+      ],
+      "size": [
+        0.15,
+        0.15,
+        0.16
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "mug_1",
+      "label": "mug",
+      "center": [
+        0.67,
+        0.25,
+        0.41
+      ],
+      "size": [
+        0.08,
+        0.08,
+        0.1
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "bottle_1",
+      "label": "bottle",
+      "center": [
+        0.73,
+        -0.2,
+        1.11
+      ],
+      "size": [
+        0.07,
+        0.07,
+        0.2
+      ],
+      "yaw": 0.0
+    }
+  ],
+  "viewpoint": {
+    "position": [
+      -0.3,
+      0.0,
+      1.3
+    ],
+    "look_at": [
+      0.7,
+      0.0,
+      0.6
+    ]
+  }
+}

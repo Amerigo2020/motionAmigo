@@ -8,11 +8,11 @@ spheres and 21 self-collision link pairs. Median of criterion's estimate.
 
 | benchmark | scalar | SIMD portable | SIMD AVX2 | AVX2 speedup |
 |---|---:|---:|---:|---:|
-| 256 collision-free configurations (FK + CC) | 287 µs | 196 µs | 60.7 µs | 4.7x |
-| 256 edges between random valid configurations | 31.2 ms | 17.2 ms | 4.73 ms | 6.6x |
-| 16 planning problems (RRT-Connect + shortcutting) | 73.0 ms | 45.1 ms | 14.8 ms | 4.9x |
+| 256 collision-free configurations (FK + CC) | 290 µs | 193 µs | 60.4 µs | 4.8x |
+| 256 edges between random valid configurations | 30.8 ms | 17.6 ms | 4.67 ms | 6.6x |
+| 16 planning problems (RRT-Connect + shortcutting) | 44.4 ms | 25.8 ms | 7.71 ms | 5.8x |
 
-Per configuration this is 1.12 µs (scalar) against 237 ns (AVX2). Edge checks gain more than
+Per configuration this is 1.13 µs (scalar) against 236 ns (AVX2). Edge checks gain more than
 single configurations because the rake spreads the eight lanes over the edge, so blocked edges are
 rejected after fewer kernel calls. Planning gains less because nearest-neighbour search and the
 single-configuration checks of new samples stay scalar.

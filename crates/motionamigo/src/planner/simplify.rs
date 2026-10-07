@@ -18,7 +18,7 @@ pub struct SimplifySettings {
 impl Default for SimplifySettings {
     fn default() -> Self {
         SimplifySettings {
-            max_rounds: 5,
+            max_rounds: 3,
             random_attempts: 32,
             min_improvement: 1e-3,
         }
@@ -113,11 +113,12 @@ pub fn shortcut_random<C: CollisionChecker + ?Sized>(
         if new >= old * 0.999 {
             continue;
         }
-        // The two cut points and the partial edges to them are new and must be checked too.
-        if !(checker.config_valid(&p1)
-            && checker.config_valid(&p2)
+        // The two cut points and the partial edges to them are new and must be checked too
+        // (`p2` is the end point of the shortcut edge and therefore already checked).
+        // The shortcut itself is the check most likely to fail, so it goes first.
+        if !(checker.motion_valid(&p1, &p2)
+            && checker.config_valid(&p1)
             && checker.motion_valid(&path[i], &p1)
-            && checker.motion_valid(&p1, &p2)
             && checker.motion_valid(&p2, &path[j + 1]))
         {
             continue;

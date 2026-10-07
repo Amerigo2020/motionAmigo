@@ -1,0 +1,7006 @@
+{
+ "bookshelf_small": [
+  {
+   "problem": "bookshelf_small/0",
+   "solved": true,
+   "planning_us": 188.857,
+   "simplify_us": 810.946,
+   "total_us": 999.803,
+   "initial_length": 8.486886024475098,
+   "length": 6.008688926696777,
+   "iterations": 338
+  },
+  {
+   "problem": "bookshelf_small/1",
+   "solved": true,
+   "planning_us": 512.037,
+   "simplify_us": 513.122,
+   "total_us": 1025.159,
+   "initial_length": 7.547493934631348,
+   "length": 4.3193159103393555,
+   "iterations": 332
+  },
+  {
+   "problem": "bookshelf_small/2",
+   "solved": true,
+   "planning_us": 120.385,
+   "simplify_us": 123.394,
+   "total_us": 243.779,
+   "initial_length": 6.968469619750977,
+   "length": 4.742538928985596,
+   "iterations": 113
+  },
+  {
+   "problem": "bookshelf_small/3",
+   "solved": true,
+   "planning_us": 244.532,
+   "simplify_us": 530.172,
+   "total_us": 774.7040000000001,
+   "initial_length": 7.792500019073486,
+   "length": 4.634189605712891,
+   "iterations": 126
+  },
+  {
+   "problem": "bookshelf_small/4",
+   "solved": true,
+   "planning_us": 271.704,
+   "simplify_us": 199.333,
+   "total_us": 471.03700000000003,
+   "initial_length": 9.736589431762695,
+   "length": 5.552088737487793,
+   "iterations": 1177
+  },
+  {
+   "problem": "bookshelf_small/5",
+   "solved": true,
+   "planning_us": 292.91,
+   "simplify_us": 261.088,
+   "total_us": 553.998,
+   "initial_length": 6.608333587646484,
+   "length": 5.157524108886719,
+   "iterations": 2102
+  },
+  {
+   "problem": "bookshelf_small/6",
+   "solved": true,
+   "planning_us": 42.689,
+   "simplify_us": 158.953,
+   "total_us": 201.642,
+   "initial_length": 7.3470306396484375,
+   "length": 5.006255626678467,
+   "iterations": 36
+  },
+  {
+   "problem": "bookshelf_small/7",
+   "solved": true,
+   "planning_us": 141.467,
+   "simplify_us": 426.668,
+   "total_us": 568.135,
+   "initial_length": 5.696465969085693,
+   "length": 4.992007732391357,
+   "iterations": 122
+  },
+  {
+   "problem": "bookshelf_small/8",
+   "solved": true,
+   "planning_us": 181.197,
+   "simplify_us": 196.232,
+   "total_us": 377.429,
+   "initial_length": 8.19015884399414,
+   "length": 5.407094478607178,
+   "iterations": 220
+  },
+  {
+   "problem": "bookshelf_small/9",
+   "solved": true,
+   "planning_us": 114.933,
+   "simplify_us": 194.597,
+   "total_us": 309.53000000000003,
+   "initial_length": 7.995646953582764,
+   "length": 4.986750602722168,
+   "iterations": 56
+  },
+  {
+   "problem": "bookshelf_small/10",
+   "solved": true,
+   "planning_us": 330.639,
+   "simplify_us": 810.869,
+   "total_us": 1141.508,
+   "initial_length": 7.353811264038086,
+   "length": 6.002656936645508,
+   "iterations": 119
+  },
+  {
+   "problem": "bookshelf_small/11",
+   "solved": true,
+   "planning_us": 116.691,
+   "simplify_us": 118.69,
+   "total_us": 235.381,
+   "initial_length": 6.575257301330566,
+   "length": 3.9065732955932617,
+   "iterations": 408
+  },
+  {
+   "problem": "bookshelf_small/12",
+   "solved": true,
+   "planning_us": 539.069,
+   "simplify_us": 225.861,
+   "total_us": 764.93,
+   "initial_length": 8.597068786621094,
+   "length": 5.649041652679443,
+   "iterations": 4159
+  },
+  {
+   "problem": "bookshelf_small/13",
+   "solved": true,
+   "planning_us": 139.219,
+   "simplify_us": 645.378,
+   "total_us": 784.597,
+   "initial_length": 7.743896007537842,
+   "length": 5.798528671264648,
+   "iterations": 78
+  },
+  {
+   "problem": "bookshelf_small/14",
+   "solved": true,
+   "planning_us": 1340.166,
+   "simplify_us": 255.385,
+   "total_us": 1595.551,
+   "initial_length": 8.621969223022461,
+   "length": 5.319672584533691,
+   "iterations": 6966
+  },
+  {
+   "problem": "bookshelf_small/15",
+   "solved": true,
+   "planning_us": 68.765,
+   "simplify_us": 4.82,
+   "total_us": 73.58500000000001,
+   "initial_length": 2.7840263843536377,
+   "length": 2.7840263843536377,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_small/16",
+   "solved": true,
+   "planning_us": 74.462,
+   "simplify_us": 150.849,
+   "total_us": 225.31099999999998,
+   "initial_length": 7.37343168258667,
+   "length": 4.4882917404174805,
+   "iterations": 101
+  },
+  {
+   "problem": "bookshelf_small/17",
+   "solved": true,
+   "planning_us": 310.983,
+   "simplify_us": 563.991,
+   "total_us": 874.9739999999999,
+   "initial_length": 9.2623872756958,
+   "length": 5.407286643981934,
+   "iterations": 365
+  },
+  {
+   "problem": "bookshelf_small/18",
+   "solved": true,
+   "planning_us": 385.946,
+   "simplify_us": 187.001,
+   "total_us": 572.947,
+   "initial_length": 9.089299201965332,
+   "length": 5.18854284286499,
+   "iterations": 2160
+  },
+  {
+   "problem": "bookshelf_small/19",
+   "solved": true,
+   "planning_us": 173.37,
+   "simplify_us": 288.077,
+   "total_us": 461.447,
+   "initial_length": 7.423059463500977,
+   "length": 3.9777028560638428,
+   "iterations": 144
+  },
+  {
+   "problem": "bookshelf_small/20",
+   "solved": true,
+   "planning_us": 40.25,
+   "simplify_us": 123.733,
+   "total_us": 163.983,
+   "initial_length": 6.664444446563721,
+   "length": 4.600183963775635,
+   "iterations": 56
+  },
+  {
+   "problem": "bookshelf_small/21",
+   "solved": true,
+   "planning_us": 249.304,
+   "simplify_us": 197.779,
+   "total_us": 447.08299999999997,
+   "initial_length": 10.166199684143066,
+   "length": 5.337008953094482,
+   "iterations": 1198
+  },
+  {
+   "problem": "bookshelf_small/22",
+   "solved": true,
+   "planning_us": 32.753,
+   "simplify_us": 117.324,
+   "total_us": 150.077,
+   "initial_length": 5.62278938293457,
+   "length": 3.9099035263061523,
+   "iterations": 25
+  },
+  {
+   "problem": "bookshelf_small/23",
+   "solved": true,
+   "planning_us": 30.274,
+   "simplify_us": 2.336,
+   "total_us": 32.61,
+   "initial_length": 3.8512332439422607,
+   "length": 3.8512332439422607,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_small/24",
+   "solved": true,
+   "planning_us": 44.774,
+   "simplify_us": 93.205,
+   "total_us": 137.97899999999998,
+   "initial_length": 5.690369129180908,
+   "length": 3.680293560028076,
+   "iterations": 122
+  },
+  {
+   "problem": "bookshelf_small/25",
+   "solved": true,
+   "planning_us": 122.92,
+   "simplify_us": 231.776,
+   "total_us": 354.696,
+   "initial_length": 12.241592407226562,
+   "length": 7.21908712387085,
+   "iterations": 347
+  },
+  {
+   "problem": "bookshelf_small/26",
+   "solved": true,
+   "planning_us": 31.359,
+   "simplify_us": 105.717,
+   "total_us": 137.076,
+   "initial_length": 6.378838539123535,
+   "length": 4.419594764709473,
+   "iterations": 11
+  },
+  {
+   "problem": "bookshelf_small/27",
+   "solved": true,
+   "planning_us": 83.135,
+   "simplify_us": 89.994,
+   "total_us": 173.12900000000002,
+   "initial_length": 7.8311591148376465,
+   "length": 4.96632719039917,
+   "iterations": 518
+  },
+  {
+   "problem": "bookshelf_small/28",
+   "solved": true,
+   "planning_us": 229.391,
+   "simplify_us": 160.745,
+   "total_us": 390.13599999999997,
+   "initial_length": 6.7553606033325195,
+   "length": 3.735145092010498,
+   "iterations": 740
+  },
+  {
+   "problem": "bookshelf_small/29",
+   "solved": true,
+   "planning_us": 60.84,
+   "simplify_us": 214.578,
+   "total_us": 275.418,
+   "initial_length": 4.560792922973633,
+   "length": 3.4466495513916016,
+   "iterations": 166
+  },
+  {
+   "problem": "bookshelf_small/30",
+   "solved": true,
+   "planning_us": 38.719,
+   "simplify_us": 145.809,
+   "total_us": 184.528,
+   "initial_length": 5.883823871612549,
+   "length": 4.628666400909424,
+   "iterations": 45
+  },
+  {
+   "problem": "bookshelf_small/31",
+   "solved": true,
+   "planning_us": 1038.684,
+   "simplify_us": 166.339,
+   "total_us": 1205.023,
+   "initial_length": 9.492414474487305,
+   "length": 5.170551776885986,
+   "iterations": 8031
+  },
+  {
+   "problem": "bookshelf_small/32",
+   "solved": true,
+   "planning_us": 134.702,
+   "simplify_us": 390.762,
+   "total_us": 525.4639999999999,
+   "initial_length": 6.0423150062561035,
+   "length": 4.728884696960449,
+   "iterations": 13
+  },
+  {
+   "problem": "bookshelf_small/33",
+   "solved": true,
+   "planning_us": 20.456,
+   "simplify_us": 2.373,
+   "total_us": 22.829,
+   "initial_length": 3.876708745956421,
+   "length": 3.876708745956421,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_small/34",
+   "solved": true,
+   "planning_us": 68.246,
+   "simplify_us": 132.659,
+   "total_us": 200.90499999999997,
+   "initial_length": 6.692770004272461,
+   "length": 3.7168526649475098,
+   "iterations": 37
+  },
+  {
+   "problem": "bookshelf_small/35",
+   "solved": true,
+   "planning_us": 122.974,
+   "simplify_us": 207.813,
+   "total_us": 330.787,
+   "initial_length": 9.110180854797363,
+   "length": 4.830686092376709,
+   "iterations": 673
+  },
+  {
+   "problem": "bookshelf_small/36",
+   "solved": true,
+   "planning_us": 43.979,
+   "simplify_us": 134.347,
+   "total_us": 178.32600000000002,
+   "initial_length": 6.49403190612793,
+   "length": 4.892481327056885,
+   "iterations": 17
+  },
+  {
+   "problem": "bookshelf_small/37",
+   "solved": true,
+   "planning_us": 34.127,
+   "simplify_us": 151.917,
+   "total_us": 186.044,
+   "initial_length": 6.437142372131348,
+   "length": 4.806300163269043,
+   "iterations": 12
+  },
+  {
+   "problem": "bookshelf_small/38",
+   "solved": true,
+   "planning_us": 51.57,
+   "simplify_us": 134.337,
+   "total_us": 185.90699999999998,
+   "initial_length": 6.973907470703125,
+   "length": 4.601418495178223,
+   "iterations": 118
+  },
+  {
+   "problem": "bookshelf_small/39",
+   "solved": true,
+   "planning_us": 104.897,
+   "simplify_us": 221.224,
+   "total_us": 326.121,
+   "initial_length": 7.57978630065918,
+   "length": 5.861141681671143,
+   "iterations": 627
+  },
+  {
+   "problem": "bookshelf_small/40",
+   "solved": true,
+   "planning_us": 51.136,
+   "simplify_us": 99.662,
+   "total_us": 150.798,
+   "initial_length": 6.147615909576416,
+   "length": 3.648221969604492,
+   "iterations": 123
+  },
+  {
+   "problem": "bookshelf_small/41",
+   "solved": true,
+   "planning_us": 17.944,
+   "simplify_us": 2.032,
+   "total_us": 19.976,
+   "initial_length": 3.048666477203369,
+   "length": 3.048666477203369,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_small/42",
+   "solved": true,
+   "planning_us": 55.41,
+   "simplify_us": 138.266,
+   "total_us": 193.676,
+   "initial_length": 6.2791337966918945,
+   "length": 4.167625904083252,
+   "iterations": 50
+  },
+  {
+   "problem": "bookshelf_small/43",
+   "solved": true,
+   "planning_us": 728.708,
+   "simplify_us": 259.602,
+   "total_us": 988.31,
+   "initial_length": 11.621776580810547,
+   "length": 5.433839797973633,
+   "iterations": 3314
+  },
+  {
+   "problem": "bookshelf_small/44",
+   "solved": true,
+   "planning_us": 39.486,
+   "simplify_us": 149.921,
+   "total_us": 189.40699999999998,
+   "initial_length": 7.269740581512451,
+   "length": 4.955793857574463,
+   "iterations": 112
+  },
+  {
+   "problem": "bookshelf_small/45",
+   "solved": true,
+   "planning_us": 56.703,
+   "simplify_us": 109.158,
+   "total_us": 165.861,
+   "initial_length": 6.628905296325684,
+   "length": 4.46090841293335,
+   "iterations": 192
+  },
+  {
+   "problem": "bookshelf_small/46",
+   "solved": true,
+   "planning_us": 63.404,
+   "simplify_us": 172.208,
+   "total_us": 235.612,
+   "initial_length": 7.338047027587891,
+   "length": 4.310454845428467,
+   "iterations": 131
+  },
+  {
+   "problem": "bookshelf_small/47",
+   "solved": true,
+   "planning_us": 24.971,
+   "simplify_us": 83.331,
+   "total_us": 108.302,
+   "initial_length": 4.468331813812256,
+   "length": 2.8245980739593506,
+   "iterations": 5
+  },
+  {
+   "problem": "bookshelf_small/48",
+   "solved": true,
+   "planning_us": 26.424,
+   "simplify_us": 1.918,
+   "total_us": 28.342,
+   "initial_length": 6.233208656311035,
+   "length": 6.233208656311035,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_small/49",
+   "solved": true,
+   "planning_us": 36.057,
+   "simplify_us": 116.495,
+   "total_us": 152.55200000000002,
+   "initial_length": 5.017816066741943,
+   "length": 2.9914515018463135,
+   "iterations": 26
+  },
+  {
+   "problem": "bookshelf_small/50",
+   "solved": true,
+   "planning_us": 382.19,
+   "simplify_us": 155.242,
+   "total_us": 537.432,
+   "initial_length": 9.822261810302734,
+   "length": 4.791457653045654,
+   "iterations": 2554
+  },
+  {
+   "problem": "bookshelf_small/51",
+   "solved": true,
+   "planning_us": 119.195,
+   "simplify_us": 135.716,
+   "total_us": 254.911,
+   "initial_length": 7.926338195800781,
+   "length": 4.9373087882995605,
+   "iterations": 359
+  },
+  {
+   "problem": "bookshelf_small/52",
+   "solved": true,
+   "planning_us": 93.878,
+   "simplify_us": 181.449,
+   "total_us": 275.327,
+   "initial_length": 8.450343132019043,
+   "length": 4.607732772827148,
+   "iterations": 397
+  },
+  {
+   "problem": "bookshelf_small/53",
+   "solved": true,
+   "planning_us": 735.194,
+   "simplify_us": 319.03,
+   "total_us": 1054.224,
+   "initial_length": 17.274456024169922,
+   "length": 7.964174747467041,
+   "iterations": 2997
+  },
+  {
+   "problem": "bookshelf_small/54",
+   "solved": true,
+   "planning_us": 80.736,
+   "simplify_us": 191.639,
+   "total_us": 272.375,
+   "initial_length": 8.00600814819336,
+   "length": 5.016529083251953,
+   "iterations": 78
+  },
+  {
+   "problem": "bookshelf_small/55",
+   "solved": true,
+   "planning_us": 25.631,
+   "simplify_us": 2.426,
+   "total_us": 28.057000000000002,
+   "initial_length": 4.360770225524902,
+   "length": 4.360770225524902,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_small/56",
+   "solved": true,
+   "planning_us": 28.453,
+   "simplify_us": 145.017,
+   "total_us": 173.47,
+   "initial_length": 5.670037746429443,
+   "length": 4.081296443939209,
+   "iterations": 2
+  },
+  {
+   "problem": "bookshelf_small/57",
+   "solved": true,
+   "planning_us": 215.393,
+   "simplify_us": 289.205,
+   "total_us": 504.59799999999996,
+   "initial_length": 10.739065170288086,
+   "length": 5.108294486999512,
+   "iterations": 875
+  },
+  {
+   "problem": "bookshelf_small/58",
+   "solved": true,
+   "planning_us": 46.733,
+   "simplify_us": 118.383,
+   "total_us": 165.11599999999999,
+   "initial_length": 6.384843349456787,
+   "length": 4.005406856536865,
+   "iterations": 93
+  },
+  {
+   "problem": "bookshelf_small/59",
+   "solved": true,
+   "planning_us": 62.548,
+   "simplify_us": 151.956,
+   "total_us": 214.504,
+   "initial_length": 7.38965368270874,
+   "length": 4.185931205749512,
+   "iterations": 9
+  },
+  {
+   "problem": "bookshelf_small/60",
+   "solved": true,
+   "planning_us": 132.287,
+   "simplify_us": 237.694,
+   "total_us": 369.981,
+   "initial_length": 6.903629779815674,
+   "length": 4.386157035827637,
+   "iterations": 111
+  },
+  {
+   "problem": "bookshelf_small/61",
+   "solved": true,
+   "planning_us": 24.052,
+   "simplify_us": 2.346,
+   "total_us": 26.398,
+   "initial_length": 4.6022796630859375,
+   "length": 4.6022796630859375,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_small/62",
+   "solved": true,
+   "planning_us": 85.472,
+   "simplify_us": 116.43,
+   "total_us": 201.902,
+   "initial_length": 8.159931182861328,
+   "length": 4.917058944702148,
+   "iterations": 165
+  },
+  {
+   "problem": "bookshelf_small/63",
+   "solved": true,
+   "planning_us": 65.845,
+   "simplify_us": 152.807,
+   "total_us": 218.652,
+   "initial_length": 9.16828727722168,
+   "length": 5.015937328338623,
+   "iterations": 40
+  },
+  {
+   "problem": "bookshelf_small/64",
+   "solved": true,
+   "planning_us": 85.131,
+   "simplify_us": 139.659,
+   "total_us": 224.79,
+   "initial_length": 6.9462738037109375,
+   "length": 4.967949867248535,
+   "iterations": 158
+  },
+  {
+   "problem": "bookshelf_small/65",
+   "solved": true,
+   "planning_us": 78.654,
+   "simplify_us": 188.214,
+   "total_us": 266.868,
+   "initial_length": 6.826143741607666,
+   "length": 4.407876491546631,
+   "iterations": 17
+  },
+  {
+   "problem": "bookshelf_small/66",
+   "solved": true,
+   "planning_us": 1104.358,
+   "simplify_us": 360.244,
+   "total_us": 1464.6019999999999,
+   "initial_length": 11.107748985290527,
+   "length": 7.458926677703857,
+   "iterations": 5153
+  },
+  {
+   "problem": "bookshelf_small/67",
+   "solved": true,
+   "planning_us": 133.248,
+   "simplify_us": 442.105,
+   "total_us": 575.3530000000001,
+   "initial_length": 6.20412015914917,
+   "length": 4.057397365570068,
+   "iterations": 68
+  },
+  {
+   "problem": "bookshelf_small/68",
+   "solved": true,
+   "planning_us": 903.334,
+   "simplify_us": 250.86,
+   "total_us": 1154.194,
+   "initial_length": 7.92606258392334,
+   "length": 5.0841217041015625,
+   "iterations": 10664
+  },
+  {
+   "problem": "bookshelf_small/69",
+   "solved": true,
+   "planning_us": 144.885,
+   "simplify_us": 460.081,
+   "total_us": 604.966,
+   "initial_length": 6.292640686035156,
+   "length": 4.67928409576416,
+   "iterations": 1
+  },
+  {
+   "problem": "bookshelf_small/70",
+   "solved": true,
+   "planning_us": 242.679,
+   "simplify_us": 172.585,
+   "total_us": 415.264,
+   "initial_length": 8.301190376281738,
+   "length": 5.071412563323975,
+   "iterations": 1035
+  },
+  {
+   "problem": "bookshelf_small/71",
+   "solved": true,
+   "planning_us": 219.934,
+   "simplify_us": 226.62,
+   "total_us": 446.554,
+   "initial_length": 7.135263442993164,
+   "length": 5.6780686378479,
+   "iterations": 425
+  },
+  {
+   "problem": "bookshelf_small/72",
+   "solved": true,
+   "planning_us": 131.987,
+   "simplify_us": 635.717,
+   "total_us": 767.704,
+   "initial_length": 7.170257091522217,
+   "length": 4.9009904861450195,
+   "iterations": 12
+  },
+  {
+   "problem": "bookshelf_small/73",
+   "solved": true,
+   "planning_us": 202.773,
+   "simplify_us": 254.319,
+   "total_us": 457.092,
+   "initial_length": 10.528462409973145,
+   "length": 8.493538856506348,
+   "iterations": 57
+  },
+  {
+   "problem": "bookshelf_small/74",
+   "solved": true,
+   "planning_us": 65.793,
+   "simplify_us": 142.522,
+   "total_us": 208.315,
+   "initial_length": 7.699560642242432,
+   "length": 4.168765544891357,
+   "iterations": 15
+  },
+  {
+   "problem": "bookshelf_small/75",
+   "solved": true,
+   "planning_us": 42.625,
+   "simplify_us": 208.387,
+   "total_us": 251.012,
+   "initial_length": 5.829268455505371,
+   "length": 4.54118013381958,
+   "iterations": 1
+  },
+  {
+   "problem": "bookshelf_small/76",
+   "solved": true,
+   "planning_us": 86.507,
+   "simplify_us": 196.719,
+   "total_us": 283.226,
+   "initial_length": 10.860286712646484,
+   "length": 5.19536018371582,
+   "iterations": 95
+  },
+  {
+   "problem": "bookshelf_small/77",
+   "solved": true,
+   "planning_us": 380.939,
+   "simplify_us": 154.324,
+   "total_us": 535.263,
+   "initial_length": 8.740537643432617,
+   "length": 4.720864772796631,
+   "iterations": 2123
+  },
+  {
+   "problem": "bookshelf_small/78",
+   "solved": true,
+   "planning_us": 69.492,
+   "simplify_us": 97.287,
+   "total_us": 166.779,
+   "initial_length": 5.55054235458374,
+   "length": 3.7364563941955566,
+   "iterations": 119
+  },
+  {
+   "problem": "bookshelf_small/79",
+   "solved": true,
+   "planning_us": 41.837,
+   "simplify_us": 177.016,
+   "total_us": 218.853,
+   "initial_length": 6.476935386657715,
+   "length": 3.7651984691619873,
+   "iterations": 11
+  },
+  {
+   "problem": "bookshelf_small/80",
+   "solved": true,
+   "planning_us": 152.278,
+   "simplify_us": 453.228,
+   "total_us": 605.506,
+   "initial_length": 5.572989463806152,
+   "length": 4.017234802246094,
+   "iterations": 2
+  },
+  {
+   "problem": "bookshelf_small/81",
+   "solved": true,
+   "planning_us": 377.095,
+   "simplify_us": 178.56,
+   "total_us": 555.655,
+   "initial_length": 7.352635383605957,
+   "length": 4.639081001281738,
+   "iterations": 2125
+  },
+  {
+   "problem": "bookshelf_small/82",
+   "solved": true,
+   "planning_us": 38.095,
+   "simplify_us": 156.897,
+   "total_us": 194.992,
+   "initial_length": 6.566490173339844,
+   "length": 4.487276554107666,
+   "iterations": 13
+  },
+  {
+   "problem": "bookshelf_small/83",
+   "solved": true,
+   "planning_us": 285.693,
+   "simplify_us": 593.948,
+   "total_us": 879.641,
+   "initial_length": 7.7996745109558105,
+   "length": 5.141087055206299,
+   "iterations": 419
+  },
+  {
+   "problem": "bookshelf_small/84",
+   "solved": true,
+   "planning_us": 111.418,
+   "simplify_us": 180.388,
+   "total_us": 291.80600000000004,
+   "initial_length": 8.859755516052246,
+   "length": 5.550511837005615,
+   "iterations": 426
+  },
+  {
+   "problem": "bookshelf_small/85",
+   "solved": true,
+   "planning_us": 320.401,
+   "simplify_us": 117.529,
+   "total_us": 437.93,
+   "initial_length": 5.669473171234131,
+   "length": 3.7421655654907227,
+   "iterations": 47
+  },
+  {
+   "problem": "bookshelf_small/86",
+   "solved": true,
+   "planning_us": 129.464,
+   "simplify_us": 418.645,
+   "total_us": 548.1089999999999,
+   "initial_length": 6.334440231323242,
+   "length": 4.440647602081299,
+   "iterations": 112
+  },
+  {
+   "problem": "bookshelf_small/87",
+   "solved": true,
+   "planning_us": 511.537,
+   "simplify_us": 240.376,
+   "total_us": 751.913,
+   "initial_length": 6.313745498657227,
+   "length": 4.213784217834473,
+   "iterations": 3256
+  },
+  {
+   "problem": "bookshelf_small/88",
+   "solved": true,
+   "planning_us": 3245.826,
+   "simplify_us": 240.583,
+   "total_us": 3486.409,
+   "initial_length": 9.703059196472168,
+   "length": 6.213687896728516,
+   "iterations": 42794
+  },
+  {
+   "problem": "bookshelf_small/89",
+   "solved": true,
+   "planning_us": 303.593,
+   "simplify_us": 267.881,
+   "total_us": 571.4739999999999,
+   "initial_length": 9.183753967285156,
+   "length": 6.375133991241455,
+   "iterations": 2505
+  },
+  {
+   "problem": "bookshelf_small/90",
+   "solved": true,
+   "planning_us": 182.99,
+   "simplify_us": 111.271,
+   "total_us": 294.261,
+   "initial_length": 6.9752020835876465,
+   "length": 4.362152099609375,
+   "iterations": 81
+  },
+  {
+   "problem": "bookshelf_small/91",
+   "solved": true,
+   "planning_us": 150.619,
+   "simplify_us": 521.63,
+   "total_us": 672.249,
+   "initial_length": 6.428853511810303,
+   "length": 3.984428882598877,
+   "iterations": 123
+  },
+  {
+   "problem": "bookshelf_small/92",
+   "solved": true,
+   "planning_us": 1720.322,
+   "simplify_us": 279.543,
+   "total_us": 1999.8649999999998,
+   "initial_length": 7.39147424697876,
+   "length": 5.535473823547363,
+   "iterations": 16885
+  },
+  {
+   "problem": "bookshelf_small/93",
+   "solved": true,
+   "planning_us": 140.275,
+   "simplify_us": 581.421,
+   "total_us": 721.696,
+   "initial_length": 7.78458309173584,
+   "length": 4.903123378753662,
+   "iterations": 112
+  },
+  {
+   "problem": "bookshelf_small/94",
+   "solved": true,
+   "planning_us": 39.903,
+   "simplify_us": 135.064,
+   "total_us": 174.96699999999998,
+   "initial_length": 6.11600399017334,
+   "length": 5.0328803062438965,
+   "iterations": 42
+  },
+  {
+   "problem": "bookshelf_small/95",
+   "solved": true,
+   "planning_us": 135.936,
+   "simplify_us": 232.215,
+   "total_us": 368.151,
+   "initial_length": 7.66640043258667,
+   "length": 4.773426055908203,
+   "iterations": 112
+  },
+  {
+   "problem": "bookshelf_small/96",
+   "solved": true,
+   "planning_us": 127.993,
+   "simplify_us": 296.021,
+   "total_us": 424.014,
+   "initial_length": 6.841973781585693,
+   "length": 4.475092887878418,
+   "iterations": 22
+  },
+  {
+   "problem": "bookshelf_small/97",
+   "solved": true,
+   "planning_us": 31.273,
+   "simplify_us": 101.061,
+   "total_us": 132.334,
+   "initial_length": 5.147375583648682,
+   "length": 3.7180209159851074,
+   "iterations": 1
+  },
+  {
+   "problem": "bookshelf_small/98",
+   "solved": true,
+   "planning_us": 20.548,
+   "simplify_us": 2.705,
+   "total_us": 23.253,
+   "initial_length": 3.5192058086395264,
+   "length": 3.5192058086395264,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_small/99",
+   "solved": true,
+   "planning_us": 193.641,
+   "simplify_us": 199.629,
+   "total_us": 393.27,
+   "initial_length": 10.68233871459961,
+   "length": 6.3232951164245605,
+   "iterations": 969
+  }
+ ],
+ "bookshelf_tall": [
+  {
+   "problem": "bookshelf_tall/0",
+   "solved": true,
+   "planning_us": 273.51,
+   "simplify_us": 155.05,
+   "total_us": 428.56,
+   "initial_length": 7.073281288146973,
+   "length": 5.203729629516602,
+   "iterations": 882
+  },
+  {
+   "problem": "bookshelf_tall/1",
+   "solved": true,
+   "planning_us": 827.433,
+   "simplify_us": 465.162,
+   "total_us": 1292.595,
+   "initial_length": 8.053466796875,
+   "length": 5.9050397872924805,
+   "iterations": 2227
+  },
+  {
+   "problem": "bookshelf_tall/2",
+   "solved": true,
+   "planning_us": 179.362,
+   "simplify_us": 158.005,
+   "total_us": 337.36699999999996,
+   "initial_length": 7.383903980255127,
+   "length": 4.903715133666992,
+   "iterations": 641
+  },
+  {
+   "problem": "bookshelf_tall/3",
+   "solved": true,
+   "planning_us": 40.83,
+   "simplify_us": 116.691,
+   "total_us": 157.52100000000002,
+   "initial_length": 6.803843021392822,
+   "length": 4.612756729125977,
+   "iterations": 3
+  },
+  {
+   "problem": "bookshelf_tall/4",
+   "solved": true,
+   "planning_us": 276.483,
+   "simplify_us": 682.288,
+   "total_us": 958.771,
+   "initial_length": 7.357387542724609,
+   "length": 5.922556400299072,
+   "iterations": 522
+  },
+  {
+   "problem": "bookshelf_tall/5",
+   "solved": true,
+   "planning_us": 49.952,
+   "simplify_us": 137.778,
+   "total_us": 187.73,
+   "initial_length": 7.945799827575684,
+   "length": 4.423094272613525,
+   "iterations": 13
+  },
+  {
+   "problem": "bookshelf_tall/6",
+   "solved": true,
+   "planning_us": 41.403,
+   "simplify_us": 86.389,
+   "total_us": 127.792,
+   "initial_length": 6.300444602966309,
+   "length": 3.875375509262085,
+   "iterations": 3
+  },
+  {
+   "problem": "bookshelf_tall/7",
+   "solved": true,
+   "planning_us": 187.802,
+   "simplify_us": 99.349,
+   "total_us": 287.151,
+   "initial_length": 7.958695888519287,
+   "length": 4.676353454589844,
+   "iterations": 396
+  },
+  {
+   "problem": "bookshelf_tall/8",
+   "solved": true,
+   "planning_us": 185.507,
+   "simplify_us": 634.143,
+   "total_us": 819.6500000000001,
+   "initial_length": 7.2192230224609375,
+   "length": 5.041563034057617,
+   "iterations": 441
+  },
+  {
+   "problem": "bookshelf_tall/9",
+   "solved": true,
+   "planning_us": 220.746,
+   "simplify_us": 238.514,
+   "total_us": 459.26,
+   "initial_length": 7.526321887969971,
+   "length": 5.7245893478393555,
+   "iterations": 693
+  },
+  {
+   "problem": "bookshelf_tall/10",
+   "solved": true,
+   "planning_us": 135.768,
+   "simplify_us": 100.102,
+   "total_us": 235.87,
+   "initial_length": 6.676686763763428,
+   "length": 3.765336275100708,
+   "iterations": 354
+  },
+  {
+   "problem": "bookshelf_tall/11",
+   "solved": true,
+   "planning_us": 217.618,
+   "simplify_us": 157.981,
+   "total_us": 375.599,
+   "initial_length": 6.290051460266113,
+   "length": 4.750811576843262,
+   "iterations": 232
+  },
+  {
+   "problem": "bookshelf_tall/12",
+   "solved": true,
+   "planning_us": 140.44,
+   "simplify_us": 229.304,
+   "total_us": 369.744,
+   "initial_length": 6.0108418464660645,
+   "length": 4.4957380294799805,
+   "iterations": 6
+  },
+  {
+   "problem": "bookshelf_tall/13",
+   "solved": true,
+   "planning_us": 163.425,
+   "simplify_us": 123.149,
+   "total_us": 286.574,
+   "initial_length": 6.6421332359313965,
+   "length": 3.9717164039611816,
+   "iterations": 355
+  },
+  {
+   "problem": "bookshelf_tall/14",
+   "solved": true,
+   "planning_us": 128.239,
+   "simplify_us": 302.435,
+   "total_us": 430.674,
+   "initial_length": 5.091176986694336,
+   "length": 3.4574878215789795,
+   "iterations": 1
+  },
+  {
+   "problem": "bookshelf_tall/15",
+   "solved": true,
+   "planning_us": 92.37,
+   "simplify_us": 467.993,
+   "total_us": 560.363,
+   "initial_length": 5.219180583953857,
+   "length": 4.346548080444336,
+   "iterations": 2
+  },
+  {
+   "problem": "bookshelf_tall/16",
+   "solved": true,
+   "planning_us": 36.796,
+   "simplify_us": 219.261,
+   "total_us": 256.057,
+   "initial_length": 6.121595859527588,
+   "length": 5.191226005554199,
+   "iterations": 2
+  },
+  {
+   "problem": "bookshelf_tall/17",
+   "solved": true,
+   "planning_us": 80.487,
+   "simplify_us": 4.679,
+   "total_us": 85.166,
+   "initial_length": 3.876354217529297,
+   "length": 3.876354217529297,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_tall/18",
+   "solved": true,
+   "planning_us": 127.621,
+   "simplify_us": 360.101,
+   "total_us": 487.722,
+   "initial_length": 5.750148773193359,
+   "length": 3.8759000301361084,
+   "iterations": 123
+  },
+  {
+   "problem": "bookshelf_tall/19",
+   "solved": true,
+   "planning_us": 33.329,
+   "simplify_us": 126.665,
+   "total_us": 159.994,
+   "initial_length": 5.884377956390381,
+   "length": 3.399853467941284,
+   "iterations": 12
+  },
+  {
+   "problem": "bookshelf_tall/20",
+   "solved": true,
+   "planning_us": 229.934,
+   "simplify_us": 228.222,
+   "total_us": 458.156,
+   "initial_length": 7.3646416664123535,
+   "length": 5.482071399688721,
+   "iterations": 419
+  },
+  {
+   "problem": "bookshelf_tall/21",
+   "solved": true,
+   "planning_us": 108.4,
+   "simplify_us": 400.546,
+   "total_us": 508.946,
+   "initial_length": 6.737098217010498,
+   "length": 4.039742469787598,
+   "iterations": 26
+  },
+  {
+   "problem": "bookshelf_tall/22",
+   "solved": true,
+   "planning_us": 175.887,
+   "simplify_us": 345.494,
+   "total_us": 521.3810000000001,
+   "initial_length": 8.111912727355957,
+   "length": 4.007318496704102,
+   "iterations": 7
+  },
+  {
+   "problem": "bookshelf_tall/23",
+   "solved": true,
+   "planning_us": 151.272,
+   "simplify_us": 500.403,
+   "total_us": 651.675,
+   "initial_length": 7.65392541885376,
+   "length": 4.359626293182373,
+   "iterations": 117
+  },
+  {
+   "problem": "bookshelf_tall/24",
+   "solved": true,
+   "planning_us": 90.795,
+   "simplify_us": 3.579,
+   "total_us": 94.374,
+   "initial_length": 4.936941146850586,
+   "length": 4.936941146850586,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_tall/25",
+   "solved": true,
+   "planning_us": 51.908,
+   "simplify_us": 94.46,
+   "total_us": 146.368,
+   "initial_length": 5.844786643981934,
+   "length": 4.376581192016602,
+   "iterations": 46
+  },
+  {
+   "problem": "bookshelf_tall/26",
+   "solved": true,
+   "planning_us": 111.168,
+   "simplify_us": 558.94,
+   "total_us": 670.1080000000001,
+   "initial_length": 6.099817752838135,
+   "length": 4.6982102394104,
+   "iterations": 55
+  },
+  {
+   "problem": "bookshelf_tall/27",
+   "solved": true,
+   "planning_us": 139.848,
+   "simplify_us": 175.144,
+   "total_us": 314.992,
+   "initial_length": 6.750703811645508,
+   "length": 5.738365173339844,
+   "iterations": 268
+  },
+  {
+   "problem": "bookshelf_tall/28",
+   "solved": true,
+   "planning_us": 196.587,
+   "simplify_us": 168.524,
+   "total_us": 365.111,
+   "initial_length": 8.133720397949219,
+   "length": 4.279484748840332,
+   "iterations": 55
+  },
+  {
+   "problem": "bookshelf_tall/29",
+   "solved": true,
+   "planning_us": 242.305,
+   "simplify_us": 342.812,
+   "total_us": 585.117,
+   "initial_length": 8.311151504516602,
+   "length": 5.346508026123047,
+   "iterations": 95
+  },
+  {
+   "problem": "bookshelf_tall/30",
+   "solved": true,
+   "planning_us": 255.505,
+   "simplify_us": 196.236,
+   "total_us": 451.741,
+   "initial_length": 10.864278793334961,
+   "length": 5.830439567565918,
+   "iterations": 1090
+  },
+  {
+   "problem": "bookshelf_tall/31",
+   "solved": true,
+   "planning_us": 40.259,
+   "simplify_us": 122.961,
+   "total_us": 163.22,
+   "initial_length": 6.994609832763672,
+   "length": 4.297872543334961,
+   "iterations": 12
+  },
+  {
+   "problem": "bookshelf_tall/32",
+   "solved": true,
+   "planning_us": 67.01,
+   "simplify_us": 179.535,
+   "total_us": 246.54500000000002,
+   "initial_length": 5.532013893127441,
+   "length": 4.712640762329102,
+   "iterations": 330
+  },
+  {
+   "problem": "bookshelf_tall/33",
+   "solved": true,
+   "planning_us": 52.371,
+   "simplify_us": 160.69,
+   "total_us": 213.061,
+   "initial_length": 6.326070785522461,
+   "length": 4.734369277954102,
+   "iterations": 122
+  },
+  {
+   "problem": "bookshelf_tall/34",
+   "solved": true,
+   "planning_us": 62.002,
+   "simplify_us": 101.654,
+   "total_us": 163.656,
+   "initial_length": 8.068414688110352,
+   "length": 4.536346435546875,
+   "iterations": 115
+  },
+  {
+   "problem": "bookshelf_tall/35",
+   "solved": true,
+   "planning_us": 110.307,
+   "simplify_us": 138.207,
+   "total_us": 248.514,
+   "initial_length": 6.168745994567871,
+   "length": 4.825980186462402,
+   "iterations": 32
+  },
+  {
+   "problem": "bookshelf_tall/36",
+   "solved": true,
+   "planning_us": 71.796,
+   "simplify_us": 159.613,
+   "total_us": 231.409,
+   "initial_length": 7.118597984313965,
+   "length": 4.884372711181641,
+   "iterations": 441
+  },
+  {
+   "problem": "bookshelf_tall/37",
+   "solved": true,
+   "planning_us": 43.648,
+   "simplify_us": 168.278,
+   "total_us": 211.926,
+   "initial_length": 6.132504940032959,
+   "length": 4.926591396331787,
+   "iterations": 16
+  },
+  {
+   "problem": "bookshelf_tall/38",
+   "solved": true,
+   "planning_us": 31.611,
+   "simplify_us": 2.517,
+   "total_us": 34.128,
+   "initial_length": 4.5640869140625,
+   "length": 4.5640869140625,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_tall/39",
+   "solved": true,
+   "planning_us": 97.23,
+   "simplify_us": 318.497,
+   "total_us": 415.72700000000003,
+   "initial_length": 6.192915916442871,
+   "length": 4.95224666595459,
+   "iterations": 366
+  },
+  {
+   "problem": "bookshelf_tall/40",
+   "solved": true,
+   "planning_us": 68.967,
+   "simplify_us": 104.646,
+   "total_us": 173.613,
+   "initial_length": 6.972947597503662,
+   "length": 3.8878345489501953,
+   "iterations": 74
+  },
+  {
+   "problem": "bookshelf_tall/41",
+   "solved": true,
+   "planning_us": 47.043,
+   "simplify_us": 2.734,
+   "total_us": 49.777,
+   "initial_length": 5.533140182495117,
+   "length": 5.533140182495117,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_tall/42",
+   "solved": true,
+   "planning_us": 78.836,
+   "simplify_us": 133.69,
+   "total_us": 212.526,
+   "initial_length": 6.211672782897949,
+   "length": 4.393967151641846,
+   "iterations": 59
+  },
+  {
+   "problem": "bookshelf_tall/43",
+   "solved": true,
+   "planning_us": 201.255,
+   "simplify_us": 292.712,
+   "total_us": 493.967,
+   "initial_length": 9.9149808883667,
+   "length": 5.5042924880981445,
+   "iterations": 1212
+  },
+  {
+   "problem": "bookshelf_tall/44",
+   "solved": true,
+   "planning_us": 37.43,
+   "simplify_us": 101.781,
+   "total_us": 139.211,
+   "initial_length": 6.102398872375488,
+   "length": 3.758297920227051,
+   "iterations": 68
+  },
+  {
+   "problem": "bookshelf_tall/45",
+   "solved": true,
+   "planning_us": 350.332,
+   "simplify_us": 247.168,
+   "total_us": 597.5,
+   "initial_length": 9.223052024841309,
+   "length": 5.351305961608887,
+   "iterations": 2229
+  },
+  {
+   "problem": "bookshelf_tall/46",
+   "solved": true,
+   "planning_us": 67.775,
+   "simplify_us": 158.182,
+   "total_us": 225.957,
+   "initial_length": 6.525838851928711,
+   "length": 4.928765773773193,
+   "iterations": 421
+  },
+  {
+   "problem": "bookshelf_tall/47",
+   "solved": true,
+   "planning_us": 691.653,
+   "simplify_us": 211.969,
+   "total_us": 903.6220000000001,
+   "initial_length": 8.14278507232666,
+   "length": 3.7496023178100586,
+   "iterations": 68
+  },
+  {
+   "problem": "bookshelf_tall/48",
+   "solved": true,
+   "planning_us": 42.239,
+   "simplify_us": 97.837,
+   "total_us": 140.076,
+   "initial_length": 6.667520523071289,
+   "length": 4.748775005340576,
+   "iterations": 69
+  },
+  {
+   "problem": "bookshelf_tall/49",
+   "solved": true,
+   "planning_us": 72.068,
+   "simplify_us": 145.689,
+   "total_us": 217.757,
+   "initial_length": 6.611530780792236,
+   "length": 4.226816177368164,
+   "iterations": 112
+  },
+  {
+   "problem": "bookshelf_tall/50",
+   "solved": true,
+   "planning_us": 68.405,
+   "simplify_us": 90.646,
+   "total_us": 159.051,
+   "initial_length": 7.708774566650391,
+   "length": 4.926882743835449,
+   "iterations": 168
+  },
+  {
+   "problem": "bookshelf_tall/51",
+   "solved": true,
+   "planning_us": 52.606,
+   "simplify_us": 127.38,
+   "total_us": 179.986,
+   "initial_length": 6.646536350250244,
+   "length": 5.091277122497559,
+   "iterations": 245
+  },
+  {
+   "problem": "bookshelf_tall/52",
+   "solved": true,
+   "planning_us": 47.692,
+   "simplify_us": 168.85,
+   "total_us": 216.542,
+   "initial_length": 7.142540454864502,
+   "length": 4.609346389770508,
+   "iterations": 166
+  },
+  {
+   "problem": "bookshelf_tall/53",
+   "solved": true,
+   "planning_us": 92.279,
+   "simplify_us": 565.563,
+   "total_us": 657.842,
+   "initial_length": 9.572531700134277,
+   "length": 6.824821472167969,
+   "iterations": 229
+  },
+  {
+   "problem": "bookshelf_tall/54",
+   "solved": true,
+   "planning_us": 61.514,
+   "simplify_us": 158.307,
+   "total_us": 219.821,
+   "initial_length": 6.894443988800049,
+   "length": 4.799783706665039,
+   "iterations": 112
+  },
+  {
+   "problem": "bookshelf_tall/55",
+   "solved": true,
+   "planning_us": 49.204,
+   "simplify_us": 161.399,
+   "total_us": 210.603,
+   "initial_length": 7.321317195892334,
+   "length": 4.266651630401611,
+   "iterations": 113
+  },
+  {
+   "problem": "bookshelf_tall/56",
+   "solved": true,
+   "planning_us": 117.124,
+   "simplify_us": 108.692,
+   "total_us": 225.81599999999997,
+   "initial_length": 6.1532206535339355,
+   "length": 4.28323221206665,
+   "iterations": 333
+  },
+  {
+   "problem": "bookshelf_tall/57",
+   "solved": true,
+   "planning_us": 80.009,
+   "simplify_us": 151.718,
+   "total_us": 231.72699999999998,
+   "initial_length": 6.839137554168701,
+   "length": 4.9105377197265625,
+   "iterations": 517
+  },
+  {
+   "problem": "bookshelf_tall/58",
+   "solved": true,
+   "planning_us": 59.622,
+   "simplify_us": 183.044,
+   "total_us": 242.666,
+   "initial_length": 7.217494010925293,
+   "length": 4.751494884490967,
+   "iterations": 54
+  },
+  {
+   "problem": "bookshelf_tall/59",
+   "solved": true,
+   "planning_us": 359.629,
+   "simplify_us": 239.891,
+   "total_us": 599.52,
+   "initial_length": 12.067346572875977,
+   "length": 5.123542785644531,
+   "iterations": 3182
+  },
+  {
+   "problem": "bookshelf_tall/60",
+   "solved": true,
+   "planning_us": 63.574,
+   "simplify_us": 112.165,
+   "total_us": 175.739,
+   "initial_length": 6.983371734619141,
+   "length": 4.540112018585205,
+   "iterations": 126
+  },
+  {
+   "problem": "bookshelf_tall/61",
+   "solved": true,
+   "planning_us": 40.608,
+   "simplify_us": 147.494,
+   "total_us": 188.102,
+   "initial_length": 6.729682445526123,
+   "length": 5.2291765213012695,
+   "iterations": 3
+  },
+  {
+   "problem": "bookshelf_tall/62",
+   "solved": true,
+   "planning_us": 38.221,
+   "simplify_us": 145.087,
+   "total_us": 183.308,
+   "initial_length": 6.901179790496826,
+   "length": 4.4356842041015625,
+   "iterations": 11
+  },
+  {
+   "problem": "bookshelf_tall/63",
+   "solved": true,
+   "planning_us": 29.576,
+   "simplify_us": 146.533,
+   "total_us": 176.10899999999998,
+   "initial_length": 5.469034194946289,
+   "length": 3.8497142791748047,
+   "iterations": 1
+  },
+  {
+   "problem": "bookshelf_tall/64",
+   "solved": true,
+   "planning_us": 106.772,
+   "simplify_us": 165.898,
+   "total_us": 272.67,
+   "initial_length": 8.06777286529541,
+   "length": 5.472236156463623,
+   "iterations": 883
+  },
+  {
+   "problem": "bookshelf_tall/65",
+   "solved": true,
+   "planning_us": 66.219,
+   "simplify_us": 220.97,
+   "total_us": 287.18899999999996,
+   "initial_length": 6.511810779571533,
+   "length": 5.096364498138428,
+   "iterations": 213
+  },
+  {
+   "problem": "bookshelf_tall/66",
+   "solved": true,
+   "planning_us": 62.543,
+   "simplify_us": 194.642,
+   "total_us": 257.185,
+   "initial_length": 8.502581596374512,
+   "length": 4.5126543045043945,
+   "iterations": 100
+  },
+  {
+   "problem": "bookshelf_tall/67",
+   "solved": true,
+   "planning_us": 29.336,
+   "simplify_us": 2.631,
+   "total_us": 31.967,
+   "initial_length": 4.34307336807251,
+   "length": 4.34307336807251,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_tall/68",
+   "solved": true,
+   "planning_us": 55.206,
+   "simplify_us": 131.374,
+   "total_us": 186.57999999999998,
+   "initial_length": 8.263163566589355,
+   "length": 4.746354103088379,
+   "iterations": 26
+  },
+  {
+   "problem": "bookshelf_tall/69",
+   "solved": true,
+   "planning_us": 57.981,
+   "simplify_us": 221.818,
+   "total_us": 279.79900000000004,
+   "initial_length": 6.8259806632995605,
+   "length": 4.803295135498047,
+   "iterations": 118
+  },
+  {
+   "problem": "bookshelf_tall/70",
+   "solved": true,
+   "planning_us": 20.659,
+   "simplify_us": 2.648,
+   "total_us": 23.307,
+   "initial_length": 3.912567138671875,
+   "length": 3.912567138671875,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_tall/71",
+   "solved": true,
+   "planning_us": 27.649,
+   "simplify_us": 2.383,
+   "total_us": 30.032,
+   "initial_length": 3.870849609375,
+   "length": 3.870849609375,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_tall/72",
+   "solved": true,
+   "planning_us": 79.496,
+   "simplify_us": 248.296,
+   "total_us": 327.792,
+   "initial_length": 6.675901889801025,
+   "length": 5.31352424621582,
+   "iterations": 522
+  },
+  {
+   "problem": "bookshelf_tall/73",
+   "solved": true,
+   "planning_us": 47.658,
+   "simplify_us": 173.325,
+   "total_us": 220.983,
+   "initial_length": 6.9581522941589355,
+   "length": 4.150728702545166,
+   "iterations": 50
+  },
+  {
+   "problem": "bookshelf_tall/74",
+   "solved": true,
+   "planning_us": 59.185,
+   "simplify_us": 194.604,
+   "total_us": 253.78900000000002,
+   "initial_length": 8.333182334899902,
+   "length": 5.135759353637695,
+   "iterations": 100
+  },
+  {
+   "problem": "bookshelf_tall/75",
+   "solved": true,
+   "planning_us": 55.037,
+   "simplify_us": 187.399,
+   "total_us": 242.436,
+   "initial_length": 7.933455467224121,
+   "length": 4.834850788116455,
+   "iterations": 28
+  },
+  {
+   "problem": "bookshelf_tall/76",
+   "solved": true,
+   "planning_us": 84.615,
+   "simplify_us": 220.85,
+   "total_us": 305.465,
+   "initial_length": 7.354913711547852,
+   "length": 5.410853385925293,
+   "iterations": 509
+  },
+  {
+   "problem": "bookshelf_tall/77",
+   "solved": true,
+   "planning_us": 82.215,
+   "simplify_us": 123.274,
+   "total_us": 205.489,
+   "initial_length": 6.467614650726318,
+   "length": 4.215394496917725,
+   "iterations": 178
+  },
+  {
+   "problem": "bookshelf_tall/78",
+   "solved": true,
+   "planning_us": 276.63,
+   "simplify_us": 222.902,
+   "total_us": 499.532,
+   "initial_length": 8.820241928100586,
+   "length": 4.864874839782715,
+   "iterations": 1892
+  },
+  {
+   "problem": "bookshelf_tall/79",
+   "solved": true,
+   "planning_us": 45.047,
+   "simplify_us": 135.224,
+   "total_us": 180.271,
+   "initial_length": 6.253963470458984,
+   "length": 4.36582612991333,
+   "iterations": 78
+  },
+  {
+   "problem": "bookshelf_tall/80",
+   "solved": true,
+   "planning_us": 129.239,
+   "simplify_us": 155.003,
+   "total_us": 284.24199999999996,
+   "initial_length": 8.086181640625,
+   "length": 5.90529203414917,
+   "iterations": 716
+  },
+  {
+   "problem": "bookshelf_tall/81",
+   "solved": true,
+   "planning_us": 52.967,
+   "simplify_us": 149.577,
+   "total_us": 202.54399999999998,
+   "initial_length": 7.623118877410889,
+   "length": 4.729514122009277,
+   "iterations": 132
+  },
+  {
+   "problem": "bookshelf_tall/82",
+   "solved": true,
+   "planning_us": 137.76,
+   "simplify_us": 167.762,
+   "total_us": 305.522,
+   "initial_length": 8.460184097290039,
+   "length": 5.2882304191589355,
+   "iterations": 1233
+  },
+  {
+   "problem": "bookshelf_tall/83",
+   "solved": true,
+   "planning_us": 49.816,
+   "simplify_us": 198.071,
+   "total_us": 247.887,
+   "initial_length": 8.367289543151855,
+   "length": 5.133998870849609,
+   "iterations": 132
+  },
+  {
+   "problem": "bookshelf_tall/84",
+   "solved": true,
+   "planning_us": 703.925,
+   "simplify_us": 304.881,
+   "total_us": 1008.8059999999999,
+   "initial_length": 9.088571548461914,
+   "length": 5.582055568695068,
+   "iterations": 8075
+  },
+  {
+   "problem": "bookshelf_tall/85",
+   "solved": true,
+   "planning_us": 84.536,
+   "simplify_us": 168.603,
+   "total_us": 253.139,
+   "initial_length": 6.247381210327148,
+   "length": 4.641540050506592,
+   "iterations": 355
+  },
+  {
+   "problem": "bookshelf_tall/86",
+   "solved": true,
+   "planning_us": 24.204,
+   "simplify_us": 3.833,
+   "total_us": 28.037,
+   "initial_length": 4.6591033935546875,
+   "length": 4.6591033935546875,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_tall/87",
+   "solved": true,
+   "planning_us": 110.948,
+   "simplify_us": 471.996,
+   "total_us": 582.944,
+   "initial_length": 5.817441463470459,
+   "length": 4.247836112976074,
+   "iterations": 5
+  },
+  {
+   "problem": "bookshelf_tall/88",
+   "solved": true,
+   "planning_us": 602.185,
+   "simplify_us": 208.951,
+   "total_us": 811.136,
+   "initial_length": 7.697807788848877,
+   "length": 5.3714423179626465,
+   "iterations": 2689
+  },
+  {
+   "problem": "bookshelf_tall/89",
+   "solved": true,
+   "planning_us": 43.476,
+   "simplify_us": 215.433,
+   "total_us": 258.909,
+   "initial_length": 6.071436882019043,
+   "length": 4.351879596710205,
+   "iterations": 1
+  },
+  {
+   "problem": "bookshelf_tall/90",
+   "solved": true,
+   "planning_us": 68.751,
+   "simplify_us": 118.026,
+   "total_us": 186.777,
+   "initial_length": 8.157381057739258,
+   "length": 5.765292167663574,
+   "iterations": 88
+  },
+  {
+   "problem": "bookshelf_tall/91",
+   "solved": true,
+   "planning_us": 62.906,
+   "simplify_us": 98.805,
+   "total_us": 161.711,
+   "initial_length": 6.055195331573486,
+   "length": 4.277398586273193,
+   "iterations": 145
+  },
+  {
+   "problem": "bookshelf_tall/92",
+   "solved": true,
+   "planning_us": 62.859,
+   "simplify_us": 135.654,
+   "total_us": 198.513,
+   "initial_length": 8.991064071655273,
+   "length": 4.912675857543945,
+   "iterations": 83
+  },
+  {
+   "problem": "bookshelf_tall/93",
+   "solved": true,
+   "planning_us": 59.204,
+   "simplify_us": 158.912,
+   "total_us": 218.116,
+   "initial_length": 6.545074939727783,
+   "length": 4.413687705993652,
+   "iterations": 125
+  },
+  {
+   "problem": "bookshelf_tall/94",
+   "solved": true,
+   "planning_us": 49.81,
+   "simplify_us": 145.378,
+   "total_us": 195.188,
+   "initial_length": 5.607450008392334,
+   "length": 4.518664360046387,
+   "iterations": 47
+  },
+  {
+   "problem": "bookshelf_tall/95",
+   "solved": true,
+   "planning_us": 40.213,
+   "simplify_us": 138.549,
+   "total_us": 178.762,
+   "initial_length": 6.749581336975098,
+   "length": 4.927372932434082,
+   "iterations": 67
+  },
+  {
+   "problem": "bookshelf_tall/96",
+   "solved": true,
+   "planning_us": 34.243,
+   "simplify_us": 3.274,
+   "total_us": 37.517,
+   "initial_length": 4.385863780975342,
+   "length": 4.385863780975342,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_tall/97",
+   "solved": true,
+   "planning_us": 51.808,
+   "simplify_us": 143.182,
+   "total_us": 194.98999999999998,
+   "initial_length": 7.152422904968262,
+   "length": 4.7835893630981445,
+   "iterations": 145
+  },
+  {
+   "problem": "bookshelf_tall/98",
+   "solved": true,
+   "planning_us": 76.378,
+   "simplify_us": 138.102,
+   "total_us": 214.48000000000002,
+   "initial_length": 6.858612060546875,
+   "length": 4.679955959320068,
+   "iterations": 306
+  },
+  {
+   "problem": "bookshelf_tall/99",
+   "solved": true,
+   "planning_us": 116.982,
+   "simplify_us": 182.896,
+   "total_us": 299.878,
+   "initial_length": 8.23904037475586,
+   "length": 4.08685302734375,
+   "iterations": 52
+  }
+ ],
+ "bookshelf_thin": [
+  {
+   "problem": "bookshelf_thin/0",
+   "solved": true,
+   "planning_us": 257.47,
+   "simplify_us": 437.772,
+   "total_us": 695.242,
+   "initial_length": 7.398220539093018,
+   "length": 3.9994757175445557,
+   "iterations": 56
+  },
+  {
+   "problem": "bookshelf_thin/1",
+   "solved": true,
+   "planning_us": 59.597,
+   "simplify_us": 114.351,
+   "total_us": 173.948,
+   "initial_length": 6.815661430358887,
+   "length": 4.266016483306885,
+   "iterations": 204
+  },
+  {
+   "problem": "bookshelf_thin/2",
+   "solved": true,
+   "planning_us": 254.838,
+   "simplify_us": 731.142,
+   "total_us": 985.98,
+   "initial_length": 8.15865707397461,
+   "length": 4.845705032348633,
+   "iterations": 35
+  },
+  {
+   "problem": "bookshelf_thin/3",
+   "solved": true,
+   "planning_us": 59.944,
+   "simplify_us": 206.074,
+   "total_us": 266.01800000000003,
+   "initial_length": 7.185542106628418,
+   "length": 5.132265090942383,
+   "iterations": 132
+  },
+  {
+   "problem": "bookshelf_thin/4",
+   "solved": true,
+   "planning_us": 53.885,
+   "simplify_us": 157.348,
+   "total_us": 211.233,
+   "initial_length": 6.976244926452637,
+   "length": 4.716125965118408,
+   "iterations": 110
+  },
+  {
+   "problem": "bookshelf_thin/5",
+   "solved": true,
+   "planning_us": 159.037,
+   "simplify_us": 275.265,
+   "total_us": 434.302,
+   "initial_length": 11.428613662719727,
+   "length": 5.918065071105957,
+   "iterations": 917
+  },
+  {
+   "problem": "bookshelf_thin/6",
+   "solved": true,
+   "planning_us": 91.243,
+   "simplify_us": 80.953,
+   "total_us": 172.196,
+   "initial_length": 7.928767681121826,
+   "length": 4.591931343078613,
+   "iterations": 62
+  },
+  {
+   "problem": "bookshelf_thin/7",
+   "solved": true,
+   "planning_us": 118.731,
+   "simplify_us": 233.621,
+   "total_us": 352.352,
+   "initial_length": 8.484172821044922,
+   "length": 5.714151859283447,
+   "iterations": 160
+  },
+  {
+   "problem": "bookshelf_thin/8",
+   "solved": true,
+   "planning_us": 36.841,
+   "simplify_us": 159.25,
+   "total_us": 196.091,
+   "initial_length": 5.3129472732543945,
+   "length": 3.641165256500244,
+   "iterations": 2
+  },
+  {
+   "problem": "bookshelf_thin/9",
+   "solved": true,
+   "planning_us": 147.414,
+   "simplify_us": 179.907,
+   "total_us": 327.321,
+   "initial_length": 8.808232307434082,
+   "length": 4.082682132720947,
+   "iterations": 426
+  },
+  {
+   "problem": "bookshelf_thin/10",
+   "solved": true,
+   "planning_us": 44.099,
+   "simplify_us": 98.873,
+   "total_us": 142.972,
+   "initial_length": 6.768888473510742,
+   "length": 4.640344619750977,
+   "iterations": 20
+  },
+  {
+   "problem": "bookshelf_thin/11",
+   "solved": true,
+   "planning_us": 60.413,
+   "simplify_us": 133.38,
+   "total_us": 193.793,
+   "initial_length": 5.689472198486328,
+   "length": 3.8781962394714355,
+   "iterations": 125
+  },
+  {
+   "problem": "bookshelf_thin/12",
+   "solved": true,
+   "planning_us": 43.627,
+   "simplify_us": 150.701,
+   "total_us": 194.328,
+   "initial_length": 5.849854946136475,
+   "length": 4.5164031982421875,
+   "iterations": 70
+  },
+  {
+   "problem": "bookshelf_thin/13",
+   "solved": true,
+   "planning_us": 193.382,
+   "simplify_us": 181.502,
+   "total_us": 374.884,
+   "initial_length": 8.883386611938477,
+   "length": 5.155219078063965,
+   "iterations": 79
+  },
+  {
+   "problem": "bookshelf_thin/14",
+   "solved": true,
+   "planning_us": 286.683,
+   "simplify_us": 150.052,
+   "total_us": 436.735,
+   "initial_length": 7.948382377624512,
+   "length": 5.115723609924316,
+   "iterations": 3039
+  },
+  {
+   "problem": "bookshelf_thin/15",
+   "solved": true,
+   "planning_us": 131.43,
+   "simplify_us": 412.722,
+   "total_us": 544.152,
+   "initial_length": 5.50982141494751,
+   "length": 3.8304624557495117,
+   "iterations": 177
+  },
+  {
+   "problem": "bookshelf_thin/16",
+   "solved": true,
+   "planning_us": 37.628,
+   "simplify_us": 158.924,
+   "total_us": 196.55200000000002,
+   "initial_length": 6.10192346572876,
+   "length": 4.039795398712158,
+   "iterations": 2
+  },
+  {
+   "problem": "bookshelf_thin/17",
+   "solved": true,
+   "planning_us": 141.584,
+   "simplify_us": 332.367,
+   "total_us": 473.951,
+   "initial_length": 5.580312252044678,
+   "length": 4.198545932769775,
+   "iterations": 177
+  },
+  {
+   "problem": "bookshelf_thin/18",
+   "solved": true,
+   "planning_us": 42.16,
+   "simplify_us": 144.656,
+   "total_us": 186.816,
+   "initial_length": 6.354556083679199,
+   "length": 3.873835563659668,
+   "iterations": 33
+  },
+  {
+   "problem": "bookshelf_thin/19",
+   "solved": true,
+   "planning_us": 96.876,
+   "simplify_us": 228.775,
+   "total_us": 325.651,
+   "initial_length": 8.84090805053711,
+   "length": 5.482395172119141,
+   "iterations": 176
+  },
+  {
+   "problem": "bookshelf_thin/20",
+   "solved": true,
+   "planning_us": 175.549,
+   "simplify_us": 197.723,
+   "total_us": 373.27200000000005,
+   "initial_length": 10.229960441589355,
+   "length": 5.302980899810791,
+   "iterations": 375
+  },
+  {
+   "problem": "bookshelf_thin/21",
+   "solved": true,
+   "planning_us": 71.984,
+   "simplify_us": 164.652,
+   "total_us": 236.63599999999997,
+   "initial_length": 8.59263801574707,
+   "length": 4.3062825202941895,
+   "iterations": 14
+  },
+  {
+   "problem": "bookshelf_thin/22",
+   "solved": true,
+   "planning_us": 112.631,
+   "simplify_us": 385.924,
+   "total_us": 498.55499999999995,
+   "initial_length": 5.068795204162598,
+   "length": 3.2767059803009033,
+   "iterations": 1
+  },
+  {
+   "problem": "bookshelf_thin/23",
+   "solved": true,
+   "planning_us": 353.905,
+   "simplify_us": 230.52,
+   "total_us": 584.425,
+   "initial_length": 7.646912574768066,
+   "length": 4.86846923828125,
+   "iterations": 33
+  },
+  {
+   "problem": "bookshelf_thin/24",
+   "solved": true,
+   "planning_us": 41.867,
+   "simplify_us": 158.841,
+   "total_us": 200.708,
+   "initial_length": 7.001034259796143,
+   "length": 4.9639692306518555,
+   "iterations": 12
+  },
+  {
+   "problem": "bookshelf_thin/25",
+   "solved": true,
+   "planning_us": 138.781,
+   "simplify_us": 136.363,
+   "total_us": 275.144,
+   "initial_length": 8.741479873657227,
+   "length": 3.917884349822998,
+   "iterations": 31
+  },
+  {
+   "problem": "bookshelf_thin/26",
+   "solved": true,
+   "planning_us": 64.119,
+   "simplify_us": 189.111,
+   "total_us": 253.23,
+   "initial_length": 7.716938018798828,
+   "length": 4.661316871643066,
+   "iterations": 167
+  },
+  {
+   "problem": "bookshelf_thin/27",
+   "solved": true,
+   "planning_us": 299.627,
+   "simplify_us": 178.04,
+   "total_us": 477.66700000000003,
+   "initial_length": 7.7261271476745605,
+   "length": 5.242640495300293,
+   "iterations": 2960
+  },
+  {
+   "problem": "bookshelf_thin/28",
+   "solved": true,
+   "planning_us": 142.534,
+   "simplify_us": 173.439,
+   "total_us": 315.97299999999996,
+   "initial_length": 7.08099365234375,
+   "length": 4.938690662384033,
+   "iterations": 792
+  },
+  {
+   "problem": "bookshelf_thin/29",
+   "solved": true,
+   "planning_us": 119.029,
+   "simplify_us": 191.371,
+   "total_us": 310.4,
+   "initial_length": 7.037564754486084,
+   "length": 4.435723304748535,
+   "iterations": 330
+  },
+  {
+   "problem": "bookshelf_thin/30",
+   "solved": true,
+   "planning_us": 53.588,
+   "simplify_us": 127.828,
+   "total_us": 181.416,
+   "initial_length": 5.73012113571167,
+   "length": 3.805478096008301,
+   "iterations": 48
+  },
+  {
+   "problem": "bookshelf_thin/31",
+   "solved": true,
+   "planning_us": 68.869,
+   "simplify_us": 118.066,
+   "total_us": 186.935,
+   "initial_length": 5.808840751647949,
+   "length": 3.4208269119262695,
+   "iterations": 123
+  },
+  {
+   "problem": "bookshelf_thin/32",
+   "solved": true,
+   "planning_us": 28.771,
+   "simplify_us": 3.091,
+   "total_us": 31.862000000000002,
+   "initial_length": 3.2378125190734863,
+   "length": 3.2378125190734863,
+   "iterations": 0
+  },
+  {
+   "problem": "bookshelf_thin/33",
+   "solved": true,
+   "planning_us": 379.39,
+   "simplify_us": 218.075,
+   "total_us": 597.4649999999999,
+   "initial_length": 9.12736701965332,
+   "length": 5.511054992675781,
+   "iterations": 2959
+  },
+  {
+   "problem": "bookshelf_thin/34",
+   "solved": true,
+   "planning_us": 55.333,
+   "simplify_us": 354.86,
+   "total_us": 410.193,
+   "initial_length": 4.987683296203613,
+   "length": 4.5901384353637695,
+   "iterations": 1
+  },
+  {
+   "problem": "bookshelf_thin/35",
+   "solved": true,
+   "planning_us": 68.748,
+   "simplify_us": 152.765,
+   "total_us": 221.51299999999998,
+   "initial_length": 8.293474197387695,
+   "length": 4.293593883514404,
+   "iterations": 27
+  },
+  {
+   "problem": "bookshelf_thin/36",
+   "solved": true,
+   "planning_us": 168.537,
+   "simplify_us": 307.93,
+   "total_us": 476.467,
+   "initial_length": 8.931804656982422,
+   "length": 5.401144504547119,
+   "iterations": 1037
+  },
+  {
+   "problem": "bookshelf_thin/37",
+   "solved": true,
+   "planning_us": 49.317,
+   "simplify_us": 165.563,
+   "total_us": 214.88,
+   "initial_length": 7.930063247680664,
+   "length": 4.642367839813232,
+   "iterations": 34
+  },
+  {
+   "problem": "bookshelf_thin/38",
+   "solved": true,
+   "planning_us": 46.401,
+   "simplify_us": 181.693,
+   "total_us": 228.09400000000002,
+   "initial_length": 5.8598551750183105,
+   "length": 5.252670764923096,
+   "iterations": 57
+  },
+  {
+   "problem": "bookshelf_thin/39",
+   "solved": true,
+   "planning_us": 643.396,
+   "simplify_us": 128.405,
+   "total_us": 771.8009999999999,
+   "initial_length": 7.6349945068359375,
+   "length": 5.486899375915527,
+   "iterations": 5215
+  },
+  {
+   "problem": "bookshelf_thin/40",
+   "solved": true,
+   "planning_us": 42.82,
+   "simplify_us": 105.137,
+   "total_us": 147.957,
+   "initial_length": 6.947376728057861,
+   "length": 4.806490898132324,
+   "iterations": 24
+  },
+  {
+   "problem": "bookshelf_thin/41",
+   "solved": true,
+   "planning_us": 67.959,
+   "simplify_us": 87.713,
+   "total_us": 155.672,
+   "initial_length": 6.159905433654785,
+   "length": 3.829702377319336,
+   "iterations": 125
+  },
+  {
+   "problem": "bookshelf_thin/42",
+   "solved": true,
+   "planning_us": 49.68,
+   "simplify_us": 221.999,
+   "total_us": 271.679,
+   "initial_length": 8.210060119628906,
+   "length": 4.506577968597412,
+   "iterations": 14
+  },
+  {
+   "problem": "bookshelf_thin/43",
+   "solved": true,
+   "planning_us": 58.008,
+   "simplify_us": 141.85,
+   "total_us": 199.858,
+   "initial_length": 6.522067070007324,
+   "length": 4.828450679779053,
+   "iterations": 266
+  },
+  {
+   "problem": "bookshelf_thin/44",
+   "solved": true,
+   "planning_us": 69.247,
+   "simplify_us": 197.104,
+   "total_us": 266.351,
+   "initial_length": 6.047718048095703,
+   "length": 4.807218551635742,
+   "iterations": 275
+  },
+  {
+   "problem": "bookshelf_thin/45",
+   "solved": true,
+   "planning_us": 100.814,
+   "simplify_us": 236.701,
+   "total_us": 337.515,
+   "initial_length": 9.791695594787598,
+   "length": 4.936605453491211,
+   "iterations": 359
+  },
+  {
+   "problem": "bookshelf_thin/46",
+   "solved": true,
+   "planning_us": 81.488,
+   "simplify_us": 137.234,
+   "total_us": 218.722,
+   "initial_length": 11.064675331115723,
+   "length": 4.971674919128418,
+   "iterations": 31
+  },
+  {
+   "problem": "bookshelf_thin/47",
+   "solved": true,
+   "planning_us": 54.287,
+   "simplify_us": 171.17,
+   "total_us": 225.457,
+   "initial_length": 5.544698238372803,
+   "length": 4.591309547424316,
+   "iterations": 47
+  },
+  {
+   "problem": "bookshelf_thin/48",
+   "solved": true,
+   "planning_us": 84.617,
+   "simplify_us": 154.693,
+   "total_us": 239.31,
+   "initial_length": 8.635883331298828,
+   "length": 3.9899866580963135,
+   "iterations": 177
+  },
+  {
+   "problem": "bookshelf_thin/49",
+   "solved": true,
+   "planning_us": 95.008,
+   "simplify_us": 189.736,
+   "total_us": 284.74399999999997,
+   "initial_length": 6.2099609375,
+   "length": 4.291329383850098,
+   "iterations": 111
+  },
+  {
+   "problem": "bookshelf_thin/50",
+   "solved": true,
+   "planning_us": 51.777,
+   "simplify_us": 94.846,
+   "total_us": 146.623,
+   "initial_length": 5.577630519866943,
+   "length": 4.21647310256958,
+   "iterations": 177
+  },
+  {
+   "problem": "bookshelf_thin/51",
+   "solved": true,
+   "planning_us": 381.996,
+   "simplify_us": 258.12,
+   "total_us": 640.116,
+   "initial_length": 11.85364818572998,
+   "length": 5.901370048522949,
+   "iterations": 2959
+  },
+  {
+   "problem": "bookshelf_thin/52",
+   "solved": true,
+   "planning_us": 59.202,
+   "simplify_us": 193.599,
+   "total_us": 252.801,
+   "initial_length": 7.123213768005371,
+   "length": 4.961343765258789,
+   "iterations": 58
+  },
+  {
+   "problem": "bookshelf_thin/53",
+   "solved": true,
+   "planning_us": 46.346,
+   "simplify_us": 153.145,
+   "total_us": 199.491,
+   "initial_length": 6.05288028717041,
+   "length": 4.649990081787109,
+   "iterations": 55
+  },
+  {
+   "problem": "bookshelf_thin/54",
+   "solved": true,
+   "planning_us": 64.673,
+   "simplify_us": 228.271,
+   "total_us": 292.94399999999996,
+   "initial_length": 6.48915433883667,
+   "length": 5.008373737335205,
+   "iterations": 26
+  },
+  {
+   "problem": "bookshelf_thin/55",
+   "solved": true,
+   "planning_us": 53.909,
+   "simplify_us": 212.149,
+   "total_us": 266.058,
+   "initial_length": 7.443671226501465,
+   "length": 5.075868129730225,
+   "iterations": 113
+  },
+  {
+   "problem": "bookshelf_thin/56",
+   "solved": true,
+   "planning_us": 112.414,
+   "simplify_us": 195.917,
+   "total_us": 308.331,
+   "initial_length": 7.61273193359375,
+   "length": 5.256760597229004,
+   "iterations": 506
+  },
+  {
+   "problem": "bookshelf_thin/57",
+   "solved": true,
+   "planning_us": 102.486,
+   "simplify_us": 225.137,
+   "total_us": 327.623,
+   "initial_length": 6.380669593811035,
+   "length": 5.073092460632324,
+   "iterations": 693
+  },
+  {
+   "problem": "bookshelf_thin/58",
+   "solved": true,
+   "planning_us": 38.673,
+   "simplify_us": 110.372,
+   "total_us": 149.04500000000002,
+   "initial_length": 5.917816638946533,
+   "length": 3.1846704483032227,
+   "iterations": 24
+  },
+  {
+   "problem": "bookshelf_thin/59",
+   "solved": true,
+   "planning_us": 282.082,
+   "simplify_us": 209.171,
+   "total_us": 491.253,
+   "initial_length": 7.0535407066345215,
+   "length": 5.359632968902588,
+   "iterations": 1254
+  },
+  {
+   "problem": "bookshelf_thin/60",
+   "solved": true,
+   "planning_us": 39.348,
+   "simplify_us": 122.2,
+   "total_us": 161.548,
+   "initial_length": 5.481804370880127,
+   "length": 3.112720012664795,
+   "iterations": 3
+  },
+  {
+   "problem": "bookshelf_thin/61",
+   "solved": true,
+   "planning_us": 96.752,
+   "simplify_us": 160.03,
+   "total_us": 256.782,
+   "initial_length": 6.844033718109131,
+   "length": 4.634135723114014,
+   "iterations": 12
+  },
+  {
+   "problem": "bookshelf_thin/62",
+   "solved": true,
+   "planning_us": 93.083,
+   "simplify_us": 200.091,
+   "total_us": 293.174,
+   "initial_length": 5.613431930541992,
+   "length": 4.038095474243164,
+   "iterations": 67
+  },
+  {
+   "problem": "bookshelf_thin/63",
+   "solved": true,
+   "planning_us": 47.448,
+   "simplify_us": 170.723,
+   "total_us": 218.17100000000002,
+   "initial_length": 6.281178951263428,
+   "length": 4.477819442749023,
+   "iterations": 45
+  },
+  {
+   "problem": "bookshelf_thin/64",
+   "solved": true,
+   "planning_us": 58.975,
+   "simplify_us": 204.988,
+   "total_us": 263.963,
+   "initial_length": 6.914261341094971,
+   "length": 4.891390800476074,
+   "iterations": 146
+  },
+  {
+   "problem": "bookshelf_thin/65",
+   "solved": true,
+   "planning_us": 38.988,
+   "simplify_us": 146.887,
+   "total_us": 185.875,
+   "initial_length": 4.717928886413574,
+   "length": 3.017000675201416,
+   "iterations": 16
+  },
+  {
+   "problem": "bookshelf_thin/66",
+   "solved": true,
+   "planning_us": 52.041,
+   "simplify_us": 125.638,
+   "total_us": 177.679,
+   "initial_length": 7.5528178215026855,
+   "length": 3.656191349029541,
+   "iterations": 13
+  },
+  {
+   "problem": "bookshelf_thin/67",
+   "solved": true,
+   "planning_us": 191.075,
+   "simplify_us": 453.221,
+   "total_us": 644.296,
+   "initial_length": 7.151551246643066,
+   "length": 4.587733745574951,
+   "iterations": 14
+  },
+  {
+   "problem": "bookshelf_thin/68",
+   "solved": true,
+   "planning_us": 311.386,
+   "simplify_us": 185.312,
+   "total_us": 496.69800000000004,
+   "initial_length": 9.822376251220703,
+   "length": 5.454774379730225,
+   "iterations": 1740
+  },
+  {
+   "problem": "bookshelf_thin/69",
+   "solved": true,
+   "planning_us": 119.577,
+   "simplify_us": 206.733,
+   "total_us": 326.31,
+   "initial_length": 9.359784126281738,
+   "length": 4.4518914222717285,
+   "iterations": 190
+  },
+  {
+   "problem": "bookshelf_thin/70",
+   "solved": true,
+   "planning_us": 87.344,
+   "simplify_us": 190.769,
+   "total_us": 278.113,
+   "initial_length": 7.200772285461426,
+   "length": 5.1135334968566895,
+   "iterations": 396
+  },
+  {
+   "problem": "bookshelf_thin/71",
+   "solved": true,
+   "planning_us": 61.575,
+   "simplify_us": 134.814,
+   "total_us": 196.389,
+   "initial_length": 7.285704135894775,
+   "length": 3.491865873336792,
+   "iterations": 36
+  },
+  {
+   "problem": "bookshelf_thin/72",
+   "solved": true,
+   "planning_us": 197.093,
+   "simplify_us": 201.776,
+   "total_us": 398.869,
+   "initial_length": 9.560681343078613,
+   "length": 5.590078353881836,
+   "iterations": 571
+  },
+  {
+   "problem": "bookshelf_thin/73",
+   "solved": true,
+   "planning_us": 218.252,
+   "simplify_us": 158.899,
+   "total_us": 377.151,
+   "initial_length": 8.186351776123047,
+   "length": 5.043408393859863,
+   "iterations": 750
+  },
+  {
+   "problem": "bookshelf_thin/74",
+   "solved": true,
+   "planning_us": 49.333,
+   "simplify_us": 229.746,
+   "total_us": 279.079,
+   "initial_length": 6.142714977264404,
+   "length": 4.410860538482666,
+   "iterations": 112
+  },
+  {
+   "problem": "bookshelf_thin/75",
+   "solved": true,
+   "planning_us": 315.053,
+   "simplify_us": 285.542,
+   "total_us": 600.595,
+   "initial_length": 9.895700454711914,
+   "length": 5.678512096405029,
+   "iterations": 1817
+  },
+  {
+   "problem": "bookshelf_thin/76",
+   "solved": true,
+   "planning_us": 161.202,
+   "simplify_us": 183.917,
+   "total_us": 345.119,
+   "initial_length": 6.257261753082275,
+   "length": 4.089995384216309,
+   "iterations": 398
+  },
+  {
+   "problem": "bookshelf_thin/77",
+   "solved": true,
+   "planning_us": 75.772,
+   "simplify_us": 249.645,
+   "total_us": 325.41700000000003,
+   "initial_length": 7.216216564178467,
+   "length": 5.068594932556152,
+   "iterations": 55
+  },
+  {
+   "problem": "bookshelf_thin/78",
+   "solved": true,
+   "planning_us": 72.149,
+   "simplify_us": 141.478,
+   "total_us": 213.627,
+   "initial_length": 6.667300224304199,
+   "length": 4.887797832489014,
+   "iterations": 245
+  },
+  {
+   "problem": "bookshelf_thin/79",
+   "solved": true,
+   "planning_us": 82.811,
+   "simplify_us": 126.374,
+   "total_us": 209.185,
+   "initial_length": 5.7569403648376465,
+   "length": 3.9317049980163574,
+   "iterations": 451
+  },
+  {
+   "problem": "bookshelf_thin/80",
+   "solved": true,
+   "planning_us": 77.348,
+   "simplify_us": 123.06,
+   "total_us": 200.40800000000002,
+   "initial_length": 7.204728126525879,
+   "length": 3.9785680770874023,
+   "iterations": 299
+  },
+  {
+   "problem": "bookshelf_thin/81",
+   "solved": true,
+   "planning_us": 138.624,
+   "simplify_us": 125.682,
+   "total_us": 264.306,
+   "initial_length": 7.1971306800842285,
+   "length": 4.365767002105713,
+   "iterations": 78
+  },
+  {
+   "problem": "bookshelf_thin/82",
+   "solved": true,
+   "planning_us": 58.049,
+   "simplify_us": 107.083,
+   "total_us": 165.132,
+   "initial_length": 5.985479831695557,
+   "length": 4.020106315612793,
+   "iterations": 32
+  },
+  {
+   "problem": "bookshelf_thin/83",
+   "solved": true,
+   "planning_us": 42.999,
+   "simplify_us": 152.272,
+   "total_us": 195.271,
+   "initial_length": 6.267967700958252,
+   "length": 4.640439510345459,
+   "iterations": 70
+  },
+  {
+   "problem": "bookshelf_thin/84",
+   "solved": true,
+   "planning_us": 46.581,
+   "simplify_us": 169.126,
+   "total_us": 215.707,
+   "initial_length": 6.564598560333252,
+   "length": 4.5600738525390625,
+   "iterations": 13
+  },
+  {
+   "problem": "bookshelf_thin/85",
+   "solved": true,
+   "planning_us": 100.853,
+   "simplify_us": 151.718,
+   "total_us": 252.57099999999997,
+   "initial_length": 7.665035247802734,
+   "length": 4.790452003479004,
+   "iterations": 104
+  },
+  {
+   "problem": "bookshelf_thin/86",
+   "solved": true,
+   "planning_us": 67.627,
+   "simplify_us": 175.866,
+   "total_us": 243.493,
+   "initial_length": 6.328164577484131,
+   "length": 3.6252899169921875,
+   "iterations": 166
+  },
+  {
+   "problem": "bookshelf_thin/87",
+   "solved": true,
+   "planning_us": 127.845,
+   "simplify_us": 224.228,
+   "total_us": 352.073,
+   "initial_length": 9.06552505493164,
+   "length": 4.890756607055664,
+   "iterations": 303
+  },
+  {
+   "problem": "bookshelf_thin/88",
+   "solved": true,
+   "planning_us": 819.067,
+   "simplify_us": 219.9,
+   "total_us": 1038.967,
+   "initial_length": 8.779919624328613,
+   "length": 5.672147274017334,
+   "iterations": 10274
+  },
+  {
+   "problem": "bookshelf_thin/89",
+   "solved": true,
+   "planning_us": 34.99,
+   "simplify_us": 167.594,
+   "total_us": 202.584,
+   "initial_length": 4.812386512756348,
+   "length": 4.392433166503906,
+   "iterations": 1
+  },
+  {
+   "problem": "bookshelf_thin/90",
+   "solved": true,
+   "planning_us": 41.323,
+   "simplify_us": 171.497,
+   "total_us": 212.82000000000002,
+   "initial_length": 6.855231761932373,
+   "length": 4.593591690063477,
+   "iterations": 12
+  },
+  {
+   "problem": "bookshelf_thin/91",
+   "solved": true,
+   "planning_us": 163.128,
+   "simplify_us": 230.192,
+   "total_us": 393.32,
+   "initial_length": 7.99001407623291,
+   "length": 5.930082321166992,
+   "iterations": 1162
+  },
+  {
+   "problem": "bookshelf_thin/92",
+   "solved": true,
+   "planning_us": 38.699,
+   "simplify_us": 159.704,
+   "total_us": 198.40300000000002,
+   "initial_length": 7.140507698059082,
+   "length": 4.965941429138184,
+   "iterations": 24
+  },
+  {
+   "problem": "bookshelf_thin/93",
+   "solved": true,
+   "planning_us": 49.733,
+   "simplify_us": 184.336,
+   "total_us": 234.06900000000002,
+   "initial_length": 5.568950176239014,
+   "length": 3.8404810428619385,
+   "iterations": 100
+  },
+  {
+   "problem": "bookshelf_thin/94",
+   "solved": true,
+   "planning_us": 38.943,
+   "simplify_us": 135.761,
+   "total_us": 174.704,
+   "initial_length": 6.437689781188965,
+   "length": 4.119154930114746,
+   "iterations": 12
+  },
+  {
+   "problem": "bookshelf_thin/95",
+   "solved": true,
+   "planning_us": 65.842,
+   "simplify_us": 132.113,
+   "total_us": 197.95499999999998,
+   "initial_length": 8.017437934875488,
+   "length": 4.872873306274414,
+   "iterations": 39
+  },
+  {
+   "problem": "bookshelf_thin/96",
+   "solved": true,
+   "planning_us": 52.931,
+   "simplify_us": 117.026,
+   "total_us": 169.957,
+   "initial_length": 5.635288715362549,
+   "length": 4.010575771331787,
+   "iterations": 177
+  },
+  {
+   "problem": "bookshelf_thin/97",
+   "solved": true,
+   "planning_us": 84.961,
+   "simplify_us": 208.938,
+   "total_us": 293.899,
+   "initial_length": 7.803183555603027,
+   "length": 5.409405708312988,
+   "iterations": 86
+  },
+  {
+   "problem": "bookshelf_thin/98",
+   "solved": true,
+   "planning_us": 204.263,
+   "simplify_us": 228.958,
+   "total_us": 433.221,
+   "initial_length": 6.769977569580078,
+   "length": 4.734516620635986,
+   "iterations": 643
+  },
+  {
+   "problem": "bookshelf_thin/99",
+   "solved": true,
+   "planning_us": 43.35,
+   "simplify_us": 131.464,
+   "total_us": 174.814,
+   "initial_length": 6.75507926940918,
+   "length": 4.1224870681762695,
+   "iterations": 20
+  }
+ ],
+ "box": [
+  {
+   "problem": "box/0",
+   "solved": true,
+   "planning_us": 108.41,
+   "simplify_us": 276.427,
+   "total_us": 384.837,
+   "initial_length": 12.340682029724121,
+   "length": 4.950987815856934,
+   "iterations": 26
+  },
+  {
+   "problem": "box/1",
+   "solved": true,
+   "planning_us": 215.747,
+   "simplify_us": 163.808,
+   "total_us": 379.555,
+   "initial_length": 9.930419921875,
+   "length": 4.602205276489258,
+   "iterations": 81
+  },
+  {
+   "problem": "box/2",
+   "solved": true,
+   "planning_us": 268.93,
+   "simplify_us": 209.844,
+   "total_us": 478.774,
+   "initial_length": 16.670495986938477,
+   "length": 4.394046783447266,
+   "iterations": 110
+  },
+  {
+   "problem": "box/3",
+   "solved": true,
+   "planning_us": 41.907,
+   "simplify_us": 177.985,
+   "total_us": 219.892,
+   "initial_length": 6.774004936218262,
+   "length": 4.687367916107178,
+   "iterations": 4
+  },
+  {
+   "problem": "box/4",
+   "solved": true,
+   "planning_us": 201.827,
+   "simplify_us": 171.027,
+   "total_us": 372.854,
+   "initial_length": 10.044475555419922,
+   "length": 4.071484565734863,
+   "iterations": 112
+  },
+  {
+   "problem": "box/5",
+   "solved": true,
+   "planning_us": 106.566,
+   "simplify_us": 293.331,
+   "total_us": 399.89700000000005,
+   "initial_length": 7.923348426818848,
+   "length": 5.480348587036133,
+   "iterations": 167
+  },
+  {
+   "problem": "box/6",
+   "solved": true,
+   "planning_us": 81.303,
+   "simplify_us": 198.44,
+   "total_us": 279.743,
+   "initial_length": 6.095813751220703,
+   "length": 4.349187850952148,
+   "iterations": 12
+  },
+  {
+   "problem": "box/7",
+   "solved": true,
+   "planning_us": 57.867,
+   "simplify_us": 160.406,
+   "total_us": 218.273,
+   "initial_length": 7.296473979949951,
+   "length": 3.877673625946045,
+   "iterations": 22
+  },
+  {
+   "problem": "box/8",
+   "solved": true,
+   "planning_us": 47.487,
+   "simplify_us": 166.692,
+   "total_us": 214.179,
+   "initial_length": 5.490790367126465,
+   "length": 3.8728225231170654,
+   "iterations": 23
+  },
+  {
+   "problem": "box/9",
+   "solved": true,
+   "planning_us": 36.375,
+   "simplify_us": 191.539,
+   "total_us": 227.914,
+   "initial_length": 6.179501056671143,
+   "length": 4.9578680992126465,
+   "iterations": 4
+  },
+  {
+   "problem": "box/10",
+   "solved": true,
+   "planning_us": 239.548,
+   "simplify_us": 251.643,
+   "total_us": 491.19100000000003,
+   "initial_length": 14.375463485717773,
+   "length": 6.58032751083374,
+   "iterations": 294
+  },
+  {
+   "problem": "box/11",
+   "solved": true,
+   "planning_us": 201.492,
+   "simplify_us": 190.806,
+   "total_us": 392.298,
+   "initial_length": 6.064186096191406,
+   "length": 4.233176231384277,
+   "iterations": 67
+  },
+  {
+   "problem": "box/12",
+   "solved": true,
+   "planning_us": 74.313,
+   "simplify_us": 279.277,
+   "total_us": 353.59,
+   "initial_length": 7.45479679107666,
+   "length": 4.78605842590332,
+   "iterations": 22
+  },
+  {
+   "problem": "box/13",
+   "solved": true,
+   "planning_us": 37.278,
+   "simplify_us": 185.12,
+   "total_us": 222.398,
+   "initial_length": 5.653780937194824,
+   "length": 4.18752908706665,
+   "iterations": 4
+  },
+  {
+   "problem": "box/14",
+   "solved": true,
+   "planning_us": 157.855,
+   "simplify_us": 123.06,
+   "total_us": 280.91499999999996,
+   "initial_length": 10.151803016662598,
+   "length": 3.7693839073181152,
+   "iterations": 67
+  },
+  {
+   "problem": "box/15",
+   "solved": true,
+   "planning_us": 40.422,
+   "simplify_us": 184.059,
+   "total_us": 224.481,
+   "initial_length": 6.371631622314453,
+   "length": 5.094879627227783,
+   "iterations": 4
+  },
+  {
+   "problem": "box/16",
+   "solved": true,
+   "planning_us": 209.681,
+   "simplify_us": 159.982,
+   "total_us": 369.663,
+   "initial_length": 10.172273635864258,
+   "length": 4.77067756652832,
+   "iterations": 81
+  },
+  {
+   "problem": "box/17",
+   "solved": true,
+   "planning_us": 260.006,
+   "simplify_us": 303.996,
+   "total_us": 564.002,
+   "initial_length": 12.192249298095703,
+   "length": 5.390389919281006,
+   "iterations": 141
+  },
+  {
+   "problem": "box/18",
+   "solved": true,
+   "planning_us": 37.396,
+   "simplify_us": 169.637,
+   "total_us": 207.03300000000002,
+   "initial_length": 6.230360507965088,
+   "length": 5.299182891845703,
+   "iterations": 4
+  },
+  {
+   "problem": "box/19",
+   "solved": true,
+   "planning_us": 41.37,
+   "simplify_us": 1050.588,
+   "total_us": 1091.9579999999999,
+   "initial_length": 6.309776782989502,
+   "length": 5.071896076202393,
+   "iterations": 3
+  },
+  {
+   "problem": "box/20",
+   "solved": true,
+   "planning_us": 197.96,
+   "simplify_us": 155.095,
+   "total_us": 353.055,
+   "initial_length": 8.41275405883789,
+   "length": 4.4108781814575195,
+   "iterations": 52
+  },
+  {
+   "problem": "box/21",
+   "solved": true,
+   "planning_us": 189.535,
+   "simplify_us": 177.328,
+   "total_us": 366.863,
+   "initial_length": 11.495808601379395,
+   "length": 6.046719551086426,
+   "iterations": 100
+  },
+  {
+   "problem": "box/22",
+   "solved": true,
+   "planning_us": 239.574,
+   "simplify_us": 188.136,
+   "total_us": 427.71000000000004,
+   "initial_length": 11.093842506408691,
+   "length": 5.028521537780762,
+   "iterations": 92
+  },
+  {
+   "problem": "box/23",
+   "solved": true,
+   "planning_us": 111.706,
+   "simplify_us": 178.871,
+   "total_us": 290.577,
+   "initial_length": 8.72958755493164,
+   "length": 4.298852920532227,
+   "iterations": 51
+  },
+  {
+   "problem": "box/24",
+   "solved": true,
+   "planning_us": 34.965,
+   "simplify_us": 195.737,
+   "total_us": 230.702,
+   "initial_length": 6.235547065734863,
+   "length": 4.680193901062012,
+   "iterations": 4
+  },
+  {
+   "problem": "box/25",
+   "solved": true,
+   "planning_us": 122.764,
+   "simplify_us": 288.283,
+   "total_us": 411.047,
+   "initial_length": 6.149296283721924,
+   "length": 4.459569454193115,
+   "iterations": 3
+  },
+  {
+   "problem": "box/26",
+   "solved": true,
+   "planning_us": 45.985,
+   "simplify_us": 212.879,
+   "total_us": 258.864,
+   "initial_length": 6.367854118347168,
+   "length": 3.9519639015197754,
+   "iterations": 5
+  },
+  {
+   "problem": "box/27",
+   "solved": true,
+   "planning_us": 99.388,
+   "simplify_us": 172.497,
+   "total_us": 271.885,
+   "initial_length": 8.00153636932373,
+   "length": 5.02767276763916,
+   "iterations": 123
+  },
+  {
+   "problem": "box/28",
+   "solved": true,
+   "planning_us": 254.874,
+   "simplify_us": 216.852,
+   "total_us": 471.726,
+   "initial_length": 11.083076477050781,
+   "length": 4.907835960388184,
+   "iterations": 88
+  },
+  {
+   "problem": "box/29",
+   "solved": true,
+   "planning_us": 750.74,
+   "simplify_us": 271.935,
+   "total_us": 1022.675,
+   "initial_length": 10.069862365722656,
+   "length": 6.688252925872803,
+   "iterations": 2928
+  },
+  {
+   "problem": "box/30",
+   "solved": true,
+   "planning_us": 38.043,
+   "simplify_us": 173.604,
+   "total_us": 211.64700000000002,
+   "initial_length": 5.54125452041626,
+   "length": 4.022599220275879,
+   "iterations": 4
+  },
+  {
+   "problem": "box/31",
+   "solved": true,
+   "planning_us": 162.781,
+   "simplify_us": 269.29,
+   "total_us": 432.071,
+   "initial_length": 8.769879341125488,
+   "length": 5.1049346923828125,
+   "iterations": 26
+  },
+  {
+   "problem": "box/32",
+   "solved": true,
+   "planning_us": 226.618,
+   "simplify_us": 173.11,
+   "total_us": 399.728,
+   "initial_length": 8.525388717651367,
+   "length": 4.286701202392578,
+   "iterations": 68
+  },
+  {
+   "problem": "box/33",
+   "solved": true,
+   "planning_us": 53.277,
+   "simplify_us": 264.801,
+   "total_us": 318.078,
+   "initial_length": 7.840559005737305,
+   "length": 5.025712490081787,
+   "iterations": 10
+  },
+  {
+   "problem": "box/34",
+   "solved": true,
+   "planning_us": 39.21,
+   "simplify_us": 148.447,
+   "total_us": 187.657,
+   "initial_length": 5.252157688140869,
+   "length": 4.370815277099609,
+   "iterations": 22
+  },
+  {
+   "problem": "box/35",
+   "solved": true,
+   "planning_us": 154.099,
+   "simplify_us": 188.975,
+   "total_us": 343.07399999999996,
+   "initial_length": 12.490158081054688,
+   "length": 4.4032745361328125,
+   "iterations": 147
+  },
+  {
+   "problem": "box/36",
+   "solved": true,
+   "planning_us": 66.359,
+   "simplify_us": 207.418,
+   "total_us": 273.777,
+   "initial_length": 5.702232837677002,
+   "length": 3.810441017150879,
+   "iterations": 11
+  },
+  {
+   "problem": "box/37",
+   "solved": true,
+   "planning_us": 55.891,
+   "simplify_us": 274.228,
+   "total_us": 330.119,
+   "initial_length": 6.351256370544434,
+   "length": 3.8911008834838867,
+   "iterations": 5
+  },
+  {
+   "problem": "box/38",
+   "solved": true,
+   "planning_us": 150.261,
+   "simplify_us": 169.921,
+   "total_us": 320.182,
+   "initial_length": 5.8154296875,
+   "length": 3.5691792964935303,
+   "iterations": 37
+  },
+  {
+   "problem": "box/39",
+   "solved": true,
+   "planning_us": 223.135,
+   "simplify_us": 127.43,
+   "total_us": 350.565,
+   "initial_length": 9.694713592529297,
+   "length": 4.320188522338867,
+   "iterations": 88
+  },
+  {
+   "problem": "box/40",
+   "solved": true,
+   "planning_us": 297.411,
+   "simplify_us": 204.551,
+   "total_us": 501.962,
+   "initial_length": 12.225232124328613,
+   "length": 6.873835563659668,
+   "iterations": 666
+  },
+  {
+   "problem": "box/41",
+   "solved": true,
+   "planning_us": 300.302,
+   "simplify_us": 256.693,
+   "total_us": 556.995,
+   "initial_length": 11.14708137512207,
+   "length": 5.089958190917969,
+   "iterations": 182
+  },
+  {
+   "problem": "box/42",
+   "solved": true,
+   "planning_us": 41.311,
+   "simplify_us": 130.409,
+   "total_us": 171.72,
+   "initial_length": 6.150006294250488,
+   "length": 3.7910637855529785,
+   "iterations": 4
+  },
+  {
+   "problem": "box/43",
+   "solved": true,
+   "planning_us": 168.142,
+   "simplify_us": 211.428,
+   "total_us": 379.57,
+   "initial_length": 10.329389572143555,
+   "length": 6.120662212371826,
+   "iterations": 65
+  },
+  {
+   "problem": "box/44",
+   "solved": true,
+   "planning_us": 134.107,
+   "simplify_us": 127.66,
+   "total_us": 261.767,
+   "initial_length": 11.49551010131836,
+   "length": 3.8567161560058594,
+   "iterations": 46
+  },
+  {
+   "problem": "box/45",
+   "solved": true,
+   "planning_us": 103.927,
+   "simplify_us": 243.756,
+   "total_us": 347.683,
+   "initial_length": 10.593836784362793,
+   "length": 4.546497344970703,
+   "iterations": 68
+  },
+  {
+   "problem": "box/46",
+   "solved": true,
+   "planning_us": 72.165,
+   "simplify_us": 185.163,
+   "total_us": 257.32800000000003,
+   "initial_length": 6.274684906005859,
+   "length": 4.600841999053955,
+   "iterations": 12
+  },
+  {
+   "problem": "box/47",
+   "solved": true,
+   "planning_us": 79.728,
+   "simplify_us": 171.041,
+   "total_us": 250.769,
+   "initial_length": 7.295496463775635,
+   "length": 4.011695861816406,
+   "iterations": 11
+  },
+  {
+   "problem": "box/48",
+   "solved": true,
+   "planning_us": 195.946,
+   "simplify_us": 216.551,
+   "total_us": 412.49699999999996,
+   "initial_length": 11.770094871520996,
+   "length": 5.2413482666015625,
+   "iterations": 152
+  },
+  {
+   "problem": "box/49",
+   "solved": true,
+   "planning_us": 37.806,
+   "simplify_us": 207.101,
+   "total_us": 244.90699999999998,
+   "initial_length": 5.15806770324707,
+   "length": 4.028465747833252,
+   "iterations": 2
+  },
+  {
+   "problem": "box/50",
+   "solved": true,
+   "planning_us": 230.67,
+   "simplify_us": 272.64,
+   "total_us": 503.30999999999995,
+   "initial_length": 12.426701545715332,
+   "length": 6.242959499359131,
+   "iterations": 477
+  },
+  {
+   "problem": "box/51",
+   "solved": true,
+   "planning_us": 331.326,
+   "simplify_us": 546.208,
+   "total_us": 877.534,
+   "initial_length": 7.559449195861816,
+   "length": 4.514240741729736,
+   "iterations": 68
+  },
+  {
+   "problem": "box/52",
+   "solved": true,
+   "planning_us": 549.032,
+   "simplify_us": 434.031,
+   "total_us": 983.0630000000001,
+   "initial_length": 14.797840118408203,
+   "length": 6.016983985900879,
+   "iterations": 126
+  },
+  {
+   "problem": "box/53",
+   "solved": true,
+   "planning_us": 336.267,
+   "simplify_us": 193.043,
+   "total_us": 529.31,
+   "initial_length": 10.978411674499512,
+   "length": 4.161123275756836,
+   "iterations": 188
+  },
+  {
+   "problem": "box/54",
+   "solved": true,
+   "planning_us": 345.156,
+   "simplify_us": 233.312,
+   "total_us": 578.4680000000001,
+   "initial_length": 11.672492980957031,
+   "length": 4.817668914794922,
+   "iterations": 146
+  },
+  {
+   "problem": "box/55",
+   "solved": true,
+   "planning_us": 188.082,
+   "simplify_us": 329.666,
+   "total_us": 517.748,
+   "initial_length": 10.563048362731934,
+   "length": 6.916936874389648,
+   "iterations": 224
+  },
+  {
+   "problem": "box/56",
+   "solved": true,
+   "planning_us": 367.912,
+   "simplify_us": 438.896,
+   "total_us": 806.808,
+   "initial_length": 5.74083137512207,
+   "length": 3.830012798309326,
+   "iterations": 89
+  },
+  {
+   "problem": "box/57",
+   "solved": true,
+   "planning_us": 588.722,
+   "simplify_us": 578.194,
+   "total_us": 1166.916,
+   "initial_length": 13.94597339630127,
+   "length": 5.440474510192871,
+   "iterations": 38
+  },
+  {
+   "problem": "box/58",
+   "solved": true,
+   "planning_us": 299.166,
+   "simplify_us": 353.307,
+   "total_us": 652.473,
+   "initial_length": 12.18651008605957,
+   "length": 6.195570468902588,
+   "iterations": 176
+  },
+  {
+   "problem": "box/59",
+   "solved": true,
+   "planning_us": 33.965,
+   "simplify_us": 219.224,
+   "total_us": 253.189,
+   "initial_length": 5.034653663635254,
+   "length": 3.8587687015533447,
+   "iterations": 2
+  },
+  {
+   "problem": "box/60",
+   "solved": true,
+   "planning_us": 142.316,
+   "simplify_us": 418.683,
+   "total_us": 560.999,
+   "initial_length": 5.5580668449401855,
+   "length": 3.7602174282073975,
+   "iterations": 4
+  },
+  {
+   "problem": "box/61",
+   "solved": true,
+   "planning_us": 227.388,
+   "simplify_us": 168.024,
+   "total_us": 395.41200000000003,
+   "initial_length": 9.25363826751709,
+   "length": 4.020589351654053,
+   "iterations": 67
+  },
+  {
+   "problem": "box/62",
+   "solved": true,
+   "planning_us": 252.991,
+   "simplify_us": 924.61,
+   "total_us": 1177.601,
+   "initial_length": 10.53288459777832,
+   "length": 5.654196739196777,
+   "iterations": 45
+  },
+  {
+   "problem": "box/63",
+   "solved": true,
+   "planning_us": 128.334,
+   "simplify_us": 220.017,
+   "total_us": 348.351,
+   "initial_length": 11.113486289978027,
+   "length": 5.847376823425293,
+   "iterations": 177
+  },
+  {
+   "problem": "box/64",
+   "solved": true,
+   "planning_us": 34.376,
+   "simplify_us": 151.938,
+   "total_us": 186.314,
+   "initial_length": 5.542068004608154,
+   "length": 3.6738967895507812,
+   "iterations": 4
+  },
+  {
+   "problem": "box/65",
+   "solved": true,
+   "planning_us": 54.292,
+   "simplify_us": 145.9,
+   "total_us": 200.192,
+   "initial_length": 7.968188285827637,
+   "length": 4.993484973907471,
+   "iterations": 23
+  },
+  {
+   "problem": "box/66",
+   "solved": true,
+   "planning_us": 129.604,
+   "simplify_us": 200.201,
+   "total_us": 329.805,
+   "initial_length": 8.825444221496582,
+   "length": 4.627257823944092,
+   "iterations": 23
+  },
+  {
+   "problem": "box/67",
+   "solved": true,
+   "planning_us": 330.081,
+   "simplify_us": 265.016,
+   "total_us": 595.097,
+   "initial_length": 12.431836128234863,
+   "length": 5.99440860748291,
+   "iterations": 841
+  },
+  {
+   "problem": "box/68",
+   "solved": true,
+   "planning_us": 77.158,
+   "simplify_us": 202.051,
+   "total_us": 279.209,
+   "initial_length": 6.11086893081665,
+   "length": 4.732611179351807,
+   "iterations": 4
+  },
+  {
+   "problem": "box/69",
+   "solved": true,
+   "planning_us": 201.182,
+   "simplify_us": 230.295,
+   "total_us": 431.477,
+   "initial_length": 9.506020545959473,
+   "length": 5.378602981567383,
+   "iterations": 246
+  },
+  {
+   "problem": "box/70",
+   "solved": true,
+   "planning_us": 198.188,
+   "simplify_us": 180.173,
+   "total_us": 378.361,
+   "initial_length": 10.383346557617188,
+   "length": 5.098287582397461,
+   "iterations": 201
+  },
+  {
+   "problem": "box/71",
+   "solved": true,
+   "planning_us": 260.041,
+   "simplify_us": 218.796,
+   "total_us": 478.837,
+   "initial_length": 11.432705879211426,
+   "length": 3.965132713317871,
+   "iterations": 107
+  },
+  {
+   "problem": "box/72",
+   "solved": true,
+   "planning_us": 183.001,
+   "simplify_us": 276.775,
+   "total_us": 459.77599999999995,
+   "initial_length": 12.631783485412598,
+   "length": 5.3049821853637695,
+   "iterations": 33
+  },
+  {
+   "problem": "box/73",
+   "solved": true,
+   "planning_us": 163.306,
+   "simplify_us": 188.508,
+   "total_us": 351.814,
+   "initial_length": 10.496956825256348,
+   "length": 4.54663610458374,
+   "iterations": 66
+  },
+  {
+   "problem": "box/74",
+   "solved": true,
+   "planning_us": 44.587,
+   "simplify_us": 252.471,
+   "total_us": 297.058,
+   "initial_length": 6.3833184242248535,
+   "length": 4.154079914093018,
+   "iterations": 5
+  },
+  {
+   "problem": "box/75",
+   "solved": true,
+   "planning_us": 111.444,
+   "simplify_us": 132.778,
+   "total_us": 244.22199999999998,
+   "initial_length": 5.767053604125977,
+   "length": 3.5943899154663086,
+   "iterations": 89
+  },
+  {
+   "problem": "box/76",
+   "solved": true,
+   "planning_us": 185.108,
+   "simplify_us": 173.185,
+   "total_us": 358.293,
+   "initial_length": 10.34333610534668,
+   "length": 4.924793243408203,
+   "iterations": 201
+  },
+  {
+   "problem": "box/77",
+   "solved": true,
+   "planning_us": 52.793,
+   "simplify_us": 188.925,
+   "total_us": 241.71800000000002,
+   "initial_length": 6.1429443359375,
+   "length": 3.800326108932495,
+   "iterations": 22
+  },
+  {
+   "problem": "box/78",
+   "solved": true,
+   "planning_us": 131.431,
+   "simplify_us": 126.792,
+   "total_us": 258.223,
+   "initial_length": 5.5953826904296875,
+   "length": 3.889482259750366,
+   "iterations": 34
+  },
+  {
+   "problem": "box/79",
+   "solved": true,
+   "planning_us": 208.676,
+   "simplify_us": 155.885,
+   "total_us": 364.561,
+   "initial_length": 11.433968544006348,
+   "length": 4.487039566040039,
+   "iterations": 81
+  },
+  {
+   "problem": "box/80",
+   "solved": true,
+   "planning_us": 107.513,
+   "simplify_us": 132.472,
+   "total_us": 239.985,
+   "initial_length": 7.116546154022217,
+   "length": 3.5426459312438965,
+   "iterations": 34
+  },
+  {
+   "problem": "box/81",
+   "solved": true,
+   "planning_us": 158.696,
+   "simplify_us": 183.999,
+   "total_us": 342.695,
+   "initial_length": 11.577690124511719,
+   "length": 4.128276824951172,
+   "iterations": 62
+  },
+  {
+   "problem": "box/82",
+   "solved": true,
+   "planning_us": 31.184,
+   "simplify_us": 3.694,
+   "total_us": 34.878,
+   "initial_length": 4.00789737701416,
+   "length": 4.00789737701416,
+   "iterations": 0
+  },
+  {
+   "problem": "box/83",
+   "solved": true,
+   "planning_us": 68.571,
+   "simplify_us": 223.82,
+   "total_us": 292.39099999999996,
+   "initial_length": 6.807405471801758,
+   "length": 3.747224807739258,
+   "iterations": 11
+  },
+  {
+   "problem": "box/84",
+   "solved": true,
+   "planning_us": 34.693,
+   "simplify_us": 202.956,
+   "total_us": 237.649,
+   "initial_length": 5.505186080932617,
+   "length": 4.520902156829834,
+   "iterations": 2
+  },
+  {
+   "problem": "box/85",
+   "solved": true,
+   "planning_us": 30.465,
+   "simplify_us": 146.686,
+   "total_us": 177.151,
+   "initial_length": 5.100070953369141,
+   "length": 4.016780376434326,
+   "iterations": 2
+  },
+  {
+   "problem": "box/86",
+   "solved": true,
+   "planning_us": 111.98,
+   "simplify_us": 237.293,
+   "total_us": 349.273,
+   "initial_length": 6.408833980560303,
+   "length": 4.6421709060668945,
+   "iterations": 176
+  },
+  {
+   "problem": "box/87",
+   "solved": true,
+   "planning_us": 222.545,
+   "simplify_us": 129.634,
+   "total_us": 352.179,
+   "initial_length": 8.890219688415527,
+   "length": 3.9816408157348633,
+   "iterations": 90
+  },
+  {
+   "problem": "box/88",
+   "solved": true,
+   "planning_us": 36.224,
+   "simplify_us": 246.619,
+   "total_us": 282.843,
+   "initial_length": 5.630465030670166,
+   "length": 4.242821216583252,
+   "iterations": 4
+  },
+  {
+   "problem": "box/89",
+   "solved": true,
+   "planning_us": 165.341,
+   "simplify_us": 189.767,
+   "total_us": 355.108,
+   "initial_length": 6.080897331237793,
+   "length": 3.9252710342407227,
+   "iterations": 33
+  },
+  {
+   "problem": "box/90",
+   "solved": true,
+   "planning_us": 460.208,
+   "simplify_us": 309.731,
+   "total_us": 769.9390000000001,
+   "initial_length": 13.253832817077637,
+   "length": 7.008296012878418,
+   "iterations": 1224
+  },
+  {
+   "problem": "box/91",
+   "solved": true,
+   "planning_us": 168.683,
+   "simplify_us": 243.501,
+   "total_us": 412.18399999999997,
+   "initial_length": 9.535124778747559,
+   "length": 5.819198131561279,
+   "iterations": 68
+  },
+  {
+   "problem": "box/92",
+   "solved": true,
+   "planning_us": 210.733,
+   "simplify_us": 326.389,
+   "total_us": 537.1220000000001,
+   "initial_length": 13.355232238769531,
+   "length": 7.176713943481445,
+   "iterations": 100
+  },
+  {
+   "problem": "box/93",
+   "solved": true,
+   "planning_us": 68.809,
+   "simplify_us": 175.048,
+   "total_us": 243.857,
+   "initial_length": 6.94434928894043,
+   "length": 4.987974643707275,
+   "iterations": 22
+  },
+  {
+   "problem": "box/94",
+   "solved": true,
+   "planning_us": 262.152,
+   "simplify_us": 174.886,
+   "total_us": 437.038,
+   "initial_length": 7.901799201965332,
+   "length": 4.419405460357666,
+   "iterations": 46
+  },
+  {
+   "problem": "box/95",
+   "solved": true,
+   "planning_us": 127.125,
+   "simplify_us": 181.393,
+   "total_us": 308.51800000000003,
+   "initial_length": 7.266177177429199,
+   "length": 3.6220555305480957,
+   "iterations": 34
+  },
+  {
+   "problem": "box/96",
+   "solved": true,
+   "planning_us": 166.711,
+   "simplify_us": 454.595,
+   "total_us": 621.306,
+   "initial_length": 10.186262130737305,
+   "length": 5.509685039520264,
+   "iterations": 276
+  },
+  {
+   "problem": "box/97",
+   "solved": true,
+   "planning_us": 216.13,
+   "simplify_us": 179.323,
+   "total_us": 395.453,
+   "initial_length": 11.495664596557617,
+   "length": 6.0205559730529785,
+   "iterations": 100
+  },
+  {
+   "problem": "box/98",
+   "solved": true,
+   "planning_us": 115.631,
+   "simplify_us": 181.146,
+   "total_us": 296.777,
+   "initial_length": 6.3876237869262695,
+   "length": 4.42548942565918,
+   "iterations": 13
+  },
+  {
+   "problem": "box/99",
+   "solved": true,
+   "planning_us": 76.101,
+   "simplify_us": 202.225,
+   "total_us": 278.326,
+   "initial_length": 7.454939365386963,
+   "length": 4.5589070320129395,
+   "iterations": 13
+  }
+ ],
+ "cage": [
+  {
+   "problem": "cage/0",
+   "solved": true,
+   "planning_us": 1056.637,
+   "simplify_us": 508.661,
+   "total_us": 1565.298,
+   "initial_length": 22.052127838134766,
+   "length": 8.150056838989258,
+   "iterations": 1760
+  },
+  {
+   "problem": "cage/1",
+   "solved": true,
+   "planning_us": 1156.614,
+   "simplify_us": 387.374,
+   "total_us": 1543.988,
+   "initial_length": 17.337751388549805,
+   "length": 8.017339706420898,
+   "iterations": 1278
+  },
+  {
+   "problem": "cage/2",
+   "solved": true,
+   "planning_us": 855.81,
+   "simplify_us": 371.766,
+   "total_us": 1227.576,
+   "initial_length": 11.994823455810547,
+   "length": 7.512728214263916,
+   "iterations": 276
+  },
+  {
+   "problem": "cage/3",
+   "solved": true,
+   "planning_us": 220.749,
+   "simplify_us": 274.459,
+   "total_us": 495.20799999999997,
+   "initial_length": 11.255027770996094,
+   "length": 5.683045864105225,
+   "iterations": 68
+  },
+  {
+   "problem": "cage/4",
+   "solved": true,
+   "planning_us": 206.814,
+   "simplify_us": 225.643,
+   "total_us": 432.457,
+   "initial_length": 8.615928649902344,
+   "length": 5.0807037353515625,
+   "iterations": 277
+  },
+  {
+   "problem": "cage/5",
+   "solved": true,
+   "planning_us": 392.237,
+   "simplify_us": 237.653,
+   "total_us": 629.89,
+   "initial_length": 7.235082149505615,
+   "length": 5.145401954650879,
+   "iterations": 616
+  },
+  {
+   "problem": "cage/6",
+   "solved": true,
+   "planning_us": 326.096,
+   "simplify_us": 266.234,
+   "total_us": 592.3299999999999,
+   "initial_length": 8.643891334533691,
+   "length": 4.842473030090332,
+   "iterations": 126
+  },
+  {
+   "problem": "cage/7",
+   "solved": true,
+   "planning_us": 459.454,
+   "simplify_us": 354.981,
+   "total_us": 814.435,
+   "initial_length": 13.356661796569824,
+   "length": 7.2107977867126465,
+   "iterations": 561
+  },
+  {
+   "problem": "cage/8",
+   "solved": true,
+   "planning_us": 1533.71,
+   "simplify_us": 494.26,
+   "total_us": 2027.97,
+   "initial_length": 21.174718856811523,
+   "length": 7.104879379272461,
+   "iterations": 1815
+  },
+  {
+   "problem": "cage/9",
+   "solved": true,
+   "planning_us": 303.023,
+   "simplify_us": 240.921,
+   "total_us": 543.944,
+   "initial_length": 9.872627258300781,
+   "length": 5.243717670440674,
+   "iterations": 293
+  },
+  {
+   "problem": "cage/10",
+   "solved": true,
+   "planning_us": 339.888,
+   "simplify_us": 309.399,
+   "total_us": 649.287,
+   "initial_length": 11.804417610168457,
+   "length": 6.19946813583374,
+   "iterations": 387
+  },
+  {
+   "problem": "cage/11",
+   "solved": true,
+   "planning_us": 446.451,
+   "simplify_us": 239.613,
+   "total_us": 686.0640000000001,
+   "initial_length": 12.127805709838867,
+   "length": 4.601587295532227,
+   "iterations": 540
+  },
+  {
+   "problem": "cage/12",
+   "solved": true,
+   "planning_us": 1479.641,
+   "simplify_us": 549.319,
+   "total_us": 2028.96,
+   "initial_length": 21.099639892578125,
+   "length": 11.36559772491455,
+   "iterations": 1771
+  },
+  {
+   "problem": "cage/13",
+   "solved": true,
+   "planning_us": 188.545,
+   "simplify_us": 274.157,
+   "total_us": 462.702,
+   "initial_length": 7.2563629150390625,
+   "length": 6.240533828735352,
+   "iterations": 47
+  },
+  {
+   "problem": "cage/14",
+   "solved": true,
+   "planning_us": 1510.158,
+   "simplify_us": 342.819,
+   "total_us": 1852.9769999999999,
+   "initial_length": 16.94670867919922,
+   "length": 6.775150299072266,
+   "iterations": 2178
+  },
+  {
+   "problem": "cage/15",
+   "solved": true,
+   "planning_us": 507.8,
+   "simplify_us": 712.42,
+   "total_us": 1220.22,
+   "initial_length": 9.203453063964844,
+   "length": 5.283201694488525,
+   "iterations": 278
+  },
+  {
+   "problem": "cage/16",
+   "solved": true,
+   "planning_us": 230.587,
+   "simplify_us": 256.063,
+   "total_us": 486.65,
+   "initial_length": 9.866718292236328,
+   "length": 5.9627814292907715,
+   "iterations": 231
+  },
+  {
+   "problem": "cage/17",
+   "solved": true,
+   "planning_us": 1214.455,
+   "simplify_us": 361.238,
+   "total_us": 1575.693,
+   "initial_length": 17.98839569091797,
+   "length": 6.2936248779296875,
+   "iterations": 926
+  },
+  {
+   "problem": "cage/18",
+   "solved": true,
+   "planning_us": 315.401,
+   "simplify_us": 534.325,
+   "total_us": 849.7260000000001,
+   "initial_length": 9.377412796020508,
+   "length": 5.456545829772949,
+   "iterations": 165
+  },
+  {
+   "problem": "cage/19",
+   "solved": true,
+   "planning_us": 992.77,
+   "simplify_us": 470.504,
+   "total_us": 1463.274,
+   "initial_length": 18.086997985839844,
+   "length": 8.919916152954102,
+   "iterations": 1618
+  },
+  {
+   "problem": "cage/20",
+   "solved": true,
+   "planning_us": 837.634,
+   "simplify_us": 230.666,
+   "total_us": 1068.3,
+   "initial_length": 8.136014938354492,
+   "length": 5.349311351776123,
+   "iterations": 541
+  },
+  {
+   "problem": "cage/21",
+   "solved": true,
+   "planning_us": 242.255,
+   "simplify_us": 337.059,
+   "total_us": 579.3140000000001,
+   "initial_length": 8.557340621948242,
+   "length": 5.247577667236328,
+   "iterations": 170
+  },
+  {
+   "problem": "cage/22",
+   "solved": true,
+   "planning_us": 306.378,
+   "simplify_us": 324.428,
+   "total_us": 630.806,
+   "initial_length": 11.659072875976562,
+   "length": 6.246618270874023,
+   "iterations": 253
+  },
+  {
+   "problem": "cage/23",
+   "solved": true,
+   "planning_us": 202.496,
+   "simplify_us": 177.63,
+   "total_us": 380.126,
+   "initial_length": 11.639287948608398,
+   "length": 4.721582412719727,
+   "iterations": 126
+  },
+  {
+   "problem": "cage/24",
+   "solved": true,
+   "planning_us": 352.407,
+   "simplify_us": 290.845,
+   "total_us": 643.252,
+   "initial_length": 14.216459274291992,
+   "length": 4.924594879150391,
+   "iterations": 555
+  },
+  {
+   "problem": "cage/25",
+   "solved": true,
+   "planning_us": 227.538,
+   "simplify_us": 248.857,
+   "total_us": 476.395,
+   "initial_length": 10.023797035217285,
+   "length": 5.905017375946045,
+   "iterations": 231
+  },
+  {
+   "problem": "cage/26",
+   "solved": true,
+   "planning_us": 196.062,
+   "simplify_us": 308.082,
+   "total_us": 504.144,
+   "initial_length": 9.16982650756836,
+   "length": 5.7957539558410645,
+   "iterations": 330
+  },
+  {
+   "problem": "cage/27",
+   "solved": true,
+   "planning_us": 216.926,
+   "simplify_us": 205.839,
+   "total_us": 422.765,
+   "initial_length": 8.24307918548584,
+   "length": 5.017544746398926,
+   "iterations": 278
+  },
+  {
+   "problem": "cage/28",
+   "solved": true,
+   "planning_us": 2234.896,
+   "simplify_us": 233.428,
+   "total_us": 2468.324,
+   "initial_length": 15.41480827331543,
+   "length": 5.764858722686768,
+   "iterations": 2376
+  },
+  {
+   "problem": "cage/29",
+   "solved": true,
+   "planning_us": 505.504,
+   "simplify_us": 316.744,
+   "total_us": 822.248,
+   "initial_length": 11.0988130569458,
+   "length": 6.405156135559082,
+   "iterations": 702
+  },
+  {
+   "problem": "cage/30",
+   "solved": true,
+   "planning_us": 248.949,
+   "simplify_us": 198.259,
+   "total_us": 447.20799999999997,
+   "initial_length": 9.415164947509766,
+   "length": 5.899818420410156,
+   "iterations": 231
+  },
+  {
+   "problem": "cage/31",
+   "solved": true,
+   "planning_us": 703.496,
+   "simplify_us": 450.046,
+   "total_us": 1153.542,
+   "initial_length": 11.969758987426758,
+   "length": 5.5082855224609375,
+   "iterations": 563
+  },
+  {
+   "problem": "cage/32",
+   "solved": true,
+   "planning_us": 289.296,
+   "simplify_us": 218.513,
+   "total_us": 507.80899999999997,
+   "initial_length": 9.957318305969238,
+   "length": 5.199831962585449,
+   "iterations": 278
+  },
+  {
+   "problem": "cage/33",
+   "solved": true,
+   "planning_us": 128.501,
+   "simplify_us": 176.693,
+   "total_us": 305.194,
+   "initial_length": 11.334843635559082,
+   "length": 5.1587395668029785,
+   "iterations": 232
+  },
+  {
+   "problem": "cage/34",
+   "solved": true,
+   "planning_us": 476.269,
+   "simplify_us": 623.114,
+   "total_us": 1099.383,
+   "initial_length": 15.441086769104004,
+   "length": 8.19444751739502,
+   "iterations": 505
+  },
+  {
+   "problem": "cage/35",
+   "solved": true,
+   "planning_us": 1514.738,
+   "simplify_us": 384.389,
+   "total_us": 1899.127,
+   "initial_length": 16.242412567138672,
+   "length": 8.404784202575684,
+   "iterations": 991
+  },
+  {
+   "problem": "cage/36",
+   "solved": true,
+   "planning_us": 280.182,
+   "simplify_us": 284.074,
+   "total_us": 564.2560000000001,
+   "initial_length": 10.665008544921875,
+   "length": 6.2680535316467285,
+   "iterations": 221
+  },
+  {
+   "problem": "cage/37",
+   "solved": true,
+   "planning_us": 513.653,
+   "simplify_us": 388.946,
+   "total_us": 902.599,
+   "initial_length": 16.314172744750977,
+   "length": 7.384328842163086,
+   "iterations": 620
+  },
+  {
+   "problem": "cage/38",
+   "solved": true,
+   "planning_us": 584.675,
+   "simplify_us": 205.926,
+   "total_us": 790.6009999999999,
+   "initial_length": 10.899432182312012,
+   "length": 5.042219161987305,
+   "iterations": 332
+  },
+  {
+   "problem": "cage/39",
+   "solved": true,
+   "planning_us": 832.677,
+   "simplify_us": 259.631,
+   "total_us": 1092.308,
+   "initial_length": 9.88878059387207,
+   "length": 5.427853584289551,
+   "iterations": 660
+  },
+  {
+   "problem": "cage/40",
+   "solved": true,
+   "planning_us": 1584.703,
+   "simplify_us": 415.371,
+   "total_us": 2000.074,
+   "initial_length": 13.555569648742676,
+   "length": 8.076784133911133,
+   "iterations": 1760
+  },
+  {
+   "problem": "cage/41",
+   "solved": true,
+   "planning_us": 1740.88,
+   "simplify_us": 235.883,
+   "total_us": 1976.7630000000001,
+   "initial_length": 16.855995178222656,
+   "length": 5.448817729949951,
+   "iterations": 1655
+  },
+  {
+   "problem": "cage/42",
+   "solved": true,
+   "planning_us": 1306.12,
+   "simplify_us": 457.806,
+   "total_us": 1763.926,
+   "initial_length": 11.032596588134766,
+   "length": 6.649823188781738,
+   "iterations": 927
+  },
+  {
+   "problem": "cage/43",
+   "solved": true,
+   "planning_us": 1507.789,
+   "simplify_us": 413.14,
+   "total_us": 1920.929,
+   "initial_length": 20.903215408325195,
+   "length": 7.819220542907715,
+   "iterations": 1815
+  },
+  {
+   "problem": "cage/44",
+   "solved": true,
+   "planning_us": 1472.133,
+   "simplify_us": 522.959,
+   "total_us": 1995.092,
+   "initial_length": 14.170096397399902,
+   "length": 6.144530296325684,
+   "iterations": 785
+  },
+  {
+   "problem": "cage/45",
+   "solved": true,
+   "planning_us": 844.267,
+   "simplify_us": 298.018,
+   "total_us": 1142.285,
+   "initial_length": 11.132681846618652,
+   "length": 4.987392425537109,
+   "iterations": 1111
+  },
+  {
+   "problem": "cage/46",
+   "solved": true,
+   "planning_us": 232.781,
+   "simplify_us": 332.899,
+   "total_us": 565.6800000000001,
+   "initial_length": 10.326042175292969,
+   "length": 5.882667064666748,
+   "iterations": 221
+  },
+  {
+   "problem": "cage/47",
+   "solved": true,
+   "planning_us": 2114.358,
+   "simplify_us": 671.319,
+   "total_us": 2785.677,
+   "initial_length": 23.690011978149414,
+   "length": 9.310755729675293,
+   "iterations": 2853
+  },
+  {
+   "problem": "cage/48",
+   "solved": true,
+   "planning_us": 276.65,
+   "simplify_us": 240.55,
+   "total_us": 517.2,
+   "initial_length": 8.520633697509766,
+   "length": 5.053396224975586,
+   "iterations": 277
+  },
+  {
+   "problem": "cage/49",
+   "solved": true,
+   "planning_us": 367.457,
+   "simplify_us": 1196.868,
+   "total_us": 1564.3249999999998,
+   "initial_length": 10.877172470092773,
+   "length": 5.78096342086792,
+   "iterations": 68
+  },
+  {
+   "problem": "cage/50",
+   "solved": true,
+   "planning_us": 134.593,
+   "simplify_us": 254.588,
+   "total_us": 389.181,
+   "initial_length": 9.423057556152344,
+   "length": 4.911159992218018,
+   "iterations": 330
+  },
+  {
+   "problem": "cage/51",
+   "solved": true,
+   "planning_us": 1218.95,
+   "simplify_us": 313.789,
+   "total_us": 1532.739,
+   "initial_length": 19.370380401611328,
+   "length": 7.129645347595215,
+   "iterations": 885
+  },
+  {
+   "problem": "cage/52",
+   "solved": true,
+   "planning_us": 1477.911,
+   "simplify_us": 743.953,
+   "total_us": 2221.864,
+   "initial_length": 25.97637176513672,
+   "length": 11.794755935668945,
+   "iterations": 1719
+  },
+  {
+   "problem": "cage/53",
+   "solved": true,
+   "planning_us": 1408.389,
+   "simplify_us": 272.642,
+   "total_us": 1681.031,
+   "initial_length": 10.580760955810547,
+   "length": 5.368090629577637,
+   "iterations": 1191
+  },
+  {
+   "problem": "cage/54",
+   "solved": true,
+   "planning_us": 291.046,
+   "simplify_us": 217.593,
+   "total_us": 508.639,
+   "initial_length": 12.343415260314941,
+   "length": 5.0743408203125,
+   "iterations": 255
+  },
+  {
+   "problem": "cage/55",
+   "solved": true,
+   "planning_us": 315.805,
+   "simplify_us": 327.633,
+   "total_us": 643.438,
+   "initial_length": 10.592710494995117,
+   "length": 6.1583051681518555,
+   "iterations": 225
+  },
+  {
+   "problem": "cage/56",
+   "solved": true,
+   "planning_us": 331.001,
+   "simplify_us": 654.531,
+   "total_us": 985.5319999999999,
+   "initial_length": 8.430219650268555,
+   "length": 6.393094062805176,
+   "iterations": 68
+  },
+  {
+   "problem": "cage/57",
+   "solved": true,
+   "planning_us": 191.107,
+   "simplify_us": 242.813,
+   "total_us": 433.91999999999996,
+   "initial_length": 10.19135570526123,
+   "length": 5.591034889221191,
+   "iterations": 220
+  },
+  {
+   "problem": "cage/58",
+   "solved": true,
+   "planning_us": 978.296,
+   "simplify_us": 417.95,
+   "total_us": 1396.246,
+   "initial_length": 19.68515396118164,
+   "length": 8.560388565063477,
+   "iterations": 1380
+  },
+  {
+   "problem": "cage/59",
+   "solved": true,
+   "planning_us": 1740.508,
+   "simplify_us": 317.16,
+   "total_us": 2057.668,
+   "initial_length": 13.830668449401855,
+   "length": 6.878011703491211,
+   "iterations": 870
+  },
+  {
+   "problem": "cage/60",
+   "solved": true,
+   "planning_us": 861.289,
+   "simplify_us": 310.253,
+   "total_us": 1171.542,
+   "initial_length": 12.648995399475098,
+   "length": 7.067558288574219,
+   "iterations": 1072
+  },
+  {
+   "problem": "cage/61",
+   "solved": true,
+   "planning_us": 377.933,
+   "simplify_us": 233.719,
+   "total_us": 611.652,
+   "initial_length": 10.367563247680664,
+   "length": 4.849313259124756,
+   "iterations": 231
+  },
+  {
+   "problem": "cage/62",
+   "solved": true,
+   "planning_us": 1503.687,
+   "simplify_us": 529.824,
+   "total_us": 2033.511,
+   "initial_length": 20.76606559753418,
+   "length": 8.337806701660156,
+   "iterations": 1566
+  },
+  {
+   "problem": "cage/63",
+   "solved": true,
+   "planning_us": 1053.26,
+   "simplify_us": 540.864,
+   "total_us": 1594.124,
+   "initial_length": 15.215511322021484,
+   "length": 8.675342559814453,
+   "iterations": 1432
+  },
+  {
+   "problem": "cage/64",
+   "solved": true,
+   "planning_us": 183.786,
+   "simplify_us": 217.686,
+   "total_us": 401.472,
+   "initial_length": 8.246088027954102,
+   "length": 4.884130954742432,
+   "iterations": 57
+  },
+  {
+   "problem": "cage/65",
+   "solved": true,
+   "planning_us": 1087.53,
+   "simplify_us": 465.801,
+   "total_us": 1553.331,
+   "initial_length": 9.555891990661621,
+   "length": 6.363625526428223,
+   "iterations": 410
+  },
+  {
+   "problem": "cage/66",
+   "solved": true,
+   "planning_us": 202.247,
+   "simplify_us": 251.361,
+   "total_us": 453.608,
+   "initial_length": 8.576552391052246,
+   "length": 5.180694580078125,
+   "iterations": 105
+  },
+  {
+   "problem": "cage/67",
+   "solved": true,
+   "planning_us": 498.268,
+   "simplify_us": 305.522,
+   "total_us": 803.79,
+   "initial_length": 16.194252014160156,
+   "length": 6.860394477844238,
+   "iterations": 861
+  },
+  {
+   "problem": "cage/68",
+   "solved": true,
+   "planning_us": 1067.539,
+   "simplify_us": 394.902,
+   "total_us": 1462.441,
+   "initial_length": 12.719759941101074,
+   "length": 5.902072429656982,
+   "iterations": 425
+  },
+  {
+   "problem": "cage/69",
+   "solved": true,
+   "planning_us": 1298.063,
+   "simplify_us": 633.309,
+   "total_us": 1931.372,
+   "initial_length": 15.910337448120117,
+   "length": 10.791349411010742,
+   "iterations": 1938
+  },
+  {
+   "problem": "cage/70",
+   "solved": true,
+   "planning_us": 971.997,
+   "simplify_us": 226.964,
+   "total_us": 1198.961,
+   "initial_length": 9.138754844665527,
+   "length": 5.116779327392578,
+   "iterations": 587
+  },
+  {
+   "problem": "cage/71",
+   "solved": true,
+   "planning_us": 867.528,
+   "simplify_us": 358.023,
+   "total_us": 1225.551,
+   "initial_length": 18.118968963623047,
+   "length": 6.540036201477051,
+   "iterations": 797
+  },
+  {
+   "problem": "cage/72",
+   "solved": true,
+   "planning_us": 1033.646,
+   "simplify_us": 785.239,
+   "total_us": 1818.885,
+   "initial_length": 12.99442195892334,
+   "length": 6.805821418762207,
+   "iterations": 300
+  },
+  {
+   "problem": "cage/73",
+   "solved": true,
+   "planning_us": 662.484,
+   "simplify_us": 261.09,
+   "total_us": 923.5740000000001,
+   "initial_length": 15.998218536376953,
+   "length": 5.906316757202148,
+   "iterations": 815
+  },
+  {
+   "problem": "cage/74",
+   "solved": true,
+   "planning_us": 1188.69,
+   "simplify_us": 378.05,
+   "total_us": 1566.74,
+   "initial_length": 12.88082504272461,
+   "length": 7.177988529205322,
+   "iterations": 1035
+  },
+  {
+   "problem": "cage/75",
+   "solved": true,
+   "planning_us": 2088.322,
+   "simplify_us": 391.461,
+   "total_us": 2479.7830000000004,
+   "initial_length": 14.783559799194336,
+   "length": 5.402811050415039,
+   "iterations": 958
+  },
+  {
+   "problem": "cage/76",
+   "solved": true,
+   "planning_us": 832.734,
+   "simplify_us": 470.304,
+   "total_us": 1303.038,
+   "initial_length": 22.159191131591797,
+   "length": 7.536890983581543,
+   "iterations": 1177
+  },
+  {
+   "problem": "cage/77",
+   "solved": true,
+   "planning_us": 393.572,
+   "simplify_us": 560.683,
+   "total_us": 954.255,
+   "initial_length": 9.43677043914795,
+   "length": 4.944963455200195,
+   "iterations": 330
+  },
+  {
+   "problem": "cage/78",
+   "solved": true,
+   "planning_us": 591.769,
+   "simplify_us": 338.307,
+   "total_us": 930.076,
+   "initial_length": 17.182357788085938,
+   "length": 8.45833683013916,
+   "iterations": 553
+  },
+  {
+   "problem": "cage/79",
+   "solved": true,
+   "planning_us": 928.947,
+   "simplify_us": 982.408,
+   "total_us": 1911.355,
+   "initial_length": 11.829229354858398,
+   "length": 5.680551052093506,
+   "iterations": 253
+  },
+  {
+   "problem": "cage/80",
+   "solved": true,
+   "planning_us": 132.768,
+   "simplify_us": 297.774,
+   "total_us": 430.54200000000003,
+   "initial_length": 10.960511207580566,
+   "length": 6.2580108642578125,
+   "iterations": 68
+  },
+  {
+   "problem": "cage/81",
+   "solved": true,
+   "planning_us": 266.197,
+   "simplify_us": 240.619,
+   "total_us": 506.81600000000003,
+   "initial_length": 7.400627136230469,
+   "length": 5.727953910827637,
+   "iterations": 68
+  },
+  {
+   "problem": "cage/82",
+   "solved": true,
+   "planning_us": 181.37,
+   "simplify_us": 295.156,
+   "total_us": 476.526,
+   "initial_length": 9.893017768859863,
+   "length": 4.971846580505371,
+   "iterations": 222
+  },
+  {
+   "problem": "cage/83",
+   "solved": true,
+   "planning_us": 507.554,
+   "simplify_us": 191.198,
+   "total_us": 698.752,
+   "initial_length": 10.952716827392578,
+   "length": 4.8348388671875,
+   "iterations": 631
+  },
+  {
+   "problem": "cage/84",
+   "solved": true,
+   "planning_us": 524.102,
+   "simplify_us": 439.664,
+   "total_us": 963.766,
+   "initial_length": 16.888113021850586,
+   "length": 8.834278106689453,
+   "iterations": 652
+  },
+  {
+   "problem": "cage/85",
+   "solved": true,
+   "planning_us": 1839.563,
+   "simplify_us": 259.78,
+   "total_us": 2099.343,
+   "initial_length": 18.25982666015625,
+   "length": 5.0055694580078125,
+   "iterations": 1376
+  },
+  {
+   "problem": "cage/86",
+   "solved": true,
+   "planning_us": 2113.387,
+   "simplify_us": 411.795,
+   "total_us": 2525.1820000000002,
+   "initial_length": 16.19803237915039,
+   "length": 8.859930992126465,
+   "iterations": 1432
+  },
+  {
+   "problem": "cage/87",
+   "solved": true,
+   "planning_us": 363.046,
+   "simplify_us": 247.236,
+   "total_us": 610.2819999999999,
+   "initial_length": 10.122347831726074,
+   "length": 4.832712650299072,
+   "iterations": 506
+  },
+  {
+   "problem": "cage/88",
+   "solved": true,
+   "planning_us": 1330.541,
+   "simplify_us": 282.63,
+   "total_us": 1613.1709999999998,
+   "initial_length": 11.375810623168945,
+   "length": 5.986832618713379,
+   "iterations": 682
+  },
+  {
+   "problem": "cage/89",
+   "solved": true,
+   "planning_us": 329.086,
+   "simplify_us": 225.719,
+   "total_us": 554.8050000000001,
+   "initial_length": 8.547677993774414,
+   "length": 4.940698623657227,
+   "iterations": 210
+  },
+  {
+   "problem": "cage/90",
+   "solved": true,
+   "planning_us": 672.112,
+   "simplify_us": 338.4,
+   "total_us": 1010.512,
+   "initial_length": 13.967164993286133,
+   "length": 6.793442249298096,
+   "iterations": 1211
+  },
+  {
+   "problem": "cage/91",
+   "solved": true,
+   "planning_us": 1113.188,
+   "simplify_us": 192.707,
+   "total_us": 1305.895,
+   "initial_length": 8.135115623474121,
+   "length": 5.367090225219727,
+   "iterations": 541
+  },
+  {
+   "problem": "cage/92",
+   "solved": true,
+   "planning_us": 1420.777,
+   "simplify_us": 536.565,
+   "total_us": 1957.342,
+   "initial_length": 18.786865234375,
+   "length": 9.819826126098633,
+   "iterations": 1939
+  },
+  {
+   "problem": "cage/93",
+   "solved": true,
+   "planning_us": 325.735,
+   "simplify_us": 233.661,
+   "total_us": 559.396,
+   "initial_length": 11.849357604980469,
+   "length": 4.822527885437012,
+   "iterations": 230
+  },
+  {
+   "problem": "cage/94",
+   "solved": true,
+   "planning_us": 196.767,
+   "simplify_us": 304.182,
+   "total_us": 500.949,
+   "initial_length": 11.062536239624023,
+   "length": 5.802485466003418,
+   "iterations": 215
+  },
+  {
+   "problem": "cage/95",
+   "solved": true,
+   "planning_us": 330.193,
+   "simplify_us": 215.512,
+   "total_us": 545.7049999999999,
+   "initial_length": 8.553698539733887,
+   "length": 5.505805492401123,
+   "iterations": 422
+  },
+  {
+   "problem": "cage/96",
+   "solved": true,
+   "planning_us": 92.645,
+   "simplify_us": 239.369,
+   "total_us": 332.014,
+   "initial_length": 9.19589614868164,
+   "length": 5.266293048858643,
+   "iterations": 126
+  },
+  {
+   "problem": "cage/97",
+   "solved": true,
+   "planning_us": 370.122,
+   "simplify_us": 215.123,
+   "total_us": 585.245,
+   "initial_length": 11.377338409423828,
+   "length": 4.900053024291992,
+   "iterations": 292
+  },
+  {
+   "problem": "cage/98",
+   "solved": true,
+   "planning_us": 328.512,
+   "simplify_us": 391.694,
+   "total_us": 720.206,
+   "initial_length": 9.643783569335938,
+   "length": 6.640177249908447,
+   "iterations": 494
+  },
+  {
+   "problem": "cage/99",
+   "solved": true,
+   "planning_us": 165.781,
+   "simplify_us": 171.316,
+   "total_us": 337.097,
+   "initial_length": 9.004761695861816,
+   "length": 5.169094562530518,
+   "iterations": 190
+  }
+ ],
+ "table_pick": [
+  {
+   "problem": "table_pick/0",
+   "solved": true,
+   "planning_us": 80.541,
+   "simplify_us": 4.605,
+   "total_us": 85.146,
+   "initial_length": 4.24931001663208,
+   "length": 4.24931001663208,
+   "iterations": 0
+  },
+  {
+   "problem": "table_pick/1",
+   "solved": true,
+   "planning_us": 78.572,
+   "simplify_us": 204.59,
+   "total_us": 283.16200000000003,
+   "initial_length": 4.731533050537109,
+   "length": 4.008234024047852,
+   "iterations": 1
+  },
+  {
+   "problem": "table_pick/2",
+   "solved": true,
+   "planning_us": 127.24,
+   "simplify_us": 494.039,
+   "total_us": 621.279,
+   "initial_length": 6.797370910644531,
+   "length": 4.902962684631348,
+   "iterations": 7
+  },
+  {
+   "problem": "table_pick/3",
+   "solved": true,
+   "planning_us": 46.296,
+   "simplify_us": 121.193,
+   "total_us": 167.489,
+   "initial_length": 6.256551742553711,
+   "length": 4.429876327514648,
+   "iterations": 65
+  },
+  {
+   "problem": "table_pick/4",
+   "solved": true,
+   "planning_us": 39.327,
+   "simplify_us": 120.592,
+   "total_us": 159.91899999999998,
+   "initial_length": 5.650640964508057,
+   "length": 4.2913007736206055,
+   "iterations": 52
+  },
+  {
+   "problem": "table_pick/5",
+   "solved": true,
+   "planning_us": 78.33,
+   "simplify_us": 126.802,
+   "total_us": 205.132,
+   "initial_length": 7.6997222900390625,
+   "length": 4.7359442710876465,
+   "iterations": 32
+  },
+  {
+   "problem": "table_pick/6",
+   "solved": true,
+   "planning_us": 58.221,
+   "simplify_us": 242.856,
+   "total_us": 301.077,
+   "initial_length": 8.437792778015137,
+   "length": 5.980651378631592,
+   "iterations": 163
+  },
+  {
+   "problem": "table_pick/7",
+   "solved": true,
+   "planning_us": 71.755,
+   "simplify_us": 191.574,
+   "total_us": 263.329,
+   "initial_length": 8.707890510559082,
+   "length": 4.935125827789307,
+   "iterations": 133
+  },
+  {
+   "problem": "table_pick/8",
+   "solved": true,
+   "planning_us": 152.23,
+   "simplify_us": 360.743,
+   "total_us": 512.973,
+   "initial_length": 8.611812591552734,
+   "length": 4.938833236694336,
+   "iterations": 54
+  },
+  {
+   "problem": "table_pick/9",
+   "solved": true,
+   "planning_us": 99.972,
+   "simplify_us": 194.498,
+   "total_us": 294.46999999999997,
+   "initial_length": 5.604217529296875,
+   "length": 4.204368591308594,
+   "iterations": 31
+  },
+  {
+   "problem": "table_pick/10",
+   "solved": true,
+   "planning_us": 135.063,
+   "simplify_us": 442.355,
+   "total_us": 577.418,
+   "initial_length": 7.035981178283691,
+   "length": 5.0820841789245605,
+   "iterations": 119
+  },
+  {
+   "problem": "table_pick/11",
+   "solved": true,
+   "planning_us": 48.23,
+   "simplify_us": 207.15,
+   "total_us": 255.38,
+   "initial_length": 6.211741924285889,
+   "length": 4.4341936111450195,
+   "iterations": 15
+  },
+  {
+   "problem": "table_pick/12",
+   "solved": true,
+   "planning_us": 35.814,
+   "simplify_us": 156.703,
+   "total_us": 192.517,
+   "initial_length": 5.52175760269165,
+   "length": 4.208671569824219,
+   "iterations": 31
+  },
+  {
+   "problem": "table_pick/13",
+   "solved": true,
+   "planning_us": 248.769,
+   "simplify_us": 332.797,
+   "total_us": 581.566,
+   "initial_length": 7.890935897827148,
+   "length": 4.600882530212402,
+   "iterations": 35
+  },
+  {
+   "problem": "table_pick/14",
+   "solved": true,
+   "planning_us": 91.319,
+   "simplify_us": 4.222,
+   "total_us": 95.541,
+   "initial_length": 4.271756172180176,
+   "length": 4.271756172180176,
+   "iterations": 0
+  },
+  {
+   "problem": "table_pick/15",
+   "solved": true,
+   "planning_us": 44.441,
+   "simplify_us": 205.611,
+   "total_us": 250.052,
+   "initial_length": 6.888050556182861,
+   "length": 4.854670524597168,
+   "iterations": 30
+  },
+  {
+   "problem": "table_pick/16",
+   "solved": true,
+   "planning_us": 131.722,
+   "simplify_us": 580.241,
+   "total_us": 711.963,
+   "initial_length": 6.105961799621582,
+   "length": 4.527385711669922,
+   "iterations": 1
+  },
+  {
+   "problem": "table_pick/17",
+   "solved": true,
+   "planning_us": 70.361,
+   "simplify_us": 216.553,
+   "total_us": 286.914,
+   "initial_length": 4.7089385986328125,
+   "length": 3.9162368774414062,
+   "iterations": 1
+  },
+  {
+   "problem": "table_pick/18",
+   "solved": true,
+   "planning_us": 37.29,
+   "simplify_us": 139.727,
+   "total_us": 177.017,
+   "initial_length": 6.096821308135986,
+   "length": 4.9082536697387695,
+   "iterations": 30
+  },
+  {
+   "problem": "table_pick/19",
+   "solved": true,
+   "planning_us": 51.716,
+   "simplify_us": 152.578,
+   "total_us": 204.294,
+   "initial_length": 7.06767463684082,
+   "length": 5.735989093780518,
+   "iterations": 185
+  },
+  {
+   "problem": "table_pick/20",
+   "solved": true,
+   "planning_us": 457.299,
+   "simplify_us": 651.523,
+   "total_us": 1108.8220000000001,
+   "initial_length": 10.926313400268555,
+   "length": 6.030098915100098,
+   "iterations": 412
+  },
+  {
+   "problem": "table_pick/21",
+   "solved": true,
+   "planning_us": 264.119,
+   "simplify_us": 229.125,
+   "total_us": 493.244,
+   "initial_length": 8.488950729370117,
+   "length": 5.846545219421387,
+   "iterations": 693
+  },
+  {
+   "problem": "table_pick/22",
+   "solved": true,
+   "planning_us": 105.137,
+   "simplify_us": 3.109,
+   "total_us": 108.246,
+   "initial_length": 4.563723087310791,
+   "length": 4.563723087310791,
+   "iterations": 0
+  },
+  {
+   "problem": "table_pick/23",
+   "solved": true,
+   "planning_us": 30.379,
+   "simplify_us": 181.951,
+   "total_us": 212.32999999999998,
+   "initial_length": 5.998477935791016,
+   "length": 4.383114337921143,
+   "iterations": 1
+  },
+  {
+   "problem": "table_pick/24",
+   "solved": true,
+   "planning_us": 67.625,
+   "simplify_us": 258.47,
+   "total_us": 326.095,
+   "initial_length": 7.368320941925049,
+   "length": 5.146432876586914,
+   "iterations": 258
+  },
+  {
+   "problem": "table_pick/25",
+   "solved": true,
+   "planning_us": 30.173,
+   "simplify_us": 169.989,
+   "total_us": 200.162,
+   "initial_length": 4.584969520568848,
+   "length": 3.802888870239258,
+   "iterations": 1
+  },
+  {
+   "problem": "table_pick/26",
+   "solved": true,
+   "planning_us": 98.553,
+   "simplify_us": 236.028,
+   "total_us": 334.581,
+   "initial_length": 8.388336181640625,
+   "length": 5.671772003173828,
+   "iterations": 483
+  },
+  {
+   "problem": "table_pick/27",
+   "solved": true,
+   "planning_us": 41.869,
+   "simplify_us": 126.577,
+   "total_us": 168.446,
+   "initial_length": 7.092538833618164,
+   "length": 4.401959419250488,
+   "iterations": 32
+  },
+  {
+   "problem": "table_pick/28",
+   "solved": true,
+   "planning_us": 91.95,
+   "simplify_us": 444.989,
+   "total_us": 536.939,
+   "initial_length": 8.93847942352295,
+   "length": 4.785977363586426,
+   "iterations": 55
+  },
+  {
+   "problem": "table_pick/29",
+   "solved": true,
+   "planning_us": 145.686,
+   "simplify_us": 237.776,
+   "total_us": 383.462,
+   "initial_length": 6.39743185043335,
+   "length": 4.281097888946533,
+   "iterations": 32
+  },
+  {
+   "problem": "table_pick/30",
+   "solved": true,
+   "planning_us": 30.942,
+   "simplify_us": 3.303,
+   "total_us": 34.245,
+   "initial_length": 4.457071304321289,
+   "length": 4.457071304321289,
+   "iterations": 0
+  },
+  {
+   "problem": "table_pick/31",
+   "solved": true,
+   "planning_us": 73.248,
+   "simplify_us": 132.52,
+   "total_us": 205.76800000000003,
+   "initial_length": 6.882408142089844,
+   "length": 4.348952293395996,
+   "iterations": 197
+  },
+  {
+   "problem": "table_pick/32",
+   "solved": true,
+   "planning_us": 32.606,
+   "simplify_us": 2.238,
+   "total_us": 34.844,
+   "initial_length": 4.2736430168151855,
+   "length": 4.2736430168151855,
+   "iterations": 0
+  },
+  {
+   "problem": "table_pick/33",
+   "solved": true,
+   "planning_us": 173.273,
+   "simplify_us": 395.262,
+   "total_us": 568.535,
+   "initial_length": 5.299893379211426,
+   "length": 4.218836307525635,
+   "iterations": 1
+  },
+  {
+   "problem": "table_pick/34",
+   "solved": true,
+   "planning_us": 104.504,
+   "simplify_us": 234.267,
+   "total_us": 338.771,
+   "initial_length": 5.198927402496338,
+   "length": 3.8153634071350098,
+   "iterations": 31
+  },
+  {
+   "problem": "table_pick/35",
+   "solved": true,
+   "planning_us": 54.258,
+   "simplify_us": 169.368,
+   "total_us": 223.626,
+   "initial_length": 5.091040134429932,
+   "length": 3.6476149559020996,
+   "iterations": 17
+  },
+  {
+   "problem": "table_pick/36",
+   "solved": true,
+   "planning_us": 37.104,
+   "simplify_us": 161.771,
+   "total_us": 198.875,
+   "initial_length": 4.810640335083008,
+   "length": 3.92268967628479,
+   "iterations": 1
+  },
+  {
+   "problem": "table_pick/37",
+   "solved": true,
+   "planning_us": 30.378,
+   "simplify_us": 3.688,
+   "total_us": 34.066,
+   "initial_length": 3.8516335487365723,
+   "length": 3.8516335487365723,
+   "iterations": 0
+  },
+  {
+   "problem": "table_pick/38",
+   "solved": true,
+   "planning_us": 52.022,
+   "simplify_us": 256.992,
+   "total_us": 309.014,
+   "initial_length": 6.2896504402160645,
+   "length": 4.579681396484375,
+   "iterations": 9
+  },
+  {
+   "problem": "table_pick/39",
+   "solved": true,
+   "planning_us": 26.673,
+   "simplify_us": 103.756,
+   "total_us": 130.429,
+   "initial_length": 4.899074077606201,
+   "length": 4.172641277313232,
+   "iterations": 1
+  },
+  {
+   "problem": "table_pick/41",
+   "solved": true,
+   "planning_us": 54.444,
+   "simplify_us": 166.767,
+   "total_us": 221.211,
+   "initial_length": 6.569655418395996,
+   "length": 5.496436595916748,
+   "iterations": 182
+  },
+  {
+   "problem": "table_pick/42",
+   "solved": true,
+   "planning_us": 52.045,
+   "simplify_us": 186.993,
+   "total_us": 239.038,
+   "initial_length": 7.329014778137207,
+   "length": 5.395662784576416,
+   "iterations": 85
+  },
+  {
+   "problem": "table_pick/43",
+   "solved": true,
+   "planning_us": 56.224,
+   "simplify_us": 221.532,
+   "total_us": 277.75600000000003,
+   "initial_length": 8.923575401306152,
+   "length": 5.86363410949707,
+   "iterations": 52
+  },
+  {
+   "problem": "table_pick/44",
+   "solved": true,
+   "planning_us": 55.476,
+   "simplify_us": 108.097,
+   "total_us": 163.57299999999998,
+   "initial_length": 8.13304615020752,
+   "length": 3.977397918701172,
+   "iterations": 10
+  },
+  {
+   "problem": "table_pick/45",
+   "solved": true,
+   "planning_us": 29.114,
+   "simplify_us": 2.399,
+   "total_us": 31.513,
+   "initial_length": 4.122313976287842,
+   "length": 4.122313976287842,
+   "iterations": 0
+  },
+  {
+   "problem": "table_pick/46",
+   "solved": true,
+   "planning_us": 44.026,
+   "simplify_us": 141.792,
+   "total_us": 185.818,
+   "initial_length": 6.31704568862915,
+   "length": 4.926997184753418,
+   "iterations": 65
+  },
+  {
+   "problem": "table_pick/47",
+   "solved": true,
+   "planning_us": 65.954,
+   "simplify_us": 167.878,
+   "total_us": 233.832,
+   "initial_length": 8.4124174118042,
+   "length": 5.969233989715576,
+   "iterations": 315
+  },
+  {
+   "problem": "table_pick/48",
+   "solved": true,
+   "planning_us": 41.996,
+   "simplify_us": 245.306,
+   "total_us": 287.302,
+   "initial_length": 7.354342460632324,
+   "length": 5.295481204986572,
+   "iterations": 7
+  },
+  {
+   "problem": "table_pick/49",
+   "solved": true,
+   "planning_us": 151.161,
+   "simplify_us": 146.094,
+   "total_us": 297.255,
+   "initial_length": 7.714239120483398,
+   "length": 5.205105304718018,
+   "iterations": 72
+  },
+  {
+   "problem": "table_pick/50",
+   "solved": true,
+   "planning_us": 94.619,
+   "simplify_us": 145.138,
+   "total_us": 239.757,
+   "initial_length": 5.298171043395996,
+   "length": 4.208756923675537,
+   "iterations": 106
+  },
+  {
+   "problem": "table_pick/51",
+   "solved": true,
+   "planning_us": 43.699,
+   "simplify_us": 138.663,
+   "total_us": 182.36200000000002,
+   "initial_length": 6.3995041847229,
+   "length": 4.50696325302124,
+   "iterations": 30
+  },
+  {
+   "problem": "table_pick/52",
+   "solved": true,
+   "planning_us": 39.604,
+   "simplify_us": 343.852,
+   "total_us": 383.45599999999996,
+   "initial_length": 6.654881954193115,
+   "length": 4.41701078414917,
+   "iterations": 52
+  },
+  {
+   "problem": "table_pick/53",
+   "solved": true,
+   "planning_us": 50.993,
+   "simplify_us": 170.219,
+   "total_us": 221.212,
+   "initial_length": 9.66452693939209,
+   "length": 4.489200115203857,
+   "iterations": 31
+  },
+  {
+   "problem": "table_pick/54",
+   "solved": true,
+   "planning_us": 32.404,
+   "simplify_us": 119.414,
+   "total_us": 151.818,
+   "initial_length": 6.403785705566406,
+   "length": 4.888965606689453,
+   "iterations": 1
+  },
+  {
+   "problem": "table_pick/55",
+   "solved": true,
+   "planning_us": 98.674,
+   "simplify_us": 284.368,
+   "total_us": 383.04200000000003,
+   "initial_length": 6.329627990722656,
+   "length": 4.664702892303467,
+   "iterations": 355
+  },
+  {
+   "problem": "table_pick/56",
+   "solved": true,
+   "planning_us": 60.415,
+   "simplify_us": 156.063,
+   "total_us": 216.47799999999998,
+   "initial_length": 7.5680012702941895,
+   "length": 5.501446723937988,
+   "iterations": 261
+  },
+  {
+   "problem": "table_pick/57",
+   "solved": true,
+   "planning_us": 37.364,
+   "simplify_us": 3.085,
+   "total_us": 40.449,
+   "initial_length": 3.713355302810669,
+   "length": 3.713355302810669,
+   "iterations": 0
+  },
+  {
+   "problem": "table_pick/58",
+   "solved": true,
+   "planning_us": 44.172,
+   "simplify_us": 112.711,
+   "total_us": 156.88299999999998,
+   "initial_length": 5.765409469604492,
+   "length": 4.272480010986328,
+   "iterations": 65
+  },
+  {
+   "problem": "table_pick/59",
+   "solved": true,
+   "planning_us": 33.372,
+   "simplify_us": 186.78,
+   "total_us": 220.152,
+   "initial_length": 5.73553991317749,
+   "length": 4.3028950691223145,
+   "iterations": 7
+  },
+  {
+   "problem": "table_pick/60",
+   "solved": true,
+   "planning_us": 49.599,
+   "simplify_us": 254.758,
+   "total_us": 304.357,
+   "initial_length": 7.834773063659668,
+   "length": 5.422800540924072,
+   "iterations": 82
+  },
+  {
+   "problem": "table_pick/61",
+   "solved": true,
+   "planning_us": 77.02,
+   "simplify_us": 193.488,
+   "total_us": 270.508,
+   "initial_length": 7.522624969482422,
+   "length": 4.482194423675537,
+   "iterations": 35
+  },
+  {
+   "problem": "table_pick/62",
+   "solved": true,
+   "planning_us": 58.067,
+   "simplify_us": 412.814,
+   "total_us": 470.88100000000003,
+   "initial_length": 7.859705924987793,
+   "length": 4.995593070983887,
+   "iterations": 106
+  },
+  {
+   "problem": "table_pick/63",
+   "solved": true,
+   "planning_us": 28.478,
+   "simplify_us": 3.242,
+   "total_us": 31.720000000000002,
+   "initial_length": 4.120680332183838,
+   "length": 4.120680332183838,
+   "iterations": 0
+  },
+  {
+   "problem": "table_pick/64",
+   "solved": true,
+   "planning_us": 45.558,
+   "simplify_us": 182.107,
+   "total_us": 227.665,
+   "initial_length": 6.68779182434082,
+   "length": 4.753225326538086,
+   "iterations": 30
+  },
+  {
+   "problem": "table_pick/65",
+   "solved": true,
+   "planning_us": 39.172,
+   "simplify_us": 142.287,
+   "total_us": 181.459,
+   "initial_length": 6.686827182769775,
+   "length": 4.228085517883301,
+   "iterations": 32
+  },
+  {
+   "problem": "table_pick/66",
+   "solved": true,
+   "planning_us": 169.678,
+   "simplify_us": 203.672,
+   "total_us": 373.35,
+   "initial_length": 6.269433498382568,
+   "length": 4.518077373504639,
+   "iterations": 1120
+  },
+  {
+   "problem": "table_pick/67",
+   "solved": true,
+   "planning_us": 52.404,
+   "simplify_us": 195.423,
+   "total_us": 247.827,
+   "initial_length": 6.4737653732299805,
+   "length": 4.087321758270264,
+   "iterations": 41
+  },
+  {
+   "problem": "table_pick/68",
+   "solved": true,
+   "planning_us": 184.476,
+   "simplify_us": 270.752,
+   "total_us": 455.228,
+   "initial_length": 8.646720886230469,
+   "length": 4.8197126388549805,
+   "iterations": 54
+  },
+  {
+   "problem": "table_pick/69",
+   "solved": true,
+   "planning_us": 117.703,
+   "simplify_us": 181.12,
+   "total_us": 298.823,
+   "initial_length": 7.16577672958374,
+   "length": 4.337521553039551,
+   "iterations": 36
+  },
+  {
+   "problem": "table_pick/70",
+   "solved": true,
+   "planning_us": 130.126,
+   "simplify_us": 394.888,
+   "total_us": 525.014,
+   "initial_length": 6.141071796417236,
+   "length": 4.853996276855469,
+   "iterations": 2
+  },
+  {
+   "problem": "table_pick/71",
+   "solved": true,
+   "planning_us": 61.805,
+   "simplify_us": 251.876,
+   "total_us": 313.681,
+   "initial_length": 6.702337265014648,
+   "length": 4.978400230407715,
+   "iterations": 54
+  },
+  {
+   "problem": "table_pick/72",
+   "solved": true,
+   "planning_us": 109.349,
+   "simplify_us": 436.538,
+   "total_us": 545.8870000000001,
+   "initial_length": 9.078255653381348,
+   "length": 4.164707183837891,
+   "iterations": 186
+  },
+  {
+   "problem": "table_pick/73",
+   "solved": true,
+   "planning_us": 48.732,
+   "simplify_us": 252.129,
+   "total_us": 300.861,
+   "initial_length": 5.416413307189941,
+   "length": 4.0064263343811035,
+   "iterations": 2
+  },
+  {
+   "problem": "table_pick/74",
+   "solved": true,
+   "planning_us": 39.816,
+   "simplify_us": 184.101,
+   "total_us": 223.917,
+   "initial_length": 5.253524303436279,
+   "length": 4.295431613922119,
+   "iterations": 7
+  },
+  {
+   "problem": "table_pick/75",
+   "solved": true,
+   "planning_us": 59.21,
+   "simplify_us": 168.203,
+   "total_us": 227.413,
+   "initial_length": 7.370606899261475,
+   "length": 4.320658206939697,
+   "iterations": 31
+  },
+  {
+   "problem": "table_pick/76",
+   "solved": true,
+   "planning_us": 57.883,
+   "simplify_us": 204.04,
+   "total_us": 261.923,
+   "initial_length": 6.41469669342041,
+   "length": 5.108410835266113,
+   "iterations": 30
+  },
+  {
+   "problem": "table_pick/77",
+   "solved": true,
+   "planning_us": 35.711,
+   "simplify_us": 3.238,
+   "total_us": 38.949,
+   "initial_length": 4.216401100158691,
+   "length": 4.216401100158691,
+   "iterations": 0
+  },
+  {
+   "problem": "table_pick/78",
+   "solved": true,
+   "planning_us": 61.3,
+   "simplify_us": 316.646,
+   "total_us": 377.946,
+   "initial_length": 6.824509143829346,
+   "length": 4.845222473144531,
+   "iterations": 16
+  },
+  {
+   "problem": "table_pick/79",
+   "solved": true,
+   "planning_us": 75.779,
+   "simplify_us": 409.359,
+   "total_us": 485.138,
+   "initial_length": 6.4135212898254395,
+   "length": 4.935100078582764,
+   "iterations": 14
+  },
+  {
+   "problem": "table_pick/80",
+   "solved": true,
+   "planning_us": 191.668,
+   "simplify_us": 422.761,
+   "total_us": 614.4290000000001,
+   "initial_length": 7.1259613037109375,
+   "length": 4.872695446014404,
+   "iterations": 220
+  },
+  {
+   "problem": "table_pick/81",
+   "solved": true,
+   "planning_us": 287.08,
+   "simplify_us": 460.789,
+   "total_us": 747.8689999999999,
+   "initial_length": 8.609959602355957,
+   "length": 5.011236190795898,
+   "iterations": 54
+  },
+  {
+   "problem": "table_pick/82",
+   "solved": true,
+   "planning_us": 240.141,
+   "simplify_us": 295.008,
+   "total_us": 535.149,
+   "initial_length": 7.762162208557129,
+   "length": 4.775099277496338,
+   "iterations": 20
+  },
+  {
+   "problem": "table_pick/83",
+   "solved": true,
+   "planning_us": 79.241,
+   "simplify_us": 315.551,
+   "total_us": 394.792,
+   "initial_length": 7.707255840301514,
+   "length": 5.060083866119385,
+   "iterations": 31
+  },
+  {
+   "problem": "table_pick/84",
+   "solved": true,
+   "planning_us": 76.217,
+   "simplify_us": 303.767,
+   "total_us": 379.984,
+   "initial_length": 7.041209697723389,
+   "length": 4.3795695304870605,
+   "iterations": 7
+  },
+  {
+   "problem": "table_pick/85",
+   "solved": true,
+   "planning_us": 123.862,
+   "simplify_us": 262.888,
+   "total_us": 386.75,
+   "initial_length": 9.502933502197266,
+   "length": 5.849850654602051,
+   "iterations": 228
+  },
+  {
+   "problem": "table_pick/86",
+   "solved": true,
+   "planning_us": 41.652,
+   "simplify_us": 276.693,
+   "total_us": 318.34499999999997,
+   "initial_length": 5.2149505615234375,
+   "length": 3.8816115856170654,
+   "iterations": 2
+  },
+  {
+   "problem": "table_pick/87",
+   "solved": true,
+   "planning_us": 51.662,
+   "simplify_us": 169.704,
+   "total_us": 221.366,
+   "initial_length": 6.6711015701293945,
+   "length": 5.464110851287842,
+   "iterations": 197
+  },
+  {
+   "problem": "table_pick/88",
+   "solved": true,
+   "planning_us": 75.894,
+   "simplify_us": 296.854,
+   "total_us": 372.748,
+   "initial_length": 7.8620805740356445,
+   "length": 6.114602088928223,
+   "iterations": 353
+  },
+  {
+   "problem": "table_pick/89",
+   "solved": true,
+   "planning_us": 94.495,
+   "simplify_us": 234.446,
+   "total_us": 328.94100000000003,
+   "initial_length": 5.176969528198242,
+   "length": 3.756901264190674,
+   "iterations": 17
+  },
+  {
+   "problem": "table_pick/90",
+   "solved": true,
+   "planning_us": 52.87,
+   "simplify_us": 235.071,
+   "total_us": 287.941,
+   "initial_length": 5.341197967529297,
+   "length": 3.970247507095337,
+   "iterations": 31
+  },
+  {
+   "problem": "table_pick/91",
+   "solved": true,
+   "planning_us": 55.516,
+   "simplify_us": 218.172,
+   "total_us": 273.688,
+   "initial_length": 5.827362060546875,
+   "length": 4.640757083892822,
+   "iterations": 43
+  },
+  {
+   "problem": "table_pick/92",
+   "solved": true,
+   "planning_us": 123.104,
+   "simplify_us": 204.563,
+   "total_us": 327.667,
+   "initial_length": 6.958523750305176,
+   "length": 5.212023735046387,
+   "iterations": 222
+  },
+  {
+   "problem": "table_pick/93",
+   "solved": true,
+   "planning_us": 80.392,
+   "simplify_us": 263.11,
+   "total_us": 343.502,
+   "initial_length": 6.319448471069336,
+   "length": 4.204344749450684,
+   "iterations": 160
+  },
+  {
+   "problem": "table_pick/94",
+   "solved": true,
+   "planning_us": 83.444,
+   "simplify_us": 194.464,
+   "total_us": 277.908,
+   "initial_length": 6.99531364440918,
+   "length": 4.32319974899292,
+   "iterations": 151
+  },
+  {
+   "problem": "table_pick/95",
+   "solved": true,
+   "planning_us": 33.745,
+   "simplify_us": 3.324,
+   "total_us": 37.068999999999996,
+   "initial_length": 4.102014064788818,
+   "length": 4.102014064788818,
+   "iterations": 0
+  },
+  {
+   "problem": "table_pick/96",
+   "solved": true,
+   "planning_us": 78.489,
+   "simplify_us": 253.45,
+   "total_us": 331.93899999999996,
+   "initial_length": 8.491573333740234,
+   "length": 4.554519176483154,
+   "iterations": 54
+  },
+  {
+   "problem": "table_pick/97",
+   "solved": true,
+   "planning_us": 36.066,
+   "simplify_us": 2.981,
+   "total_us": 39.047000000000004,
+   "initial_length": 4.305022716522217,
+   "length": 4.305022716522217,
+   "iterations": 0
+  },
+  {
+   "problem": "table_pick/98",
+   "solved": true,
+   "planning_us": 168.056,
+   "simplify_us": 268.681,
+   "total_us": 436.73699999999997,
+   "initial_length": 9.674285888671875,
+   "length": 4.4880876541137695,
+   "iterations": 51
+  },
+  {
+   "problem": "table_pick/99",
+   "solved": true,
+   "planning_us": 80.718,
+   "simplify_us": 434.406,
+   "total_us": 515.124,
+   "initial_length": 8.099899291992188,
+   "length": 5.495675563812256,
+   "iterations": 163
+  }
+ ],
+ "table_under_pick": [
+  {
+   "problem": "table_under_pick/0",
+   "solved": true,
+   "planning_us": 245.332,
+   "simplify_us": 645.813,
+   "total_us": 891.145,
+   "initial_length": 9.976893424987793,
+   "length": 6.233494758605957,
+   "iterations": 81
+  },
+  {
+   "problem": "table_under_pick/1",
+   "solved": true,
+   "planning_us": 230.876,
+   "simplify_us": 371.302,
+   "total_us": 602.178,
+   "initial_length": 15.697100639343262,
+   "length": 5.95447301864624,
+   "iterations": 86
+  },
+  {
+   "problem": "table_under_pick/2",
+   "solved": true,
+   "planning_us": 141.944,
+   "simplify_us": 244.924,
+   "total_us": 386.868,
+   "initial_length": 10.936535835266113,
+   "length": 8.030319213867188,
+   "iterations": 70
+  },
+  {
+   "problem": "table_under_pick/3",
+   "solved": true,
+   "planning_us": 108.922,
+   "simplify_us": 355.98,
+   "total_us": 464.90200000000004,
+   "initial_length": 9.60772705078125,
+   "length": 8.883423805236816,
+   "iterations": 281
+  },
+  {
+   "problem": "table_under_pick/4",
+   "solved": true,
+   "planning_us": 102.012,
+   "simplify_us": 269.535,
+   "total_us": 371.547,
+   "initial_length": 8.141070365905762,
+   "length": 4.992563724517822,
+   "iterations": 76
+  },
+  {
+   "problem": "table_under_pick/5",
+   "solved": true,
+   "planning_us": 190.254,
+   "simplify_us": 407.956,
+   "total_us": 598.21,
+   "initial_length": 9.528874397277832,
+   "length": 6.698173999786377,
+   "iterations": 165
+  },
+  {
+   "problem": "table_under_pick/6",
+   "solved": true,
+   "planning_us": 171.42,
+   "simplify_us": 228.112,
+   "total_us": 399.532,
+   "initial_length": 7.333587646484375,
+   "length": 4.585317134857178,
+   "iterations": 34
+  },
+  {
+   "problem": "table_under_pick/7",
+   "solved": true,
+   "planning_us": 195.188,
+   "simplify_us": 624.713,
+   "total_us": 819.901,
+   "initial_length": 12.217374801635742,
+   "length": 8.80237865447998,
+   "iterations": 76
+  },
+  {
+   "problem": "table_under_pick/8",
+   "solved": true,
+   "planning_us": 387.757,
+   "simplify_us": 288.608,
+   "total_us": 676.365,
+   "initial_length": 13.688478469848633,
+   "length": 7.480142593383789,
+   "iterations": 54
+  },
+  {
+   "problem": "table_under_pick/9",
+   "solved": true,
+   "planning_us": 155.83,
+   "simplify_us": 199.624,
+   "total_us": 355.454,
+   "initial_length": 8.209725379943848,
+   "length": 4.715453624725342,
+   "iterations": 99
+  },
+  {
+   "problem": "table_under_pick/10",
+   "solved": true,
+   "planning_us": 78.264,
+   "simplify_us": 234.311,
+   "total_us": 312.575,
+   "initial_length": 6.614683151245117,
+   "length": 4.5347819328308105,
+   "iterations": 152
+  },
+  {
+   "problem": "table_under_pick/11",
+   "solved": true,
+   "planning_us": 313.698,
+   "simplify_us": 224.236,
+   "total_us": 537.934,
+   "initial_length": 10.699405670166016,
+   "length": 3.8717639446258545,
+   "iterations": 83
+  },
+  {
+   "problem": "table_under_pick/12",
+   "solved": true,
+   "planning_us": 470.374,
+   "simplify_us": 533.348,
+   "total_us": 1003.722,
+   "initial_length": 10.381373405456543,
+   "length": 7.112487316131592,
+   "iterations": 3088
+  },
+  {
+   "problem": "table_under_pick/13",
+   "solved": true,
+   "planning_us": 152.636,
+   "simplify_us": 255.654,
+   "total_us": 408.28999999999996,
+   "initial_length": 8.506620407104492,
+   "length": 3.594925880432129,
+   "iterations": 83
+  },
+  {
+   "problem": "table_under_pick/14",
+   "solved": true,
+   "planning_us": 110.927,
+   "simplify_us": 316.219,
+   "total_us": 427.146,
+   "initial_length": 9.124961853027344,
+   "length": 4.356212139129639,
+   "iterations": 146
+  },
+  {
+   "problem": "table_under_pick/15",
+   "solved": true,
+   "planning_us": 167.861,
+   "simplify_us": 541.518,
+   "total_us": 709.379,
+   "initial_length": 11.264636039733887,
+   "length": 7.144665241241455,
+   "iterations": 49
+  },
+  {
+   "problem": "table_under_pick/16",
+   "solved": true,
+   "planning_us": 600.003,
+   "simplify_us": 1412.575,
+   "total_us": 2012.578,
+   "initial_length": 17.414318084716797,
+   "length": 7.858798980712891,
+   "iterations": 75
+  },
+  {
+   "problem": "table_under_pick/17",
+   "solved": true,
+   "planning_us": 166.541,
+   "simplify_us": 378.083,
+   "total_us": 544.624,
+   "initial_length": 9.986957550048828,
+   "length": 7.7171173095703125,
+   "iterations": 387
+  },
+  {
+   "problem": "table_under_pick/18",
+   "solved": true,
+   "planning_us": 175.921,
+   "simplify_us": 393.014,
+   "total_us": 568.935,
+   "initial_length": 10.772865295410156,
+   "length": 5.372465133666992,
+   "iterations": 83
+  },
+  {
+   "problem": "table_under_pick/19",
+   "solved": true,
+   "planning_us": 96.072,
+   "simplify_us": 609.268,
+   "total_us": 705.34,
+   "initial_length": 9.855674743652344,
+   "length": 8.242530822753906,
+   "iterations": 130
+  },
+  {
+   "problem": "table_under_pick/20",
+   "solved": true,
+   "planning_us": 336.973,
+   "simplify_us": 503.661,
+   "total_us": 840.634,
+   "initial_length": 12.024614334106445,
+   "length": 7.3462300300598145,
+   "iterations": 85
+  },
+  {
+   "problem": "table_under_pick/21",
+   "solved": true,
+   "planning_us": 170.238,
+   "simplify_us": 331.8,
+   "total_us": 502.038,
+   "initial_length": 10.58314323425293,
+   "length": 7.348536968231201,
+   "iterations": 62
+  },
+  {
+   "problem": "table_under_pick/22",
+   "solved": true,
+   "planning_us": 294.379,
+   "simplify_us": 318.731,
+   "total_us": 613.11,
+   "initial_length": 23.246597290039062,
+   "length": 8.426803588867188,
+   "iterations": 87
+  },
+  {
+   "problem": "table_under_pick/23",
+   "solved": true,
+   "planning_us": 126.685,
+   "simplify_us": 208.782,
+   "total_us": 335.467,
+   "initial_length": 6.3011474609375,
+   "length": 3.8199100494384766,
+   "iterations": 131
+  },
+  {
+   "problem": "table_under_pick/24",
+   "solved": true,
+   "planning_us": 474.112,
+   "simplify_us": 179.741,
+   "total_us": 653.8530000000001,
+   "initial_length": 13.535196304321289,
+   "length": 5.124032020568848,
+   "iterations": 160
+  },
+  {
+   "problem": "table_under_pick/25",
+   "solved": true,
+   "planning_us": 114.045,
+   "simplify_us": 285.174,
+   "total_us": 399.219,
+   "initial_length": 16.057880401611328,
+   "length": 7.561925888061523,
+   "iterations": 62
+  },
+  {
+   "problem": "table_under_pick/26",
+   "solved": true,
+   "planning_us": 88.794,
+   "simplify_us": 249.901,
+   "total_us": 338.695,
+   "initial_length": 10.956029891967773,
+   "length": 6.864568710327148,
+   "iterations": 99
+  },
+  {
+   "problem": "table_under_pick/27",
+   "solved": true,
+   "planning_us": 122.295,
+   "simplify_us": 166.337,
+   "total_us": 288.632,
+   "initial_length": 7.7625627517700195,
+   "length": 3.9008896350860596,
+   "iterations": 131
+  },
+  {
+   "problem": "table_under_pick/28",
+   "solved": true,
+   "planning_us": 109.017,
+   "simplify_us": 260.167,
+   "total_us": 369.18399999999997,
+   "initial_length": 10.874715805053711,
+   "length": 7.09805965423584,
+   "iterations": 57
+  },
+  {
+   "problem": "table_under_pick/29",
+   "solved": true,
+   "planning_us": 124.802,
+   "simplify_us": 306.258,
+   "total_us": 431.06,
+   "initial_length": 9.877446174621582,
+   "length": 7.732919216156006,
+   "iterations": 303
+  },
+  {
+   "problem": "table_under_pick/30",
+   "solved": true,
+   "planning_us": 72.903,
+   "simplify_us": 348.858,
+   "total_us": 421.761,
+   "initial_length": 12.456442832946777,
+   "length": 9.358291625976562,
+   "iterations": 126
+  },
+  {
+   "problem": "table_under_pick/31",
+   "solved": true,
+   "planning_us": 54.611,
+   "simplify_us": 461.244,
+   "total_us": 515.855,
+   "initial_length": 6.569431781768799,
+   "length": 4.502066612243652,
+   "iterations": 152
+  },
+  {
+   "problem": "table_under_pick/32",
+   "solved": true,
+   "planning_us": 100.872,
+   "simplify_us": 218.398,
+   "total_us": 319.27,
+   "initial_length": 10.321069717407227,
+   "length": 5.551472187042236,
+   "iterations": 104
+  },
+  {
+   "problem": "table_under_pick/33",
+   "solved": true,
+   "planning_us": 80.321,
+   "simplify_us": 150.619,
+   "total_us": 230.94,
+   "initial_length": 8.17684268951416,
+   "length": 3.705503225326538,
+   "iterations": 134
+  },
+  {
+   "problem": "table_under_pick/34",
+   "solved": true,
+   "planning_us": 134.239,
+   "simplify_us": 274.338,
+   "total_us": 408.577,
+   "initial_length": 8.896005630493164,
+   "length": 5.681907653808594,
+   "iterations": 123
+  },
+  {
+   "problem": "table_under_pick/35",
+   "solved": true,
+   "planning_us": 67.455,
+   "simplify_us": 306.515,
+   "total_us": 373.96999999999997,
+   "initial_length": 10.606135368347168,
+   "length": 8.551651954650879,
+   "iterations": 70
+  },
+  {
+   "problem": "table_under_pick/36",
+   "solved": true,
+   "planning_us": 48.444,
+   "simplify_us": 234.975,
+   "total_us": 283.419,
+   "initial_length": 6.804974555969238,
+   "length": 5.216115474700928,
+   "iterations": 100
+  },
+  {
+   "problem": "table_under_pick/37",
+   "solved": true,
+   "planning_us": 51.278,
+   "simplify_us": 133.639,
+   "total_us": 184.917,
+   "initial_length": 7.246621131896973,
+   "length": 3.927665948867798,
+   "iterations": 130
+  },
+  {
+   "problem": "table_under_pick/38",
+   "solved": true,
+   "planning_us": 83.876,
+   "simplify_us": 320.227,
+   "total_us": 404.10299999999995,
+   "initial_length": 11.656917572021484,
+   "length": 8.927827835083008,
+   "iterations": 127
+  },
+  {
+   "problem": "table_under_pick/39",
+   "solved": true,
+   "planning_us": 131.854,
+   "simplify_us": 204.652,
+   "total_us": 336.506,
+   "initial_length": 16.127025604248047,
+   "length": 6.53018856048584,
+   "iterations": 84
+  },
+  {
+   "problem": "table_under_pick/40",
+   "solved": true,
+   "planning_us": 57.196,
+   "simplify_us": 147.468,
+   "total_us": 204.664,
+   "initial_length": 9.592414855957031,
+   "length": 5.706452369689941,
+   "iterations": 41
+  },
+  {
+   "problem": "table_under_pick/41",
+   "solved": true,
+   "planning_us": 120.567,
+   "simplify_us": 154.67,
+   "total_us": 275.23699999999997,
+   "initial_length": 12.29835033416748,
+   "length": 6.529313087463379,
+   "iterations": 66
+  },
+  {
+   "problem": "table_under_pick/42",
+   "solved": true,
+   "planning_us": 189.831,
+   "simplify_us": 281.389,
+   "total_us": 471.22,
+   "initial_length": 13.369776725769043,
+   "length": 6.028762340545654,
+   "iterations": 95
+  },
+  {
+   "problem": "table_under_pick/43",
+   "solved": true,
+   "planning_us": 77.195,
+   "simplify_us": 191.84,
+   "total_us": 269.03499999999997,
+   "initial_length": 9.885812759399414,
+   "length": 5.517655849456787,
+   "iterations": 130
+  },
+  {
+   "problem": "table_under_pick/44",
+   "solved": true,
+   "planning_us": 56.368,
+   "simplify_us": 270.172,
+   "total_us": 326.54,
+   "initial_length": 8.483158111572266,
+   "length": 7.799120903015137,
+   "iterations": 84
+  },
+  {
+   "problem": "table_under_pick/45",
+   "solved": true,
+   "planning_us": 183.222,
+   "simplify_us": 290.232,
+   "total_us": 473.45400000000006,
+   "initial_length": 9.052375793457031,
+   "length": 6.616641998291016,
+   "iterations": 351
+  },
+  {
+   "problem": "table_under_pick/46",
+   "solved": true,
+   "planning_us": 79.732,
+   "simplify_us": 261.313,
+   "total_us": 341.04499999999996,
+   "initial_length": 10.264883041381836,
+   "length": 7.514604568481445,
+   "iterations": 106
+  },
+  {
+   "problem": "table_under_pick/47",
+   "solved": true,
+   "planning_us": 117.36,
+   "simplify_us": 302.293,
+   "total_us": 419.653,
+   "initial_length": 13.119988441467285,
+   "length": 6.540436744689941,
+   "iterations": 462
+  },
+  {
+   "problem": "table_under_pick/48",
+   "solved": true,
+   "planning_us": 61.007,
+   "simplify_us": 151.436,
+   "total_us": 212.443,
+   "initial_length": 7.283443927764893,
+   "length": 5.30284309387207,
+   "iterations": 100
+  },
+  {
+   "problem": "table_under_pick/49",
+   "solved": true,
+   "planning_us": 99.579,
+   "simplify_us": 288.133,
+   "total_us": 387.712,
+   "initial_length": 13.845834732055664,
+   "length": 9.127542495727539,
+   "iterations": 72
+  },
+  {
+   "problem": "table_under_pick/50",
+   "solved": true,
+   "planning_us": 94.639,
+   "simplify_us": 288.789,
+   "total_us": 383.428,
+   "initial_length": 13.281229972839355,
+   "length": 6.348540782928467,
+   "iterations": 144
+  },
+  {
+   "problem": "table_under_pick/51",
+   "solved": true,
+   "planning_us": 186.731,
+   "simplify_us": 517.195,
+   "total_us": 703.926,
+   "initial_length": 12.100053787231445,
+   "length": 7.3139801025390625,
+   "iterations": 315
+  },
+  {
+   "problem": "table_under_pick/52",
+   "solved": true,
+   "planning_us": 92.246,
+   "simplify_us": 349.0,
+   "total_us": 441.246,
+   "initial_length": 12.024837493896484,
+   "length": 9.163914680480957,
+   "iterations": 160
+  },
+  {
+   "problem": "table_under_pick/53",
+   "solved": true,
+   "planning_us": 49.083,
+   "simplify_us": 231.487,
+   "total_us": 280.57,
+   "initial_length": 6.994161128997803,
+   "length": 5.266238212585449,
+   "iterations": 110
+  },
+  {
+   "problem": "table_under_pick/54",
+   "solved": true,
+   "planning_us": 131.849,
+   "simplify_us": 292.393,
+   "total_us": 424.24199999999996,
+   "initial_length": 16.724014282226562,
+   "length": 6.809274673461914,
+   "iterations": 96
+  },
+  {
+   "problem": "table_under_pick/55",
+   "solved": true,
+   "planning_us": 130.773,
+   "simplify_us": 675.421,
+   "total_us": 806.1940000000001,
+   "initial_length": 8.930421829223633,
+   "length": 6.05142879486084,
+   "iterations": 273
+  },
+  {
+   "problem": "table_under_pick/56",
+   "solved": true,
+   "planning_us": 50.691,
+   "simplify_us": 188.107,
+   "total_us": 238.798,
+   "initial_length": 6.938381671905518,
+   "length": 4.497725963592529,
+   "iterations": 20
+  },
+  {
+   "problem": "table_under_pick/57",
+   "solved": true,
+   "planning_us": 59.372,
+   "simplify_us": 171.674,
+   "total_us": 231.046,
+   "initial_length": 5.705094337463379,
+   "length": 3.7927942276000977,
+   "iterations": 161
+  },
+  {
+   "problem": "table_under_pick/58",
+   "solved": true,
+   "planning_us": 287.688,
+   "simplify_us": 830.854,
+   "total_us": 1118.542,
+   "initial_length": 13.707477569580078,
+   "length": 6.580097198486328,
+   "iterations": 95
+  },
+  {
+   "problem": "table_under_pick/59",
+   "solved": true,
+   "planning_us": 546.252,
+   "simplify_us": 218.71,
+   "total_us": 764.962,
+   "initial_length": 14.536974906921387,
+   "length": 5.665614128112793,
+   "iterations": 96
+  },
+  {
+   "problem": "table_under_pick/60",
+   "solved": true,
+   "planning_us": 249.062,
+   "simplify_us": 371.914,
+   "total_us": 620.976,
+   "initial_length": 13.641242980957031,
+   "length": 8.072144508361816,
+   "iterations": 201
+  },
+  {
+   "problem": "table_under_pick/61",
+   "solved": true,
+   "planning_us": 173.661,
+   "simplify_us": 727.877,
+   "total_us": 901.538,
+   "initial_length": 7.196455955505371,
+   "length": 4.494096279144287,
+   "iterations": 133
+  },
+  {
+   "problem": "table_under_pick/62",
+   "solved": true,
+   "planning_us": 377.577,
+   "simplify_us": 302.125,
+   "total_us": 679.702,
+   "initial_length": 13.196812629699707,
+   "length": 6.188389301300049,
+   "iterations": 40
+  },
+  {
+   "problem": "table_under_pick/63",
+   "solved": true,
+   "planning_us": 153.669,
+   "simplify_us": 60.468,
+   "total_us": 214.137,
+   "initial_length": 11.259439468383789,
+   "length": 8.167139053344727,
+   "iterations": 26
+  },
+  {
+   "problem": "table_under_pick/64",
+   "solved": true,
+   "planning_us": 528.676,
+   "simplify_us": 283.36,
+   "total_us": 812.0360000000001,
+   "initial_length": 16.558574676513672,
+   "length": 8.044520378112793,
+   "iterations": 76
+  },
+  {
+   "problem": "table_under_pick/65",
+   "solved": true,
+   "planning_us": 164.816,
+   "simplify_us": 183.561,
+   "total_us": 348.377,
+   "initial_length": 7.141589641571045,
+   "length": 3.896008253097534,
+   "iterations": 230
+  },
+  {
+   "problem": "table_under_pick/66",
+   "solved": true,
+   "planning_us": 230.807,
+   "simplify_us": 194.627,
+   "total_us": 425.43399999999997,
+   "initial_length": 8.468343734741211,
+   "length": 4.551793575286865,
+   "iterations": 46
+  },
+  {
+   "problem": "table_under_pick/67",
+   "solved": true,
+   "planning_us": 152.258,
+   "simplify_us": 184.626,
+   "total_us": 336.884,
+   "initial_length": 9.308435440063477,
+   "length": 7.757587432861328,
+   "iterations": 63
+  },
+  {
+   "problem": "table_under_pick/68",
+   "solved": true,
+   "planning_us": 101.725,
+   "simplify_us": 270.211,
+   "total_us": 371.93600000000004,
+   "initial_length": 11.934797286987305,
+   "length": 5.112934112548828,
+   "iterations": 159
+  },
+  {
+   "problem": "table_under_pick/69",
+   "solved": true,
+   "planning_us": 92.483,
+   "simplify_us": 239.854,
+   "total_us": 332.337,
+   "initial_length": 10.608306884765625,
+   "length": 6.12477970123291,
+   "iterations": 68
+  },
+  {
+   "problem": "table_under_pick/70",
+   "solved": true,
+   "planning_us": 88.246,
+   "simplify_us": 356.877,
+   "total_us": 445.123,
+   "initial_length": 12.296516418457031,
+   "length": 8.06760025024414,
+   "iterations": 72
+  },
+  {
+   "problem": "table_under_pick/71",
+   "solved": true,
+   "planning_us": 116.651,
+   "simplify_us": 275.611,
+   "total_us": 392.262,
+   "initial_length": 10.519901275634766,
+   "length": 6.187204360961914,
+   "iterations": 211
+  },
+  {
+   "problem": "table_under_pick/72",
+   "solved": true,
+   "planning_us": 221.028,
+   "simplify_us": 278.685,
+   "total_us": 499.71299999999997,
+   "initial_length": 11.070695877075195,
+   "length": 6.579055309295654,
+   "iterations": 75
+  },
+  {
+   "problem": "table_under_pick/73",
+   "solved": true,
+   "planning_us": 289.49,
+   "simplify_us": 488.926,
+   "total_us": 778.4159999999999,
+   "initial_length": 11.161065101623535,
+   "length": 9.524713516235352,
+   "iterations": 1891
+  },
+  {
+   "problem": "table_under_pick/74",
+   "solved": true,
+   "planning_us": 250.476,
+   "simplify_us": 1058.485,
+   "total_us": 1308.9609999999998,
+   "initial_length": 13.810550689697266,
+   "length": 7.522782802581787,
+   "iterations": 37
+  },
+  {
+   "problem": "table_under_pick/75",
+   "solved": true,
+   "planning_us": 104.268,
+   "simplify_us": 297.574,
+   "total_us": 401.842,
+   "initial_length": 13.31889820098877,
+   "length": 7.625579833984375,
+   "iterations": 70
+  },
+  {
+   "problem": "table_under_pick/76",
+   "solved": true,
+   "planning_us": 335.822,
+   "simplify_us": 426.131,
+   "total_us": 761.953,
+   "initial_length": 12.122762680053711,
+   "length": 7.320955276489258,
+   "iterations": 110
+  },
+  {
+   "problem": "table_under_pick/77",
+   "solved": true,
+   "planning_us": 176.048,
+   "simplify_us": 264.996,
+   "total_us": 441.044,
+   "initial_length": 12.928797721862793,
+   "length": 5.310910224914551,
+   "iterations": 151
+  },
+  {
+   "problem": "table_under_pick/78",
+   "solved": true,
+   "planning_us": 196.876,
+   "simplify_us": 221.69,
+   "total_us": 418.56600000000003,
+   "initial_length": 13.329171180725098,
+   "length": 5.874242305755615,
+   "iterations": 70
+  },
+  {
+   "problem": "table_under_pick/79",
+   "solved": true,
+   "planning_us": 308.794,
+   "simplify_us": 940.291,
+   "total_us": 1249.085,
+   "initial_length": 11.136316299438477,
+   "length": 6.04054069519043,
+   "iterations": 147
+  },
+  {
+   "problem": "table_under_pick/80",
+   "solved": true,
+   "planning_us": 214.802,
+   "simplify_us": 184.213,
+   "total_us": 399.015,
+   "initial_length": 8.283172607421875,
+   "length": 4.387383937835693,
+   "iterations": 146
+  },
+  {
+   "problem": "table_under_pick/81",
+   "solved": true,
+   "planning_us": 77.635,
+   "simplify_us": 174.822,
+   "total_us": 252.457,
+   "initial_length": 7.165996551513672,
+   "length": 4.517531394958496,
+   "iterations": 116
+  },
+  {
+   "problem": "table_under_pick/82",
+   "solved": true,
+   "planning_us": 167.461,
+   "simplify_us": 278.985,
+   "total_us": 446.446,
+   "initial_length": 12.529770851135254,
+   "length": 7.029796600341797,
+   "iterations": 36
+  },
+  {
+   "problem": "table_under_pick/83",
+   "solved": true,
+   "planning_us": 81.945,
+   "simplify_us": 166.159,
+   "total_us": 248.10399999999998,
+   "initial_length": 8.572197914123535,
+   "length": 4.924885272979736,
+   "iterations": 341
+  },
+  {
+   "problem": "table_under_pick/84",
+   "solved": true,
+   "planning_us": 71.483,
+   "simplify_us": 271.149,
+   "total_us": 342.632,
+   "initial_length": 9.702495574951172,
+   "length": 7.236376762390137,
+   "iterations": 93
+  },
+  {
+   "problem": "table_under_pick/85",
+   "solved": true,
+   "planning_us": 58.815,
+   "simplify_us": 183.123,
+   "total_us": 241.938,
+   "initial_length": 8.61180305480957,
+   "length": 4.303767681121826,
+   "iterations": 34
+  },
+  {
+   "problem": "table_under_pick/86",
+   "solved": true,
+   "planning_us": 111.783,
+   "simplify_us": 286.551,
+   "total_us": 398.334,
+   "initial_length": 18.218412399291992,
+   "length": 8.217569351196289,
+   "iterations": 65
+  },
+  {
+   "problem": "table_under_pick/87",
+   "solved": true,
+   "planning_us": 74.894,
+   "simplify_us": 155.294,
+   "total_us": 230.18800000000002,
+   "initial_length": 9.261978149414062,
+   "length": 5.34455680847168,
+   "iterations": 134
+  },
+  {
+   "problem": "table_under_pick/88",
+   "solved": true,
+   "planning_us": 115.841,
+   "simplify_us": 278.931,
+   "total_us": 394.772,
+   "initial_length": 12.020264625549316,
+   "length": 7.827584743499756,
+   "iterations": 260
+  },
+  {
+   "problem": "table_under_pick/89",
+   "solved": true,
+   "planning_us": 74.002,
+   "simplify_us": 267.025,
+   "total_us": 341.027,
+   "initial_length": 9.359213829040527,
+   "length": 7.156428337097168,
+   "iterations": 65
+  },
+  {
+   "problem": "table_under_pick/90",
+   "solved": true,
+   "planning_us": 130.038,
+   "simplify_us": 361.032,
+   "total_us": 491.07,
+   "initial_length": 12.47827434539795,
+   "length": 6.938347816467285,
+   "iterations": 223
+  },
+  {
+   "problem": "table_under_pick/91",
+   "solved": true,
+   "planning_us": 76.062,
+   "simplify_us": 319.692,
+   "total_us": 395.754,
+   "initial_length": 9.103228569030762,
+   "length": 6.27478551864624,
+   "iterations": 165
+  },
+  {
+   "problem": "table_under_pick/92",
+   "solved": true,
+   "planning_us": 133.906,
+   "simplify_us": 256.365,
+   "total_us": 390.271,
+   "initial_length": 12.456790924072266,
+   "length": 6.0310959815979,
+   "iterations": 82
+  },
+  {
+   "problem": "table_under_pick/93",
+   "solved": true,
+   "planning_us": 76.239,
+   "simplify_us": 217.335,
+   "total_us": 293.574,
+   "initial_length": 9.818072319030762,
+   "length": 5.094076633453369,
+   "iterations": 137
+  },
+  {
+   "problem": "table_under_pick/94",
+   "solved": true,
+   "planning_us": 55.947,
+   "simplify_us": 129.819,
+   "total_us": 185.766,
+   "initial_length": 6.499114513397217,
+   "length": 3.5729825496673584,
+   "iterations": 134
+  },
+  {
+   "problem": "table_under_pick/95",
+   "solved": true,
+   "planning_us": 143.973,
+   "simplify_us": 319.25,
+   "total_us": 463.223,
+   "initial_length": 15.161745071411133,
+   "length": 7.46209716796875,
+   "iterations": 72
+  },
+  {
+   "problem": "table_under_pick/96",
+   "solved": true,
+   "planning_us": 85.229,
+   "simplify_us": 304.014,
+   "total_us": 389.243,
+   "initial_length": 11.838512420654297,
+   "length": 7.670832633972168,
+   "iterations": 190
+  },
+  {
+   "problem": "table_under_pick/97",
+   "solved": true,
+   "planning_us": 57.071,
+   "simplify_us": 159.695,
+   "total_us": 216.766,
+   "initial_length": 6.861695766448975,
+   "length": 4.851982593536377,
+   "iterations": 133
+  },
+  {
+   "problem": "table_under_pick/98",
+   "solved": true,
+   "planning_us": 126.341,
+   "simplify_us": 163.314,
+   "total_us": 289.655,
+   "initial_length": 9.694314956665039,
+   "length": 3.8433563709259033,
+   "iterations": 65
+  },
+  {
+   "problem": "table_under_pick/99",
+   "solved": true,
+   "planning_us": 264.697,
+   "simplify_us": 231.269,
+   "total_us": 495.966,
+   "initial_length": 17.93203353881836,
+   "length": 8.987228393554688,
+   "iterations": 85
+  }
+ ]
+}

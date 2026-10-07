@@ -1,0 +1,17 @@
+[project]
+name = "motionamigo-vamp-bench"
+version = "0.1.0"
+description = "Runs VAMP on the MotionBenchMaker problems and exports them for motionAmigo"
+requires-python = ">=3.10"
+dependencies = [
+    "vamp-planner==0.6.4",
+    "numpy",
+    "pandas",
+    "pyyaml",
+    "tabulate",
+    "tqdm",
+    "fire",
+]
+
+[tool.uv]
+package = false

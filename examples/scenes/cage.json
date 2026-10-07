@@ -1,0 +1,243 @@
+{
+  "version": "0.1",
+  "frame": "world",
+  "objects": [
+    {
+      "id": "table_1",
+      "label": "table",
+      "center": [
+        0.6,
+        0,
+        0.15
+      ],
+      "size": [
+        0.6,
+        1.0,
+        0.3
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "cage_floor",
+      "label": "cage_plate",
+      "center": [
+        0.6,
+        0.0,
+        0.31
+      ],
+      "size": [
+        0.42,
+        0.62,
+        0.02
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "cage_roof",
+      "label": "cage_plate",
+      "center": [
+        0.6,
+        0.0,
+        0.75
+      ],
+      "size": [
+        0.42,
+        0.62,
+        0.02
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "cage_back",
+      "label": "cage_wall",
+      "center": [
+        0.8,
+        0.0,
+        0.525
+      ],
+      "size": [
+        0.02,
+        0.62,
+        0.45
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "cage_bar_left_0",
+      "label": "cage_bar",
+      "center": [
+        0.6,
+        0.3,
+        0.45
+      ],
+      "size": [
+        0.42,
+        0.02,
+        0.02
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "cage_bar_left_1",
+      "label": "cage_bar",
+      "center": [
+        0.6,
+        0.3,
+        0.6
+      ],
+      "size": [
+        0.42,
+        0.02,
+        0.02
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "cage_post_left_0",
+      "label": "cage_bar",
+      "center": [
+        0.4,
+        0.3,
+        0.525
+      ],
+      "size": [
+        0.02,
+        0.02,
+        0.45
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "cage_post_left_1",
+      "label": "cage_bar",
+      "center": [
+        0.6,
+        0.3,
+        0.525
+      ],
+      "size": [
+        0.02,
+        0.02,
+        0.45
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "cage_bar_right_0",
+      "label": "cage_bar",
+      "center": [
+        0.6,
+        -0.3,
+        0.45
+      ],
+      "size": [
+        0.42,
+        0.02,
+        0.02
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "cage_bar_right_1",
+      "label": "cage_bar",
+      "center": [
+        0.6,
+        -0.3,
+        0.6
+      ],
+      "size": [
+        0.42,
+        0.02,
+        0.02
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "cage_post_right_0",
+      "label": "cage_bar",
+      "center": [
+        0.4,
+        -0.3,
+        0.525
+      ],
+      "size": [
+        0.02,
+        0.02,
+        0.45
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "cage_post_right_1",
+      "label": "cage_bar",
+      "center": [
+        0.6,
+        -0.3,
+        0.525
+      ],
+      "size": [
+        0.02,
+        0.02,
+        0.45
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "cage_front_bar",
+      "label": "cage_bar",
+      "center": [
+        0.4,
+        0.0,
+        0.53
+      ],
+      "size": [
+        0.02,
+        0.62,
+        0.02
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "block_1",
+      "label": "block",
+      "center": [
+        0.7,
+        -0.12,
+        0.37
+      ],
+      "size": [
+        0.06,
+        0.06,
+        0.1
+      ],
+      "yaw": 0.0
+    },
+    {
+      "id": "block_2",
+      "label": "block",
+      "center": [
+        0.65,
+        0.15,
+        0.36
+      ],
+      "size": [
+        0.08,
+        0.08,
+        0.08
+      ],
+      "yaw": 0.0
+    }
+  ],
+  "viewpoint": {
+    "position": [
+      -0.3,
+      0.0,
+      1.2
+    ],
+    "look_at": [
+      0.6,
+      0.0,
+      0.5
+    ]
+  }
+}

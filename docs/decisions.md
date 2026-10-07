@@ -138,3 +138,26 @@ Newest entries are appended at the bottom of each section.
   FK sphere centers bit for bit, block results, edge results and complete plans.
 * **The SIMD checker is the default.** Single configurations are still checked with the scalar
   kernel (nothing to vectorize); edges are checked eight configurations at a time.
+
+## Benchmarks (M4)
+
+* **Own problems are generated once and committed.** A seeded stochastic search places the TCP in
+  task regions (table areas, shelf compartments, inside and outside the cage) with a given approach
+  direction; straight-line problems are rejected so every problem needs search. Committing the
+  problem files keeps the benchmark stable even if the generator changes.
+* **The shelf sits at x = 0.525 to 0.875 m.** A reachability scan showed that horizontal grasps at
+  shelf heights are not possible much further away for the Panda.
+* **VAMP comparison uses VAMP's own pipeline.** `vamp-planner` 0.6.4 from PyPI (sdist, compiled by
+  pip with `-march=native`), its MotionBenchMaker problem files and converter from a pinned commit,
+  and a runner that mirrors `scripts/evaluate_mbm.py`. VAMP's official evaluation script was also
+  run on the same machine and gives the same median planning time (89 µs), and the iteration counts
+  match VAMP's published reference exactly, so the setup is faithful.
+* **Problems are exported via quaternions,** not Euler angles, to avoid convention mismatches; the
+  "box" scenario keeps VAMP's box over-approximation of cylinders.
+* **MBM runs use VAMP's URDF joint limits** (4 of 1400 start/goal configurations violate the tighter
+  datasheet limits that motionAmigo uses by default).
+* **Shortcutting default reduced to 3 rounds of 32 random attempts.** A parameter sweep showed that
+  rounds 4 and 5 cost about 15% more time for under 1% shorter paths. Trying the shortcut edge
+  before checking the cut points made each attempt cheaper without changing results.
+* **Results are reported honestly, including where VAMP is faster** (P95 planning time and
+  simplification time).
