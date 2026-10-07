@@ -13,8 +13,9 @@ ICRA 2024), the robot is approximated by spheres, and forward kinematics plus co
 on eight configurations along an edge at once with SIMD instructions. motionAmigo is an independent
 Rust implementation of these ideas, not a port of the VAMP code.
 
-* Plans in about 0.1 ms (median) on the MotionBenchMaker Panda problems, on par with VAMP on the
-  same machine ([numbers below](#benchmarks)).
+* Median RRT-Connect planning time of 119 µs on the 699 MotionBenchMaker Panda problems, close to
+  VAMP's 88 to 115 µs on the same machine ([numbers below](#benchmarks)). The AVX2 checker is 4.8x
+  faster per configuration than the scalar reference.
 * One generic kernel for all backends: scalar reference, AVX2 (runtime dispatch), NEON, WebAssembly
   SIMD and a portable fallback. All of them produce **bit-identical** results, so a seed gives the
   same plan on every platform.
@@ -41,7 +42,7 @@ import numpy as np
 import motionamigo as ma
 
 robot = ma.Robot.panda()
-env = ma.Environment.from_scene("examples/scenes/tabletop.json")  # path, JSON string or dict
+env = ma.Environment.from_scene("../../examples/scenes/tabletop.json")  # path, JSON or dict
 planner = ma.Planner(robot, env)                                   # SIMD checker, best backend
 
 goal = np.array([0.06, 0.41, -1.16, -1.02, 0.55, 1.36, 0.52])      # hand above mug_1
@@ -102,7 +103,7 @@ side, tilted away from the base if the object is near the edge of the workspace)
 plans the motion.
 
 ```python
-result = ma.plan_to_pregrasp(robot, "examples/scenes/tabletop.json", "mug_2", ma.PANDA_READY)
+result = ma.plan_to_pregrasp(robot, "../../examples/scenes/tabletop.json", "mug_2", ma.PANDA_READY)
 print(result.pose[:3, 3], result.goal, result.plan.path.shape)
 ```
 
@@ -164,6 +165,120 @@ inside and outside the cage; problems a straight line solves are excluded), 10 s
 
 With the scalar checker the median totals are 1.90 ms, 4.43 ms and 8.42 ms.
 
+## How it works
+
+```mermaid
+flowchart LR
+    subgraph inputs[Inputs]
+        scene["Scene JSON v0.1<br/>(shared with spatialAmigo)"]
+        robotfile["Robot TOML<br/>DH chain, limits, 59 spheres"]
+    end
+    subgraph core["motionamigo (Rust core)"]
+        env["Environment<br/>boxes, spheres, capsules,<br/>point cloud grid"]
+        model["RobotModel<br/>f64 FK, Jacobian, IK"]
+        kernel["fkcc kernel, generic over Real<br/>lazy FK, bounding spheres,<br/>obstacle hit lists, self-collision"]
+        simd{{"Real backends<br/>f32 scalar, AVX2, NEON,<br/>WASM simd128, portable"}}
+        checker["ScalarChecker / SimdChecker<br/>raked edge validation"]
+        planner["RRT-Connect + shortcutting<br/>seeded, deterministic"]
+        grasp["plan_to_pregrasp<br/>IK above an object"]
+    end
+    subgraph frontends[Front ends]
+        py["Python (PyO3, NumPy)"]
+        wasm["WebAssembly + three.js demo"]
+        bench["Benchmarks (criterion,<br/>scenes, VAMP on MBM)"]
+    end
+    scene --> env
+    robotfile --> model
+    env --> kernel
+    model --> kernel
+    simd --> kernel
+    kernel --> checker --> planner
+    model --> grasp
+    planner --> grasp
+    planner --> py & wasm & bench
+    grasp --> py & wasm
+```
+
+1. **Robot model.** The Panda's kinematics come from Franka's modified DH table; its collision
+   geometry is 59 spheres in 11 links (from VAMP's spherized URDF), with a bounding sphere per link.
+2. **One kernel, many lane types.** Forward kinematics and collision checks are written once against
+   a small `Real` trait. With `f32` the kernel checks one configuration; with an eight-lane type it
+   checks eight configurations in structure-of-arrays layout. Only exactly rounded operations are
+   used (no FMA, compare plus select for min and max), so every backend computes bit-identical
+   results, which the equivalence tests verify.
+3. **Lazy, hierarchical checking.** Link frames are computed only when needed. A link's bounding
+   sphere is tested first and records which obstacles it touches; only those are tested against the
+   link's spheres. Self-collision uses three levels (bounding spheres, sphere against bounding
+   sphere, sphere pairs). Any colliding lane ends the check.
+4. **Raked edges.** An edge is split into `8 * n` configurations; the eight lanes start spread evenly
+   along the edge and step backwards together, so a blocked edge is usually rejected in the first
+   pass. Edge points are interpolated from both ends, so checking `a -> b` and `b -> a` tests the same
+   configurations.
+5. **Planner.** Balanced RRT-Connect with VAMP's Panda defaults, then greedy and randomized partial
+   shortcutting. A portable xoshiro256** generator makes every plan reproducible from its seed.
+
+## Project layout
+
+| path | content |
+|---|---|
+| `crates/motionamigo` | core library: robot model, kinematics, SIMD backends, collision checking, planner, IK |
+| `crates/motionamigo-py` | Python bindings (PyO3, maturin, uv), tests in `tests/` |
+| `crates/motionamigo-wasm` | WebAssembly bindings for the demo |
+| `web/` | three.js demo, build script, headless Playwright tools |
+| `bench/` | benchmark runner, committed problems, VAMP comparison scripts, results |
+| `examples/` | scenes in the shared format, Python examples (Rust examples live in the core crate) |
+| `schema/` | JSON Schema of the scene format |
+| `docs/decisions.md` | design decisions and their rationale |
+| `tools/` | generator of the Panda robot description |
+
+## Limitations
+
+* **Only the Panda is bundled.** The robot format supports any serial chain with revolute joints in
+  (modified) DH convention, but a second robot (for example a UR5) needs its sphere model first.
+* **The gripper is fixed** at the MotionBenchMaker opening and there are no attached objects, so
+  carrying a grasped object is not modeled yet.
+* **Collision checking is discrete** along edges (32 checks per radian, like VAMP), not continuous.
+  Thin obstacles between two checked configurations can be missed; the sphere model is
+  conservative, which mitigates this.
+* **Single-query planning only:** no PRM or asymptotically optimal planner, no trajectory
+  timing (velocities, accelerations), no constrained or Cartesian motions. The final approach of a
+  grasp is only checked as a straight joint-space motion.
+* **Nearest neighbours by linear scan.** Fast for the tree sizes of these benchmarks; very large
+  trees would profit from a kd-tree or GNAT.
+* **Point clouds** use a uniform grid; VAMP's CAPT structure is faster for large clouds.
+* **VAMP is still faster** at the 95th percentile and in path simplification; see the benchmarks.
+* **Not published** on crates.io, PyPI or npm yet.
+
+## Roadmap
+
+* **Coupling with spatialAmigo:** read its resolved target object directly and expose the chain
+  "instruction in, trajectory out" as one Python call and in the browser demo.
+* **Grasping:** attached objects (spheres for the held object), gripper width as a parameter,
+  Cartesian approach and retreat motions.
+* **More robots:** UR5 and a robot description importer from URDF plus sphere decomposition.
+* **Faster planning:** kd-tree or GNAT nearest neighbours, Halton sampling, dynamic-domain
+  RRT-Connect, an AVX-512 backend with 16 lanes, multi-threaded batch planning.
+* **Better paths:** B-spline smoothing and time parameterization.
+* **Perception:** CAPT-style point cloud structure and depth image input.
+
+## Citation
+
+motionAmigo implements ideas from VAMP. If you use it in academic work, please cite VAMP:
+
+```bibtex
+@inproceedings{vamp_2024,
+  title     = {Motions in Microseconds via Vectorized Sampling-Based Planning},
+  author    = {Thomason, Wil and Kingston, Zachary and Kavraki, Lydia E.},
+  booktitle = {IEEE International Conference on Robotics and Automation (ICRA)},
+  year      = {2024},
+  url       = {https://arxiv.org/abs/2309.14545},
+}
+```
+
+The Panda sphere model is derived from VAMP's resources (Apache-2.0) and robowflex_resources (MIT);
+the MotionBenchMaker problems used in the comparison are downloaded from the VAMP repository at
+benchmark time. See [NOTICE](NOTICE).
+
 ## Scene format
 
 motionAmigo shares its scene format with spatialAmigo. Together they form the chain
@@ -175,10 +290,6 @@ language, target object, collision-free motion.
 Units are meters, z points up, the frame is right-handed. Each object is an oriented box with a
 `center`, full edge lengths `size` and a `yaw` angle about z. The optional `front` and
 `viewpoint` fields are used by spatialAmigo and ignored by the planner.
-
-## Design notes
-
-Design decisions and their rationale are logged in [`docs/decisions.md`](docs/decisions.md).
 
 ## License
 

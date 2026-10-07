@@ -65,6 +65,14 @@ jobs:
           CARGO_TARGET_WASM32_WASIP1_RUNNER: wasmtime --dir=.
           CARGO_TARGET_WASM32_WASIP1_RUSTFLAGS: -C target-feature=+simd128
 
+  msrv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.86
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo check -p motionamigo --lib
+
   docs:
     runs-on: ubuntu-latest
     steps:
