@@ -16,6 +16,63 @@ Rust implementation of these ideas, not a port of the VAMP code.
 * Shares its scene format with the sister project **spatialAmigo**, which turns language such as
   "the mug left of the laptop" into a target object.
 
+## Quickstart
+
+### Python
+
+Requires Rust (stable) and [uv](https://docs.astral.sh/uv/). The package is not on PyPI yet, so it
+is built from source:
+
+```bash
+git clone https://github.com/Amerigo2020/motionAmigo && cd motionAmigo/crates/motionamigo-py
+uv sync                                  # dev tools: maturin, pytest, numpy
+uv run maturin develop --release --uv    # builds and installs the extension
+uv run pytest                            # runs the Python test suite
+uv run python ../../examples/python/plan_tabletop.py
+```
+
+```python
+import numpy as np
+import motionamigo as ma
+
+robot = ma.Robot.panda()
+env = ma.Environment.from_scene("examples/scenes/tabletop.json")  # path, JSON string or dict
+planner = ma.Planner(robot, env)                                   # SIMD checker, best backend
+
+goal = np.array([0.06, 0.41, -1.16, -1.02, 0.55, 1.36, 0.52])      # hand above mug_1
+result = planner.plan(ma.PANDA_READY, goal, seed=0)
+print(result)                     # PlanResult(waypoints=2, length=2.232, planning_time=..., ...)
+trajectory = result.interpolate(0.05)       # (K, 7) NumPy array, at most 0.05 rad apart
+print(robot.fk(trajectory[-1])[:3, 3])      # TCP position of the last configuration
+print(planner.configs_valid(np.random.uniform(robot.lower_limits, robot.upper_limits, (1000, 7))).mean())
+```
+
+Planning releases the GIL, so several planners can run in parallel threads.
+
+### Rust
+
+```toml
+[dependencies]
+motionamigo = { git = "https://github.com/Amerigo2020/motionAmigo" }
+```
+
+```rust
+use motionamigo::{plan, Environment, PlanSettings, RobotModel, Scene, PANDA_READY};
+
+let robot = RobotModel::panda();
+let scene = Scene::from_path("examples/scenes/tabletop.json")?;
+let env = Environment::from_scene(&scene);
+let goal = [0.06, 0.41, -1.16, -1.02, 0.55, 1.36, 0.52];
+let result = plan(&robot, &env, &PANDA_READY, &goal, &PlanSettings::default())?;
+println!("{} waypoints in {:?}", result.path.len(), result.total_time());
+```
+
+```bash
+cargo run --release -p motionamigo --example plan_tabletop
+cargo test --workspace --exclude motionamigo-py
+cargo bench -p motionamigo --bench collision
+```
+
 ## Benchmarks
 
 All numbers below were measured on the same machine: a cloud VM with an Intel Xeon @ 2.80 GHz,

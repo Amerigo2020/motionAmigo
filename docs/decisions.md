@@ -161,3 +161,17 @@ Newest entries are appended at the bottom of each section.
   before checking the cut points made each attempt cheaper without changing results.
 * **Results are reported honestly, including where VAMP is faster** (P95 planning time and
   simplification time).
+
+## Python bindings (M5)
+
+* **PyO3 0.29 + maturin, abi3 for Python 3.9 and newer.** One wheel per platform.
+* **Array-like inputs.** All inputs accept anything NumPy can convert (lists, tuples, arrays of
+  any float dtype); outputs are `float64` NumPy arrays.
+* **Three objects mirror the Rust API:** `Robot`, `Environment` and `Planner` (checker plus
+  planner bound to one environment, so the environment is broadcast to SIMD lanes only once).
+  `PlanResult.interpolate(step)` returns a dense trajectory for execution or animation.
+* **Errors:** invalid arguments raise `ValueError`, failed or invalid planning queries raise
+  `motionamigo.PlanningError` (a `RuntimeError`).
+* **The GIL is released** during planning and batch validity checks, tested with threads.
+* **Type stubs and `py.typed`** ship with the package for editor support.
+* **Not published to PyPI**; building from source with uv is documented instead.
