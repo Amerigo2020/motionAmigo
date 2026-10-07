@@ -71,3 +71,39 @@ Newest entries are appended at the bottom of each section.
 * **Twist special cases.** The constant DH twist is applied with branches for `0`, `+-pi/2` and
   `pi`, avoiding multiplications by zero and one. The branch depends on robot data only, never on
   lane data, so it is perfectly predictable.
+
+## Collision checking (M2)
+
+* **Supported obstacles:** spheres, capsules, oriented boxes and point clouds. Scene objects become
+  oriented boxes. Contact is strict: touching (distance exactly zero) counts as free.
+* **Sphere against oriented box** uses the exact squared distance to the box (clamped projections
+  on the three box axes), so the test is exact, not an approximation.
+* **Hierarchical, lazy evaluation.** Links are processed in kinematic order. A link's frame is
+  computed only when needed, then its bounding sphere is tested; the individual spheres are only
+  tested if the bounding sphere touches something. Collisions near the base therefore exit after
+  very little work. Self-collision is checked at the end, with the same bounding-sphere filter.
+* **Point clouds in a uniform grid** with per-cell structure-of-arrays storage. The query visits
+  only cells overlapped by the sphere's bounding box. Simpler than VAMP's CAPT structure and exact;
+  CAPT-like precomputation is on the roadmap.
+* **Edge discretization like VAMP:** `ceil(length * resolution / 8)` passes of eight configurations,
+  resolution 32 per radian by default (VAMP's Panda setting).
+* **Direction-independent edges.** Edge points in the first half are interpolated from the start,
+  points in the second half from the end, and the midpoint symmetrically as `(a + b) / 2`. Since
+  `a - b == -(b - a)` exactly in IEEE arithmetic, checking `a -> b` and `b -> a` evaluates the very
+  same configurations. Without this, a path whose edge was validated in one direction could, in
+  rare boundary cases, fail validation in the other direction. A property test checks this.
+
+## Planning (M2)
+
+* **RRT-Connect** with balanced trees, VAMP's Panda defaults (range 1.0 rad, direct start-goal
+  connection attempted first, multiple goals as roots of the goal tree).
+* **Nearest neighbours by linear scan** over a flat array. Trees for typical problems hold tens to
+  a few hundred nodes, where a scan beats a kd-tree. A GNAT or kd-tree is on the roadmap.
+* **Own deterministic RNG** (xoshiro256** seeded by SplitMix64) instead of the `rand` crate, so a
+  seed gives the same plan on every platform and in every version. A test checks the first output
+  against the reference implementation.
+* **Shortcutting** = VAMP-style greedy vertex shortcutting plus randomized partial shortcuts between
+  random points on the path (new cut points and the partial edges to them are validated too). It
+  never lengthens a path.
+* **Time measurement compiles on wasm32**, where `std::time::Instant` is unavailable: the core
+  reports zero there and the WASM bindings measure with `performance.now()`.
