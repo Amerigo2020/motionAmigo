@@ -1,7 +1,9 @@
 name: Pages
 
 # Deploys the browser demo in web/ to GitHub Pages.
-# Enable it once under Settings > Pages > Source: "GitHub Actions".
+# To activate: Settings > Pages > Source: "GitHub Actions", then either run this workflow manually
+# or set the repository variable PAGES_ENABLED=true (Settings > Secrets and variables > Actions >
+# Variables) to deploy on every push to main. Until then, pushes skip this workflow.
 on:
   push:
     branches: [main]
@@ -18,6 +20,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.event_name == 'workflow_dispatch' || vars.PAGES_ENABLED == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

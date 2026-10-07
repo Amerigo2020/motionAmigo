@@ -89,8 +89,9 @@ web/build.sh                          # needs wasm-pack, optionally wasm-opt >= 
 cd web && python3 -m http.server 8000 # then open http://localhost:8000
 ```
 
-Once GitHub Pages is enabled for this repository, the workflow in `.github/workflows/pages.yml`
-publishes the demo at https://amerigo2020.github.io/motionAmigo/.
+Once GitHub Pages is enabled for this repository (source "GitHub Actions", plus the repository
+variable `PAGES_ENABLED=true` for automatic deploys), `.github/workflows/pages.yml` publishes the
+demo at https://amerigo2020.github.io/motionAmigo/.
 
 ## Benchmarks
 
