@@ -10,7 +10,7 @@ This project is an independent Rust implementation of ideas published in
 
 No VAMP source code is included. The following third-party data is used:
 
-* robots/panda.toml: the collision sphere decomposition of the Franka Emika Panda is
+* crates/motionamigo/robots/panda.toml: the collision sphere decomposition of the Franka Emika Panda is
   derived from resources/panda/panda_spherized.urdf in the VAMP repository
   (Apache-2.0, Copyright Kavraki Lab, Rice University), which in turn originates from
   robowflex_resources (https://github.com/KavrakiLab/robowflex_resources, MIT License,
