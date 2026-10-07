@@ -35,6 +35,16 @@ class Robot:
     def fk(self, q: ArrayLike) -> npt.NDArray[np.float64]: ...
     def frames(self, q: ArrayLike) -> npt.NDArray[np.float64]: ...
     def spheres(self, q: ArrayLike) -> npt.NDArray[np.float64]: ...
+    def ik(
+        self,
+        target: ArrayLike,
+        seed_q: Optional[ArrayLike] = None,
+        *,
+        seed: int = 0,
+        restarts: int = 32,
+        position_tolerance: float = 1e-4,
+        orientation_tolerance: float = 1e-3,
+    ) -> Optional[npt.NDArray[np.float64]]: ...
 
 class Environment:
     def __init__(self) -> None: ...
@@ -94,3 +104,23 @@ class Planner:
         max_iterations: int = 100000,
         simplify: bool = True,
     ) -> PlanResult: ...
+
+class PregraspResult:
+    @property
+    def pose(self) -> npt.NDArray[np.float64]: ...
+    @property
+    def goal(self) -> npt.NDArray[np.float64]: ...
+    @property
+    def grasp_width(self) -> float: ...
+    @property
+    def plan(self) -> PlanResult: ...
+
+def plan_to_pregrasp(
+    robot: Robot,
+    scene: SceneLike,
+    object_id: str,
+    start: ArrayLike,
+    *,
+    clearance: float = 0.1,
+    seed: int = 0,
+) -> PregraspResult: ...

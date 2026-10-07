@@ -4,6 +4,7 @@
 //! `.cargo/config.toml` enables the `simd128` target feature, so the collision checker uses the
 //! WebAssembly SIMD backend. Configurations are passed as `Float64Array`s.
 
+use motionamigo::grasp::{pregrasp_configuration, PregraspSettings};
 use motionamigo::planner::path_length;
 use motionamigo::planner::rrtc::rrt_connect;
 use motionamigo::planner::simplify::{simplify, SimplifySettings};
@@ -246,6 +247,19 @@ impl Demo {
             initial_length,
             message: String::new(),
         }
+    }
+
+    /// A collision-free configuration with the hand 10 cm above the object `id`, pointing down
+    /// (or tilted away from the base if needed). Returns an empty array if none was found.
+    #[wasm_bindgen(js_name = pregraspGoal)]
+    pub fn pregrasp_goal(&self, id: &str, start: &[f64]) -> Vec<f64> {
+        let Some(object) = self.scene.object(id) else {
+            return Vec::new();
+        };
+        let settings = PregraspSettings::default();
+        pregrasp_configuration(&self.robot, &self.checker, object, start, &settings)
+            .map(|(_, _, q)| q)
+            .unwrap_or_default()
     }
 
     /// Samples a random collision-free configuration whose tool points down and lies above the

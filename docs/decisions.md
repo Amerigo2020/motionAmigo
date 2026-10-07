@@ -199,3 +199,25 @@ Newest entries are appended at the bottom of each section.
   (about 0.5 MB). Headless Chromium renders WebGL through SwiftShader.
 * **CI smoke tests the demo** in headless Chromium: it must load, plan successfully, and a scripted
   mouse drag must move an object both in three.js and in the WASM scene.
+
+## Inverse kinematics and pre-grasp (M7)
+
+* **Damped least squares on the full 6D pose error,** with the geometric Jacobian computed from the
+  FK frames (checked against finite differences), the rotation error as the log map of
+  `R_target * R^T`, step clamping, joint-limit clamping and seeded random restarts. The first attempt
+  starts from the current configuration, so solutions tend to stay close to it. A test solves 50
+  random reachable poses and requires at least 48 successes (the result is deterministic).
+* **IK runs in `f64`, collision checks in `f32`.** Solutions are accepted only if the `f32`-rounded
+  configuration is collision-free, which is exactly what the planner will check later.
+* **Pre-grasp poses are top-down** with the TCP 10 cm above the top face of the object box. The
+  fingers close across the narrower horizontal side; sides that fit into the 8 cm gripper are tried
+  first, each in both hand orientations.
+* **Tilted fallback.** Objects near the edge of the workspace (for example `mug_2` at 0.84 m) are
+  not reachable with a vertical tool axis. Tilts of 0.35, 0.7 and 1.0 rad away from the base are
+  tried next; the TCP position stays the same.
+* **The approach itself is not planned** (it would need Cartesian or constrained planning). The
+  Rust example checks it as a straight joint-space motion, with the target object removed from the
+  environment because the fingers must enclose it. It reports honestly when no approach is found.
+* **Spatial expressions in the examples use the viewpoint of the scene,** which looks along +x, so
+  "left" means larger y. The examples use a lookup table instead of spatialAmigo, to stay
+  self-contained.

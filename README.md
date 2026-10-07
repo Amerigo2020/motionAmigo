@@ -93,6 +93,27 @@ Once GitHub Pages is enabled for this repository (source "GitHub Actions", plus 
 variable `PAGES_ENABLED=true` for automatic deploys), `.github/workflows/pages.yml` publishes the
 demo at https://amerigo2020.github.io/motionAmigo/.
 
+### From language to motion: pre-grasp above a scene object
+
+spatialAmigo resolves an expression such as "the mug left of the laptop" to an object id in the
+shared scene. motionAmigo takes it from there: damped least squares IK finds a collision-free
+configuration with the hand 10 cm above the object (pointing down, fingers across the narrower
+side, tilted away from the base if the object is near the edge of the workspace), and RRT-Connect
+plans the motion.
+
+```python
+result = ma.plan_to_pregrasp(robot, "examples/scenes/tabletop.json", "mug_2", ma.PANDA_READY)
+print(result.pose[:3, 3], result.goal, result.plan.path.shape)
+```
+
+```bash
+cargo run --release -p motionamigo --example pregrasp -- mug_1   # also checks the final approach
+uv run python ../../examples/python/pregrasp.py                  # with a stand-in for spatialAmigo
+```
+
+In the browser demo, the goal list offers "above <object>" entries that run the same IK in
+WebAssembly.
+
 ## Benchmarks
 
 All numbers below were measured on the same machine: a cloud VM with an Intel Xeon @ 2.80 GHz,

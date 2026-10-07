@@ -18,8 +18,10 @@ from ._motionamigo import (
     PlanningError,
     PlanResult,
     Planner,
+    PregraspResult,
     Robot,
     __version__,
+    plan_to_pregrasp,
     simd_backend,
 )
 from ._motionamigo import PANDA_READY as _PANDA_READY
@@ -34,7 +36,9 @@ __all__ = [
     "PlanningError",
     "PlanResult",
     "Planner",
+    "PregraspResult",
     "Robot",
+    "plan_to_pregrasp",
     "__version__",
     "simd_backend",
 ]

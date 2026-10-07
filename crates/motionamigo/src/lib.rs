@@ -22,6 +22,8 @@
 pub mod checker;
 mod collision;
 pub mod environment;
+pub mod grasp;
+pub mod ik;
 pub mod kinematics;
 pub mod math;
 pub mod plan;

@@ -163,3 +163,27 @@ def test_planning_releases_the_gil(robot, cluttered):
     for t in threads:
         t.join()
     assert len(results) == 4
+
+
+def test_inverse_kinematics_roundtrip(robot):
+    rng = np.random.default_rng(1)
+    for _ in range(10):
+        q = rng.uniform(robot.lower_limits, robot.upper_limits)
+        target = robot.fk(q)
+        sol = robot.ik(target, ma.PANDA_READY)
+        assert sol is not None
+        np.testing.assert_allclose(robot.fk(sol), target, atol=2e-3)
+        assert robot.within_limits(sol)
+    unreachable = np.eye(4)
+    unreachable[0, 3] = 3.0
+    assert robot.ik(unreachable, restarts=2) is None
+
+
+def test_plan_to_pregrasp(robot):
+    result = ma.plan_to_pregrasp(robot, TABLETOP, "mug_1", ma.PANDA_READY)
+    tcp = robot.fk(result.goal)
+    np.testing.assert_allclose(tcp[:3, 3], [0.4, -0.2, 0.6], atol=1e-3)
+    assert tcp[2, 2] < -0.99  # tool points down
+    np.testing.assert_allclose(result.plan.path[-1], result.goal, atol=1e-6)
+    with pytest.raises(ma.PlanningError):
+        ma.plan_to_pregrasp(robot, TABLETOP, "unicorn", ma.PANDA_READY)

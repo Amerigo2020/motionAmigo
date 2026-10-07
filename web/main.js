@@ -11,6 +11,7 @@ const COLORS = {
   book: 0xc0504d, shelf_panel: 0xb08a5f, shelf_board: 0xc39a6b, box: 0x8f6fbf, bottle: 0x4caf8a,
   cage_plate: 0x7d8792, cage_wall: 0x7d8792, cage_bar: 0x9aa4ae, block: 0xe07b39,
 };
+const GRASPABLE = new Set(['mug', 'bowl', 'book', 'laptop', 'box', 'bottle', 'block']);
 const ROBOT_COLOR = 0xeef1f4;
 const COLLISION_COLOR = 0xef5b5b;
 const SPEED = 1.4; // joint-space radians per second during playback
@@ -175,6 +176,8 @@ function setStatus(text, cls = '') {
 
 function fmtMs(ms) {
   if (!Number.isFinite(ms)) return 'n/a';
+  // Browsers coarsen performance.now() to about 0.1 ms, so very fast plans can measure as zero.
+  if (ms === 0) return '< 0.1 ms';
   return ms < 1 ? `${(ms * 1000).toFixed(0)} µs` : `${ms.toFixed(2)} ms`;
 }
 
@@ -222,21 +225,48 @@ function showGoal() {
   if (state.goal) ghost.update(state.demo.frames(state.goal));
 }
 
-function fillGoals() {
+function fillGoals(sceneJson) {
   const select = $('goal');
   select.innerHTML = '';
+  const configs = document.createElement('optgroup');
+  configs.label = 'joint configurations';
   for (const p of state.presets[state.sceneName] ?? []) {
     const opt = document.createElement('option');
     opt.value = JSON.stringify(p.q);
     opt.textContent = p.name;
-    select.appendChild(opt);
+    configs.appendChild(opt);
   }
+  select.appendChild(configs);
+  // Pre-grasp goals are computed with inverse kinematics when selected.
+  const grasps = document.createElement('optgroup');
+  grasps.label = 'pre-grasp above (IK)';
+  for (const o of sceneJson.objects.filter((x) => GRASPABLE.has(x.label))) {
+    const opt = document.createElement('option');
+    opt.value = `pregrasp:${o.id}`;
+    opt.textContent = `above ${o.id}`;
+    grasps.appendChild(opt);
+  }
+  if (grasps.children.length) select.appendChild(grasps);
   selectGoal();
 }
 
 function selectGoal() {
   const v = $('goal').value;
-  state.goal = v ? new Float64Array(JSON.parse(v)) : null;
+  if (v.startsWith('pregrasp:')) {
+    const id = v.slice('pregrasp:'.length);
+    const t0 = performance.now();
+    const q = state.demo.pregraspGoal(id, state.q);
+    const ms = performance.now() - t0;
+    if (q.length === 0) {
+      state.goal = null;
+      setStatus(`No collision-free pre-grasp pose above ${id}.`, 'bad');
+    } else {
+      state.goal = q;
+      setStatus(`IK for the pre-grasp pose above ${id} took ${fmtMs(ms)}. Press Plan.`);
+    }
+  } else {
+    state.goal = v ? new Float64Array(JSON.parse(v)) : null;
+  }
   showGoal();
 }
 
@@ -245,14 +275,15 @@ async function loadScene(name) {
   $('scene').value = name;
   const json = await (await fetch(`scenes/${name}.json`)).text();
   state.demo.setScene(json);
-  buildObjects(JSON.parse(json));
+  const sceneJson = JSON.parse(json);
+  buildObjects(sceneJson);
   const [pos, target] = CAMERAS[name] ?? CAMERAS.tabletop;
   camera.position.set(...pos);
   controls.target.set(...target);
   controls.update();
   trace.visible = false;
-  fillGoals();
   showConfig(new Float64Array(pandaReady()));
+  fillGoals(sceneJson);
   setStatus(`${name}: pick a goal and press Plan.`);
 }
 
@@ -267,7 +298,7 @@ function randomGoal() {
   const opt = document.createElement('option');
   opt.value = JSON.stringify(Array.from(q));
   opt.textContent = `random ${state.randomCount}`;
-  select.appendChild(opt);
+  select.querySelector('optgroup').appendChild(opt);
   select.value = opt.value;
   selectGoal();
 }

@@ -145,6 +145,37 @@ impl Robot {
         PyArray2::from_vec2(py, &s).map_err(|e| PyValueError::new_err(e.to_string()))
     }
 
+    /// Inverse kinematics for a 4x4 target pose of the tool center point (damped least squares
+    /// with random restarts). Returns None if no solution within the limits was found.
+    #[pyo3(signature = (target, seed_q=None, *, seed=0, restarts=32, position_tolerance=1e-4, orientation_tolerance=1e-3))]
+    #[allow(clippy::too_many_arguments)]
+    fn ik<'py>(
+        &self,
+        py: Python<'py>,
+        target: ArrayIn2<'py>,
+        seed_q: Option<ArrayIn1<'py>>,
+        seed: u64,
+        restarts: usize,
+        position_tolerance: f64,
+        orientation_tolerance: f64,
+    ) -> PyResult<Option<Bound<'py, PyArray1<f64>>>> {
+        let pose = matrix_to_pose(&target)?;
+        let settings = ma::ik::IkSettings {
+            restarts,
+            position_tolerance,
+            orientation_tolerance,
+            seed,
+            ..ma::ik::IkSettings::default()
+        };
+        let initial = match seed_q {
+            Some(q) => Some(self.check_q(&q)?),
+            None => None,
+        };
+        let robot = self.inner.clone();
+        let sol = py.detach(move || ma::ik::solve(&robot, &pose, initial.as_deref(), &settings));
+        Ok(sol.map(|s| PyArray1::from_vec(py, s.q)))
+    }
+
     fn __repr__(&self) -> String {
         format!(
             "Robot(name={:?}, dof={}, spheres={})",
@@ -167,6 +198,21 @@ impl Robot {
         }
         Ok(q)
     }
+}
+
+fn matrix_to_pose(m: &ArrayIn2<'_>) -> PyResult<ma::math::Pose> {
+    let a = m.as_array();
+    if a.shape() != [4, 4] && a.shape() != [3, 4] {
+        return Err(PyValueError::new_err("pose must be a 4x4 (or 3x4) matrix"));
+    }
+    let mut pose = ma::math::Pose::IDENTITY;
+    for i in 0..3 {
+        for j in 0..3 {
+            pose.rot[i][j] = a[[i, j]];
+        }
+        pose.trans[i] = a[[i, 3]];
+    }
+    Ok(pose)
 }
 
 /// Obstacles: spheres, capsules, oriented boxes and point clouds.
@@ -564,6 +610,87 @@ impl Planner {
     }
 }
 
+/// Result of :func:`plan_to_pregrasp`.
+#[pyclass(module = "motionamigo", name = "PregraspResult", frozen)]
+struct PregraspResult {
+    pose: ma::math::Pose,
+    goal: Vec<f64>,
+    #[pyo3(get)]
+    grasp_width: f64,
+    #[pyo3(get)]
+    plan: Py<PlanResult>,
+}
+
+#[pymethods]
+impl PregraspResult {
+    /// 4x4 pre-grasp pose of the tool center point.
+    #[getter]
+    fn pose<'py>(&self, py: Python<'py>) -> Bound<'py, PyArray2<f64>> {
+        pose_to_numpy(py, &self.pose)
+    }
+
+    /// Pre-grasp joint configuration.
+    #[getter]
+    fn goal<'py>(&self, py: Python<'py>) -> Bound<'py, PyArray1<f64>> {
+        PyArray1::from_vec(py, self.goal.clone())
+    }
+
+    fn __repr__(&self) -> String {
+        format!(
+            "PregraspResult(tcp={:.3?}, grasp_width={:.3})",
+            self.pose.trans, self.grasp_width
+        )
+    }
+}
+
+/// Plans a motion from `start` to a collision-free pre-grasp pose `clearance` meters above the
+/// object `object_id` of `scene` (path, JSON string or dict), approaching from above.
+#[pyfunction]
+#[pyo3(signature = (robot, scene, object_id, start, *, clearance=0.1, seed=0))]
+fn plan_to_pregrasp(
+    py: Python<'_>,
+    robot: &Robot,
+    scene: &Bound<'_, PyAny>,
+    object_id: &str,
+    start: ArrayIn1<'_>,
+    clearance: f64,
+    seed: u64,
+) -> PyResult<PregraspResult> {
+    let scene = parse_scene(py, scene)?;
+    let start = robot.check_q(&start)?;
+    let mut settings = ma::grasp::PregraspSettings {
+        clearance,
+        ..ma::grasp::PregraspSettings::default()
+    };
+    settings.plan.seed = seed;
+    settings.ik.seed = seed;
+    let model = robot.inner.clone();
+    let id = object_id.to_string();
+    let r = py
+        .detach(move || ma::grasp::plan_to_pregrasp(&model, &scene, &id, &start, &settings))
+        .map_err(|e| PlanningError::new_err(e.to_string()))?;
+    let p = r.plan;
+    let plan = Py::new(
+        py,
+        PlanResult {
+            length: p.length,
+            initial_length: p.initial_length,
+            iterations: p.iterations,
+            tree_sizes: (p.tree_sizes[0], p.tree_sizes[1]),
+            planning_time: p.planning_time.as_secs_f64(),
+            simplify_time: p.simplify_time.as_secs_f64(),
+            checker: p.checker,
+            path: p.path,
+        },
+    )?;
+    Ok(PregraspResult {
+        pose: r.pose,
+        goal: r.goal,
+        grasp_width: r.grasp_width,
+        plan,
+    })
+}
+
 /// The best SIMD backend on this machine ("avx2", "neon", "wasm-simd128" or "portable").
 #[pyfunction]
 fn simd_backend() -> &'static str {
@@ -580,6 +707,8 @@ fn _motionamigo(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<Environment>()?;
     m.add_class::<Planner>()?;
     m.add_class::<PlanResult>()?;
+    m.add_class::<PregraspResult>()?;
+    m.add_function(wrap_pyfunction!(plan_to_pregrasp, m)?)?;
     m.add_function(wrap_pyfunction!(simd_backend, m)?)?;
     Ok(())
 }
