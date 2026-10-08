@@ -1,5 +1,7 @@
 //! Sampling-based planning: RRT-Connect and path simplification.
 
+#[doc(hidden)]
+pub mod nn;
 pub mod rrtc;
 pub mod simplify;
 

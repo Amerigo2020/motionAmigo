@@ -1,6 +1,7 @@
 //! RRT-Connect (Kuffner and LaValle, ICRA 2000) with balanced trees.
 
 use super::distance;
+use super::nn::{nearest_linear, KdTree};
 use crate::checker::CollisionChecker;
 use crate::rng::Rng;
 
@@ -48,16 +49,21 @@ struct Tree {
     dof: usize,
     nodes: Vec<f32>,
     parents: Vec<u32>,
+    kd: KdTree,
+    /// Queries use the linear scan below this many nodes (see docs/decisions.md).
+    kd_min: usize,
 }
 
 const ROOT: u32 = u32::MAX;
 
 impl Tree {
-    fn new(dof: usize) -> Tree {
+    fn new(dof: usize, kd_min: usize) -> Tree {
         Tree {
             dof,
             nodes: Vec::with_capacity(dof * 1024),
             parents: Vec::with_capacity(1024),
+            kd: KdTree::default(),
+            kd_min,
         }
     }
 
@@ -72,25 +78,17 @@ impl Tree {
     fn add(&mut self, q: &[f32], parent: u32) -> usize {
         self.nodes.extend_from_slice(q);
         self.parents.push(parent);
+        self.kd.insert(&self.nodes, self.dof);
         self.len() - 1
     }
 
     /// Index of the node nearest to `q` (lowest index on ties).
-    fn nearest(&self, q: &[f32]) -> usize {
-        let mut best = 0;
-        let mut best_d = f32::INFINITY;
-        for (i, node) in self.nodes.chunks_exact(self.dof).enumerate() {
-            let mut d = 0.0f32;
-            for (a, b) in node.iter().zip(q) {
-                let e = a - b;
-                d += e * e;
-            }
-            if d < best_d {
-                best_d = d;
-                best = i;
-            }
+    fn nearest(&mut self, q: &[f32]) -> usize {
+        if self.len() < self.kd_min {
+            nearest_linear(&self.nodes, self.dof, q)
+        } else {
+            self.kd.nearest(&self.nodes, self.dof, q)
         }
-        best
     }
 
     /// Configurations from node `i` up to its root.
@@ -128,6 +126,20 @@ pub fn rrt_connect<C: CollisionChecker + ?Sized>(
     settings: &RrtcSettings,
     rng: &mut Rng,
 ) -> RrtcResult {
+    rrt_connect_nn(checker, start, goals, settings, rng, KD_MIN)
+}
+
+/// Tree size from which nearest-neighbour queries use the kd-tree (measured, docs/decisions.md).
+const KD_MIN: usize = 2048;
+
+fn rrt_connect_nn<C: CollisionChecker + ?Sized>(
+    checker: &C,
+    start: &[f32],
+    goals: &[Vec<f32>],
+    settings: &RrtcSettings,
+    rng: &mut Rng,
+    kd_min: usize,
+) -> RrtcResult {
     let dof = checker.dof();
     for g in goals {
         if checker.motion_valid(start, g) {
@@ -138,7 +150,7 @@ pub fn rrt_connect<C: CollisionChecker + ?Sized>(
             };
         }
     }
-    let mut trees = [Tree::new(dof), Tree::new(dof)];
+    let mut trees = [Tree::new(dof, kd_min), Tree::new(dof, kd_min)];
     trees[0].add(start, ROOT);
     for g in goals {
         trees[1].add(g, ROOT);
@@ -197,5 +209,47 @@ pub fn rrt_connect<C: CollisionChecker + ?Sized>(
         path: None,
         iterations: settings.max_iterations,
         tree_sizes: [trees[0].len(), trees[1].len()],
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::checker::{SimdChecker, DEFAULT_RESOLUTION};
+    use crate::{Environment, RobotModel, Scene};
+
+    /// The kd-tree must not change a single plan: compare against the pure linear scan.
+    #[test]
+    fn kd_tree_plans_match_linear_scan() {
+        let scene =
+            Scene::from_json(include_str!("../../../../examples/scenes/cage.json")).unwrap();
+        let checker = SimdChecker::new(
+            &RobotModel::panda(),
+            &Environment::from_scene(&scene),
+            DEFAULT_RESOLUTION,
+        );
+        let problems: serde_json::Value =
+            serde_json::from_str(include_str!("../../../../bench/problems/cage.json")).unwrap();
+        let cfg = |v: &serde_json::Value| -> Vec<f32> {
+            v.as_array()
+                .unwrap()
+                .iter()
+                .map(|x| x.as_f64().unwrap() as f32)
+                .collect()
+        };
+        let settings = RrtcSettings::default();
+        for p in problems["problems"].as_array().unwrap().iter().take(10) {
+            let (start, goal) = (cfg(&p["start"]), vec![cfg(&p["goal"])]);
+            for seed in 0..3 {
+                let run = |kd_min| {
+                    let mut rng = Rng::new(seed);
+                    rrt_connect_nn(&checker, &start, &goal, &settings, &mut rng, kd_min)
+                };
+                let linear = run(usize::MAX);
+                // kd_min 0: every query goes through the kd-tree.
+                assert_eq!(run(0), linear);
+                assert_eq!(run(KD_MIN), linear);
+            }
+        }
     }
 }
