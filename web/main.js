@@ -161,6 +161,7 @@ const state = {
   seed: 0,
   randomCount: 0,
   lastResult: null,
+  held: null, // { mesh, objectInTcp } while an object moves with the hand
 };
 
 let robot;
@@ -182,6 +183,7 @@ function fmtMs(ms) {
 }
 
 function buildObjects(sceneJson) {
+  state.held = null;
   for (const mesh of state.objects.values()) scene3d.remove(mesh);
   state.objects.clear();
   for (const o of sceneJson.objects) {
@@ -215,7 +217,13 @@ function updateSpheres() {
 
 function showConfig(q) {
   state.q = q;
-  robot.update(state.demo.frames(q));
+  const frames = state.demo.frames(q);
+  robot.update(frames);
+  if (state.held) {
+    // Frame 8 is the tool center point; the held object keeps its pose relative to it.
+    const tcp = new THREE.Matrix4().fromArray(frames, 8 * 16);
+    tcp.multiply(state.held.objectInTcp).decompose(state.held.mesh.position, state.held.mesh.quaternion, new THREE.Vector3());
+  }
   robot.setColor(state.demo.configValid(q) ? ROBOT_COLOR : COLLISION_COLOR);
   updateSpheres();
 }
@@ -330,11 +338,58 @@ function drawTrace(dense) {
 
 function setBusy(busy) {
   state.animating = busy;
-  for (const id of ['plan', 'reset', 'scene', 'goal', 'random']) $(id).disabled = busy;
+  for (const id of ['plan', 'pick', 'reset', 'scene', 'goal', 'random']) $(id).disabled = busy;
+}
+
+// Puts a picked object back where the scene (and the collision checker) has it.
+function releaseHeld() {
+  if (!state.held) return;
+  const { mesh } = state.held;
+  const o = JSON.parse(state.demo.sceneJson()).objects.find((x) => x.id === mesh.userData.id);
+  mesh.position.set(...o.center);
+  mesh.quaternion.setFromAxisAngle(new THREE.Vector3(0, 0, 1), o.yaw);
+  state.held = null;
+}
+
+// Pick the object of the selected pre-grasp goal: approach, grasp, lift and return home.
+function pickSelected() {
+  if (state.animating) return null;
+  const v = $('goal').value;
+  if (!v.startsWith('pregrasp:')) {
+    setStatus('Choose an "above <object>" goal to pick that object.', 'bad');
+    return null;
+  }
+  releaseHeld();
+  const id = v.slice('pregrasp:'.length);
+  const seed = state.seed++;
+  $('seed').textContent = seed;
+  const out = state.demo.pick(id, state.q, BigInt(seed));
+  if (!out.solved) {
+    setStatus(out.message, 'bad');
+    out.free();
+    return null;
+  }
+  const dof = state.demo.dof;
+  const path = Array.from(out.path);
+  const g = out.graspIndex;
+  const objectInTcp = new THREE.Matrix4().fromArray(out.objectInTcp);
+  setStatus(`Pick of ${id} planned in ${fmtMs(out.ms)}: approach, grasp, lift, home.`, 'ok');
+  out.free();
+  // Densify the motion before and after the grasp separately so the grasp sample is known.
+  const before = densify(path.slice(0, (g + 1) * dof), dof);
+  const after = densify(path.slice(g * dof), dof);
+  const dense = before.concat(after.slice(1));
+  drawTrace(dense);
+  const mesh = state.objects.get(id);
+  animate(dense, (i) => {
+    if (i >= before.length - 1 && !state.held) state.held = { mesh, objectInTcp };
+  });
+  return { samples: dense.length, grasp: before.length - 1 };
 }
 
 function plan() {
   if (state.animating || !state.goal) return null;
+  releaseHeld();
   const seed = state.seed++;
   $('seed').textContent = seed;
   const out = state.demo.plan(state.q, state.goal, BigInt(seed));
@@ -357,7 +412,7 @@ function plan() {
   return dense.length;
 }
 
-function animate(dense) {
+function animate(dense, onSample = () => {}) {
   setBusy(true);
   const start = performance.now();
   const step = 0.02;
@@ -365,6 +420,7 @@ function animate(dense) {
   const tick = () => {
     const s = Math.min(total, ((performance.now() - start) / 1000) * SPEED);
     const i = Math.min(dense.length - 1, Math.floor(s / step));
+    onSample(i);
     showConfig(Float64Array.from(dense[i]));
     if (s < total) requestAnimationFrame(tick);
     else setBusy(false);
@@ -390,7 +446,7 @@ function pick(event) {
 }
 
 renderer.domElement.addEventListener('pointerdown', (event) => {
-  if (state.animating || event.button !== 0) return;
+  if (state.animating || state.held || event.button !== 0) return;
   const hit = pick(event);
   if (!hit) return;
   const mesh = hit.object;
@@ -466,7 +522,8 @@ async function main() {
   $('goal').addEventListener('change', selectGoal);
   $('random').addEventListener('click', randomGoal);
   $('plan').addEventListener('click', plan);
-  $('reset').addEventListener('click', () => { trace.visible = false; showConfig(new Float64Array(pandaReady())); });
+  $('pick').addEventListener('click', pickSelected);
+  $('reset').addEventListener('click', () => { trace.visible = false; releaseHeld(); showConfig(new Float64Array(pandaReady())); });
   $('show-spheres').addEventListener('change', updateSpheres);
   $('show-goal').addEventListener('change', showGoal);
 
@@ -490,6 +547,8 @@ async function main() {
       selectGoal();
     },
     plan,
+    pick: pickSelected,
+    heldObject: () => state.held?.mesh.userData.id ?? null,
     isAnimating: () => state.animating,
     // Plans without animating; returns the number of dense samples for showSample().
     planStatic() {

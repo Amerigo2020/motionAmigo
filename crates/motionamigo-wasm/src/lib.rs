@@ -4,7 +4,7 @@
 //! `.cargo/config.toml` enables the `simd128` target feature, so the collision checker uses the
 //! WebAssembly SIMD backend. Configurations are passed as `Float64Array`s.
 
-use motionamigo::grasp::{pregrasp_configuration, PregraspSettings};
+use motionamigo::grasp::{plan_pick, pregrasp_configuration, PickSettings, PregraspSettings};
 use motionamigo::planner::path_length;
 use motionamigo::planner::rrtc::rrt_connect;
 use motionamigo::planner::simplify::{simplify, SimplifySettings};
@@ -80,6 +80,48 @@ impl PlanOutput {
     pub fn message(&self) -> String {
         self.message.clone()
     }
+}
+
+/// Result of a pick query: all segments joined into one path.
+#[wasm_bindgen]
+pub struct PickOutput {
+    path: Vec<f64>,
+    object_in_tcp: Vec<f64>,
+    /// Whether a pick was found.
+    pub solved: bool,
+    /// Index of the waypoint at which the object is grasped (end of the approach). From here on
+    /// the object moves with the hand.
+    #[wasm_bindgen(js_name = graspIndex)]
+    pub grasp_index: usize,
+    /// Total planning time (IK, linear segments and RRT-Connect) in milliseconds.
+    pub ms: f64,
+    message: String,
+}
+
+#[wasm_bindgen]
+impl PickOutput {
+    /// Waypoints, flattened row by row: to pre-grasp, approach, retreat (object held), home.
+    #[wasm_bindgen(getter)]
+    pub fn path(&self) -> Vec<f64> {
+        self.path.clone()
+    }
+
+    /// Pose of the object in the TCP frame while held, column-major 4x4 (three.js order).
+    #[wasm_bindgen(getter, js_name = objectInTcp)]
+    pub fn object_in_tcp(&self) -> Vec<f64> {
+        self.object_in_tcp.clone()
+    }
+
+    /// Error message if the query failed.
+    #[wasm_bindgen(getter)]
+    pub fn message(&self) -> String {
+        self.message.clone()
+    }
+}
+
+fn column_major(p: &motionamigo::math::Pose) -> Vec<f64> {
+    let m = p.to_matrix();
+    (0..4).flat_map(|c| m.iter().map(move |r| r[c])).collect()
 }
 
 /// Robot, scene and collision checker of the demo.
@@ -185,12 +227,7 @@ impl Demo {
         let mut frames = self.robot.frames(q);
         frames.push(*frames.last().unwrap() * self.robot.tcp);
         for f in frames {
-            let m = f.to_matrix();
-            for col in 0..4 {
-                for row in m.iter() {
-                    out.push(row[col]);
-                }
-            }
+            out.extend(column_major(&f));
         }
         out
     }
@@ -260,6 +297,51 @@ impl Demo {
         pregrasp_configuration(&self.robot, &self.checker, object, start, &settings)
             .map(|(_, _, q)| q)
             .unwrap_or_default()
+    }
+
+    /// Plans a pick of object `id` from `start`: to the pre-grasp pose, linear approach, grasp,
+    /// linear lift with the object attached and back to the ready pose holding it. Never throws.
+    pub fn pick(&self, id: &str, start: &[f64], seed: u64) -> PickOutput {
+        let mut settings = PickSettings {
+            place: Some(motionamigo::PANDA_READY.to_vec()),
+            ..PickSettings::default()
+        };
+        settings.pregrasp.plan.seed = seed;
+        let t0 = performance_now();
+        let result = plan_pick(&self.robot, &self.scene, id, start, &settings);
+        let ms = performance_now() - t0;
+        match result {
+            Ok(p) => {
+                let pre = p.to_pregrasp.path.len() + p.approach.len() - 1;
+                let place = p.place.map(|pl| pl.path).unwrap_or_default();
+                let path = p
+                    .to_pregrasp
+                    .path
+                    .iter()
+                    .chain(&p.approach[1..])
+                    .chain(&p.retreat[1..])
+                    .chain(place.iter().skip(1))
+                    .flatten()
+                    .copied()
+                    .collect();
+                PickOutput {
+                    path,
+                    object_in_tcp: column_major(&p.object_in_tcp),
+                    solved: true,
+                    grasp_index: pre - 1,
+                    ms,
+                    message: String::new(),
+                }
+            }
+            Err(e) => PickOutput {
+                path: Vec::new(),
+                object_in_tcp: Vec::new(),
+                solved: false,
+                grasp_index: 0,
+                ms,
+                message: e.to_string(),
+            },
+        }
     }
 
     /// Samples a random collision-free configuration whose tool points down and lies above the
