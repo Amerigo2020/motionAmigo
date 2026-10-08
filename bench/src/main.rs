@@ -4,6 +4,7 @@
 //! motionamigo-bench gen [--count N]                 generate bench/problems/*.json
 //! motionamigo-bench run [--seeds N] [--checker C]   plan on tabletop, shelf and cage
 //! motionamigo-bench mbm FILE [--checker C]          plan on exported MotionBenchMaker problems
+//!                    [--robot panda|ur5]
 //! ```
 //!
 //! `C` is `simd` (default, best backend), `portable` or `scalar`. Results are printed as
@@ -12,6 +13,7 @@
 mod problems;
 mod stats;
 
+use motionamigo::math::Pose;
 use motionamigo::{
     plan_with, Backend, CollisionChecker, Cuboid, Environment, PlanSettings, RobotModel,
     ScalarChecker, Scene, SimdChecker,
@@ -31,6 +33,7 @@ struct Args {
     seeds: u64,
     checker: String,
     limits: String,
+    robot: String,
     rounds: Option<usize>,
     attempts: Option<usize>,
 }
@@ -44,6 +47,7 @@ fn parse_args() -> Args {
         seeds: 10,
         checker: "simd".into(),
         limits: "vamp".into(),
+        robot: "panda".into(),
         rounds: None,
         attempts: None,
     };
@@ -53,6 +57,7 @@ fn parse_args() -> Args {
             "--seeds" => a.seeds = it.next().unwrap().parse().unwrap(),
             "--checker" => a.checker = it.next().unwrap(),
             "--limits" => a.limits = it.next().unwrap(),
+            "--robot" => a.robot = it.next().unwrap(),
             "--simplify-rounds" => a.rounds = Some(it.next().unwrap().parse().unwrap()),
             "--simplify-attempts" => a.attempts = Some(it.next().unwrap().parse().unwrap()),
             _ => a.positional.push(arg),
@@ -286,10 +291,19 @@ fn panda_with_vamp_limits() -> RobotModel {
     robot
 }
 
+/// The UR5 placed like in VAMP's ur5_spherized.urdf: base_link sits on a 0.9144 m pedestal,
+/// rotated by 1.57 rad, and the DH base frame is base_link rotated by pi.
+fn ur5_on_mbm_pedestal() -> RobotModel {
+    let base = Pose::from_translation([0.0, 0.0, 0.9144])
+        * Pose::rot_z(1.57)
+        * Pose::rot_z(std::f64::consts::PI);
+    RobotModel::ur5().with_base(base)
+}
+
 fn cmd_mbm(args: &Args) {
     let path = args.positional.first().cloned().unwrap_or_else(|| {
         root()
-            .join("bench/data/mbm/panda_mbm.json")
+            .join(format!("bench/data/mbm/{}_mbm.json", args.robot))
             .display()
             .to_string()
     });
@@ -297,9 +311,16 @@ fn cmd_mbm(args: &Args) {
         .unwrap_or_else(|e| panic!("cannot read {path}: {e}. Run bench/vamp/run_vamp.sh first."));
     let all: std::collections::BTreeMap<String, Vec<MbmProblem>> =
         serde_json::from_str(&text).unwrap();
-    let robot = match args.limits.as_str() {
-        "vamp" => panda_with_vamp_limits(),
-        _ => RobotModel::panda(),
+    // The UR5 limits (+-pi) already are those of VAMP's URDF.
+    let robot = match (args.robot.as_str(), args.limits.as_str()) {
+        ("ur5", _) => ur5_on_mbm_pedestal(),
+        ("panda", "vamp") => panda_with_vamp_limits(),
+        ("panda", _) => RobotModel::panda(),
+        (other, _) => panic!("unknown robot {other:?}"),
+    };
+    let prefix = match args.robot.as_str() {
+        "panda" => "mbm".to_string(),
+        other => format!("mbm-{other}"),
     };
     let mut rows = Vec::new();
     let mut json = serde_json::Map::new();
@@ -325,14 +346,15 @@ fn cmd_mbm(args: &Args) {
         json.insert(scenario.clone(), serde_json::to_value(&records).unwrap());
     }
     println!(
-        "\nmotionAmigo on MotionBenchMaker (Panda), checker `{}` ({})\nHardware: {}\n",
+        "\nmotionAmigo on MotionBenchMaker ({}), checker `{}` ({})\nHardware: {}\n",
+        args.robot,
         args.checker,
         Backend::detect().name(),
         hardware()
     );
     stats::print_mbm_table(&rows);
     let out = root().join(format!(
-        "bench/results/mbm-motionamigo-{}.json",
+        "bench/results/{prefix}-motionamigo-{}.json",
         args.checker
     ));
     std::fs::create_dir_all(out.parent().unwrap()).unwrap();

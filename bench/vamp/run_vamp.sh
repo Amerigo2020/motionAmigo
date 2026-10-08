@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Reproduces the VAMP comparison on the MotionBenchMaker problems for the Panda.
+# Reproduces the VAMP comparison on the MotionBenchMaker problems for the Panda and the UR5.
 #
 # Requirements: uv, a C++17 compiler, CMake and Eigen 3 (e.g. `apt install cmake libeigen3-dev`).
 # vamp-planner is built from source by pip (PyPI only ships the sdist) with -march=native.
@@ -39,3 +39,17 @@ mv /tmp/mbm-simd.json bench/results/mbm-motionamigo-simd.json
 
 # 5. Comparison table.
 python3 bench/compare_mbm.py | tee bench/results/mbm-comparison.md
+
+# 6. The same for the UR5 (MotionBenchMaker ships UR5 problems with VAMP).
+if [ ! -f bench/vamp/vamp-src/resources/ur5/problems.pkl ]; then
+  (cd bench/vamp/vamp-src && ../.venv/bin/python resources/problem_tar_to_pkl_json.py --robot ur5)
+fi
+(cd bench/vamp && uv run python run_vamp_mbm.py vamp-src/resources/ur5/problems.pkl --robot ur5 \
+  --out ../results/mbm-ur5-vamp-default.json)
+(cd bench/vamp && uv run python run_vamp_mbm.py vamp-src/resources/ur5/problems.pkl --robot ur5 \
+  --dynamic_domain False --out ../results/mbm-ur5-vamp-no-dd.json)
+(cd bench/vamp && uv run python export_mbm.py vamp-src/resources/ur5/problems.pkl ../data/mbm/ur5_mbm.json)
+for checker in simd portable scalar; do
+  target/release/motionamigo-bench mbm --robot ur5 --checker "$checker"
+done
+python3 bench/compare_mbm.py ur5 | tee bench/results/mbm-ur5-comparison.md

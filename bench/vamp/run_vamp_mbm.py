@@ -1,10 +1,11 @@
-"""Run VAMP's RRT-Connect on the MotionBenchMaker problems for the Panda.
+"""Run VAMP's RRT-Connect on the MotionBenchMaker problems for the Panda or the UR5.
 
 This mirrors VAMP's scripts/evaluate_mbm.py (one trial per valid problem, Halton sampler, default
 settings from vamp.configure_robot_and_planner_with_kwargs) and reports the same statistics as
 motionamigo-bench mbm. Times are VAMP's internal nanosecond timers.
 
 Usage: python run_vamp_mbm.py vamp-src/resources/panda/problems.pkl [--dynamic_domain False]
+       [--robot ur5]
 """
 
 import json
@@ -41,14 +42,14 @@ def cpu_name():
     return platform.processor()
 
 
-def main(pkl, dynamic_domain="True", out=None):
+def main(pkl, dynamic_domain="True", out=None, robot_name="panda"):
     with open(pkl, "rb") as f:
         problems = pickle.load(f)["problems"]
     kwargs = {}
     if dynamic_domain == "False":
         kwargs["dynamic_domain"] = False
     robot, planner, plan_settings, simp_settings = vamp.configure_robot_and_planner_with_kwargs(
-        "panda", "rrtc", **kwargs
+        robot_name, "rrtc", **kwargs
     )
     sampler = robot.halton()
     rows, raw = [], {}
@@ -94,7 +95,7 @@ def main(pkl, dynamic_domain="True", out=None):
             )
         )
         raw[name] = records
-    label = "VAMP rrtc (default settings)" if dynamic_domain != "False" else "VAMP rrtc (dynamic domain off)"
+    label = f"{robot_name}: " + ("VAMP rrtc (default settings)" if dynamic_domain != "False" else "VAMP rrtc (dynamic domain off)")
     print(f"\n{label}, vamp-planner {getattr(vamp, '__version__', '0.6.4')}\nHardware: {cpu_name()}\n")
     print("| scenario | problems | success | planning median | planning P95 | simplification median | total median | total P95 | path length median |")
     print("|---|---:|---:|---:|---:|---:|---:|---:|---:|")
@@ -118,4 +119,5 @@ if __name__ == "__main__":
         dd = args[args.index("--dynamic_domain") + 1]
     if "--out" in args:
         out = args[args.index("--out") + 1]
-    main(pkl, dd, out)
+    robot_name = args[args.index("--robot") + 1] if "--robot" in args else "panda"
+    main(pkl, dd, out, robot_name)

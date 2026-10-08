@@ -1,10 +1,12 @@
 """Builds the MotionBenchMaker comparison table from the raw result files in bench/results/.
 
 Usage: python bench/compare_mbm.py > bench/results/mbm-comparison.md
+       python bench/compare_mbm.py ur5 > bench/results/mbm-ur5-comparison.md
 """
 
 import json
 import math
+import sys
 from pathlib import Path
 
 RESULTS = Path(__file__).parent / "results"
@@ -34,7 +36,7 @@ def fmt(us):
 
 
 def load(name):
-    data = json.loads((RESULTS / name).read_text())
+    data = json.loads((RESULTS / name).read_text(encoding="utf-8"))
     return {k: [r for r in v] for k, v in data.items()}
 
 
@@ -54,9 +56,13 @@ def stats(records):
 
 
 def main():
-    loaded = [(label, load(f)) for label, f in PLANNERS if (RESULTS / f).exists()]
+    robot = sys.argv[1] if len(sys.argv) > 1 else "panda"
+    prefix = "mbm-" if robot == "panda" else f"mbm-{robot}-"
+    files = [(label, f.replace("mbm-", prefix, 1)) for label, f in PLANNERS]
+    loaded = [(label, load(f)) for label, f in files if (RESULTS / f).exists()]
     scenarios = sorted(loaded[0][1])
-    print("### All 699 valid problems pooled\n")
+    n = sum(len(loaded[0][1][sc]) for sc in scenarios)
+    print(f"### All {n} valid problems pooled\n")
     print("| planner | success | planning median | planning P95 | simplification median | total median | total P95 | path length median (rad) |")
     print("|---|---:|---:|---:|---:|---:|---:|---:|")
     for label, data in loaded:
