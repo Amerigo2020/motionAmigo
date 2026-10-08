@@ -7,8 +7,9 @@
 *The browser demo: Rust compiled to WebAssembly with SIMD, planning into the shelf compartments in
 about 0.2 to 2 ms. Recorded headlessly with Playwright (`web/tools/record.mjs`).*
 
-motionAmigo plans collision-free motions for a Franka Emika Panda (7 DoF) with RRT-Connect and
-shortcutting. Following [VAMP](https://github.com/KavrakiLab/vamp) (Thomason, Kingston, Kavraki,
+motionAmigo plans collision-free motions for robot arms with RRT-Connect and shortcutting. Two
+robots are bundled: the Franka Emika Panda (7 DoF) and the Universal Robots UR5 with a Robotiq
+2F-85 gripper (6 DoF). Following [VAMP](https://github.com/KavrakiLab/vamp) (Thomason, Kingston, Kavraki,
 ICRA 2024), the robot is approximated by spheres, and forward kinematics plus collision checking run
 on eight configurations along an edge at once with SIMD instructions. motionAmigo is an independent
 Rust implementation of these ideas, not a port of the VAMP code.
@@ -54,6 +55,10 @@ print(planner.configs_valid(np.random.uniform(robot.lower_limits, robot.upper_li
 ```
 
 Planning releases the GIL, so several planners can run in parallel threads.
+
+The UR5 works the same way: `ma.Robot.ur5()` (`RobotModel::ur5()` in Rust) with the collision-free
+start `ma.UR5_HOME`. Its frame 0 is the DH base frame of Universal Robots, which is the ROS
+`base_link` rotated by pi about z (in Rust, `RobotModel::with_base` mounts it elsewhere).
 
 ### Rust
 
@@ -117,7 +122,7 @@ WebAssembly.
 
 ## Benchmarks
 
-All numbers below were measured on the same machine: a cloud VM with an Intel Xeon @ 2.80 GHz,
+All Panda numbers below were measured on the same machine: a cloud VM with an Intel Xeon @ 2.80 GHz,
 2 vCPUs, Linux, single-threaded. This is a noisy, rather slow machine (VAMP's own reference timings
 on a Ryzen 9 7950X are about 2.5x faster than what VAMP achieves here); repeated runs varied by
 about 15%. Raw data and scripts are in [`bench/`](bench/).
@@ -141,6 +146,23 @@ depending on its settings, and has a lower P95). motionAmigo's default shortcutt
 more time than VAMP's simplification for slightly shorter paths; with greedy shortcutting only it is
 faster than VAMP's, but leaves longer paths. Per-scenario tables:
 [`bench/results/mbm-comparison.md`](bench/results/mbm-comparison.md).
+
+### Comparison with VAMP (MotionBenchMaker, UR5, 689 problems)
+
+Same setup as for the Panda, but measured on a different machine: an Intel Core i9-13900H laptop
+under WSL2 (Ubuntu), single-threaded, so these numbers are not comparable with the Panda table.
+Start and goal configurations and obstacles are VAMP's; the UR5 stands on the 0.9144 m pedestal of
+VAMP's URDF.
+
+| planner | success | planning median | planning P95 | simplification median | total median | total P95 | path length median |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| VAMP, default (dynamic domain) | 100% | 56 탎 | 753 탎 | 142 탎 | 211 탎 | 937 탎 | 6.53 rad |
+| VAMP, dynamic domain off | 100% | 61 탎 | 1.27 ms | 163 탎 | 235 탎 | 1.57 ms | 6.71 rad |
+| **motionAmigo, AVX2** | 100% | 95 탎 | 1.56 ms | 296 탎 | 453 탎 | 1.96 ms | 6.74 rad |
+| motionAmigo, scalar reference | 100% | 539 탎 | 7.71 ms | 2.15 ms | 3.04 ms | 10.32 ms | 6.74 rad |
+
+On the UR5 VAMP is clearly ahead: 1.6x faster at the median planning time and about 2x faster in
+total. Per-scenario tables: [`bench/results/mbm-ur5-comparison.md`](bench/results/mbm-ur5-comparison.md).
 
 ### Scalar reference against SIMD (criterion)
 
@@ -201,6 +223,7 @@ flowchart LR
 
 1. **Robot model.** The Panda's kinematics come from Franka's modified DH table; its collision
    geometry is 59 spheres in 11 links (from VAMP's spherized URDF), with a bounding sphere per link.
+   The UR5 uses the official standard DH parameters and 40 spheres in 17 links.
 2. **One kernel, many lane types.** Forward kinematics and collision checks are written once against
    a small `Real` trait. With `f32` the kernel checks one configuration; with an eight-lane type it
    checks eight configurations in structure-of-arrays layout. Only exactly rounded operations are
@@ -229,12 +252,12 @@ flowchart LR
 | `examples/` | scenes in the shared format, Python examples (Rust examples live in the core crate) |
 | `schema/` | JSON Schema of the scene format |
 | `docs/decisions.md` | design decisions and their rationale |
-| `tools/` | generator of the Panda robot description |
+| `tools/` | generators of the Panda and UR5 robot descriptions |
 
 ## Limitations
 
-* **Only the Panda is bundled.** The robot format supports any serial chain with revolute joints in
-  (modified) DH convention, but a second robot (for example a UR5) needs its sphere model first.
+* **Two robots are bundled** (Panda and UR5). The robot format supports any serial chain with
+  revolute joints in (modified) DH convention, but every new robot needs a sphere model first.
 * **The gripper is fixed** at the MotionBenchMaker opening and there are no attached objects, so
   carrying a grasped object is not modeled yet.
 * **Collision checking is discrete** along edges (32 checks per radian, like VAMP), not continuous.
@@ -255,7 +278,7 @@ flowchart LR
   "instruction in, trajectory out" as one Python call and in the browser demo.
 * **Grasping:** attached objects (spheres for the held object), gripper width as a parameter,
   Cartesian approach and retreat motions.
-* **More robots:** UR5 and a robot description importer from URDF plus sphere decomposition.
+* **More robots:** a robot description importer from URDF plus sphere decomposition.
 * **Faster planning:** kd-tree or GNAT nearest neighbours, Halton sampling, dynamic-domain
   RRT-Connect, an AVX-512 backend with 16 lanes, multi-threaded batch planning.
 * **Better paths:** B-spline smoothing and time parameterization.
@@ -275,7 +298,7 @@ motionAmigo implements ideas from VAMP. If you use it in academic work, please c
 }
 ```
 
-The Panda sphere model is derived from VAMP's resources (Apache-2.0) and robowflex_resources (MIT);
+The Panda and UR5 sphere models are derived from VAMP's resources (Apache-2.0) and robowflex_resources (MIT);
 the MotionBenchMaker problems used in the comparison are downloaded from the VAMP repository at
 benchmark time. See [NOTICE](NOTICE).
 

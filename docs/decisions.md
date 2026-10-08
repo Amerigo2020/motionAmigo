@@ -221,3 +221,43 @@ Newest entries are appended at the bottom of each section.
 * **Spatial expressions in the examples use the viewpoint of the scene,** which looks along +x, so
   "left" means larger y. The examples use a lookup table instead of spatialAmigo, to stay
   self-contained.
+
+## UR5 (A)
+
+* **Kinematics from the official Universal Robots standard DH table** (d1 = 0.089159,
+  a2 = -0.425, a3 = -0.39225, d4 = 0.10915, d5 = 0.09465, d6 = 0.0823), no theta offsets. The UR5
+  is the first bundled robot in standard DH convention; the kernels already supported it.
+* **Joint limits +-pi, not +-2pi.** VAMP's `ur5_spherized.urdf` (and therefore VAMP's planner and the
+  MotionBenchMaker problems) uses +-3.14159265. Matching it keeps the benchmark fair; a user who
+  needs the full +-2pi range can edit the TOML.
+* **Frame 0 is the UR DH base frame,** which is the classic ROS `base_link` rotated by pi about z.
+  With that rotation every URDF link frame is rigidly attached to one DH frame, and the URDF
+  `tool0` frame coincides with DH frame 6, so the TCP is the identity. The pedestal of VAMP's URDF
+  (`offset_link`, 0.9144 m up, yaw 1.57) is not part of the model; the benchmark sets it as the
+  robot base.
+* **Spheres from VAMP's `resources/ur5/ur5_spherized.urdf`** at the pinned VAMP commit
+  `27cb9b66` (40 spheres, Apache-2.0, originally robowflex_resources, MIT). The URDF describes a
+  UR5 with a Robotiq FT sensor and a Robotiq 2F-85 gripper whose finger joints are all fixed, so
+  the gripper opening is fixed like the Panda's fingers. `tools/gen_ur5_toml.py` builds the URDF
+  and DH chains, checks that the offset between each link frame and its DH frame is the same for
+  several random configurations, and moves the spheres into the DH frames. Gripper and sensor links
+  are attached to frame 6, so there are 17 links.
+* **Self-collision pairs: SRDF plus two rules.** Starting from all link pairs not disabled in
+  `ur5.srdf`, pairs on the same frame (rigidly attached, their distance never changes) and pairs
+  that collide in every configuration (`wrist_2_link` against `fts_robotside`, both centered on the
+  wrist 3 axis) are dropped, like MoveIt's "always in collision" rule. The result is exactly the 55
+  pairs that VAMP's generated `ur5.hh` checks.
+* **Tests.** `tests/fk_reference.rs` builds the URDF joint chain (origins and y or z axes copied
+  from the URDF) independently of the DH table and checks that the frame offsets are constant and
+  that the TCP equals `tool0`; it also checks reference TCP poses computed in Python, one sphere
+  against its URDF position, and the `f32` kernel against `f64`. The scalar against SIMD tests and
+  the identical-plans test now run for both robots. The kernels are generic over the number of
+  joints (stack arrays sized by `MAX_DOF = 8`), so 6 joints needed no kernel change.
+* **Benchmark run in WSL2, not on the cloud VM.** VAMP 0.6.4 builds from source; on this Windows
+  machine it was built in WSL2 Ubuntu 24.04 with a uv-managed Python (the system Python lacks
+  development headers) and a locally installed Eigen 3.4 (no root access for apt). VAMP and
+  motionAmigo ran on the same laptop (i9-13900H), all 689 valid UR5 problems were solved by both.
+  The Panda numbers were not re-measured on the laptop.
+* **Not covered for the UR5:** the pre-grasp helper (`grasp.rs`) is untested with it. The UR5 TCP is
+  the flange, not the grasp point between the fingers, and the gripper width constant is the
+  Panda's. The browser demo still shows only the Panda.

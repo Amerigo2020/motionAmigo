@@ -56,3 +56,16 @@ Fairness notes:
   motionAmigo: greedy plus randomized partial shortcuts, which costs more time and yields slightly
   shorter paths; a second motionAmigo row uses greedy shortcutting only).
 * Both planners report their own internal timers for planning and simplification.
+
+### UR5
+
+`run_vamp.sh` also runs the UR5 problems of the same problem set (7 scenarios, 689 valid problems):
+VAMP's `ur5` robot with its default RRT-Connect settings, then motionAmigo with
+`motionamigo-bench mbm --robot ur5`. The UR5 is mounted like in VAMP's `ur5_spherized.urdf` (base
+link on a 0.9144 m pedestal, rotated by 1.57 rad), joint limits are +-pi as in that URDF, and the
+same 55 self-collision link pairs are checked as in VAMP's generated UR5 model.
+
+Results: `results/mbm-ur5-comparison.md`, raw data in `results/mbm-ur5-*.json`. They were measured
+on an Intel Core i9-13900H laptop under WSL2 (Ubuntu 24.04, uv-managed Python 3.12, Eigen 3.4
+installed locally), not on the cloud VM of the Panda numbers, so the two tables must not be
+compared with each other. The greedy-only motionAmigo row was not run for the UR5.
