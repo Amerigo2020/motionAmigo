@@ -28,9 +28,23 @@ fn env() -> Environment {
     env
 }
 
-/// Every bundled robot: the 7-DoF Panda and the 6-DoF UR5 (a partially filled joint block).
-fn robots() -> [RobotModel; 2] {
-    [RobotModel::panda(), RobotModel::ur5()]
+/// Every bundled robot: the 7-DoF Panda and the 6-DoF UR5 (a partially filled joint block),
+/// each also with a grasped object attached to the TCP.
+fn robots() -> [RobotModel; 4] {
+    // The object sits between the fingers. The UR5 TCP is the flange, so it is further out.
+    let held = |mut r: RobotModel, z: f64| {
+        let spheres: Vec<[f64; 4]> = (0..6)
+            .map(|i| [0.0, -0.06 + 0.024 * i as f64, z, 0.035])
+            .collect();
+        r.attach_object("held", &spheres).unwrap();
+        r
+    };
+    [
+        RobotModel::panda(),
+        RobotModel::ur5(),
+        held(RobotModel::panda(), 0.02),
+        held(RobotModel::ur5(), 0.2),
+    ]
 }
 
 fn checkers(robot: &RobotModel) -> (ScalarChecker, Vec<SimdChecker>) {

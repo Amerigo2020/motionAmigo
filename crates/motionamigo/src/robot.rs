@@ -142,6 +142,8 @@ pub struct RobotModel {
     pub links: Vec<Link>,
     /// Pairs of link indices checked for self-collision.
     pub self_collision: Vec<(usize, usize)>,
+    /// Names of the links that are attached objects (see [`RobotModel::attach_object`]).
+    pub attached: Vec<String>,
 }
 
 const PANDA_TOML: &str = include_str!("../robots/panda.toml");
@@ -242,6 +244,7 @@ impl RobotModel {
             base: Pose::IDENTITY,
             links,
             self_collision,
+            attached: Vec::new(),
         })
     }
 
@@ -249,6 +252,86 @@ impl RobotModel {
     pub fn with_base(mut self, base: Pose) -> RobotModel {
         self.base = base;
         self
+    }
+
+    /// Attaches an object to the tool center point, for example a grasped object.
+    ///
+    /// `spheres` are `[x, y, z, r]` in the TCP frame. The object becomes an extra collision link
+    /// on the frame of the last joint, so it takes part in forward kinematics, environment
+    /// checks (scalar and SIMD kernels alike) and [`RobotModel::spheres_world`]. It is checked
+    /// for self-collision against every link that is not on the last frame; links on the last
+    /// frame (the hand, the fingers, the flange) move rigidly with the object, so their relative
+    /// pose never changes and checking them would either always or never report a collision.
+    pub fn attach_object(&mut self, name: &str, spheres: &[[f64; 4]]) -> Result<(), RobotError> {
+        if self.links.iter().any(|l| l.name == name) {
+            return Err(RobotError::Invalid(format!("link {name:?} already exists")));
+        }
+        if spheres.is_empty()
+            || spheres.len() > MAX_LINK_SPHERES
+            || spheres
+                .iter()
+                .any(|s| s.iter().any(|v| !v.is_finite()) || s[3] <= 0.0)
+        {
+            return Err(RobotError::Invalid(format!(
+                "attached object needs 1 to {MAX_LINK_SPHERES} spheres with positive radius"
+            )));
+        }
+        if self.links.len() >= MAX_LINKS || self.num_spheres() + spheres.len() > MAX_SPHERES {
+            return Err(RobotError::Invalid(format!(
+                "attaching {name:?} exceeds {MAX_LINKS} links or {MAX_SPHERES} spheres"
+            )));
+        }
+        let spheres: Vec<[f64; 4]> = spheres
+            .iter()
+            .map(|s| {
+                let p = self.tcp.transform_point([s[0], s[1], s[2]]);
+                [p[0], p[1], p[2], s[3]]
+            })
+            .collect();
+        let frame = self.dof();
+        let index = self.links.len();
+        for (i, l) in self.links.iter().enumerate() {
+            if l.frame != frame {
+                self.self_collision.push((i, index));
+            }
+        }
+        self.links.push(Link {
+            name: name.to_string(),
+            frame,
+            bounding: bounding_sphere(&spheres),
+            spheres,
+        });
+        self.attached.push(name.to_string());
+        Ok(())
+    }
+
+    /// Removes an attached object. Returns false if no object with this name is attached.
+    pub fn detach_object(&mut self, name: &str) -> bool {
+        let Some(pos) = self.attached.iter().position(|a| a == name) else {
+            return false;
+        };
+        self.attached.remove(pos);
+        let index = self
+            .links
+            .iter()
+            .position(|l| l.name == name)
+            .expect("attached objects are links");
+        self.links.remove(index);
+        let shift = |i: usize| if i > index { i - 1 } else { i };
+        self.self_collision = self
+            .self_collision
+            .iter()
+            .filter(|&&(a, b)| a != index && b != index)
+            .map(|&(a, b)| (shift(a), shift(b)))
+            .collect();
+        true
+    }
+
+    /// Removes all attached objects.
+    pub fn detach_all(&mut self) {
+        for name in self.attached.clone() {
+            self.detach_object(&name);
+        }
     }
 
     /// Number of joints.
@@ -430,6 +513,30 @@ mod tests {
                 assert!(d + s[3] <= b[3], "{}", l.name);
             }
         }
+    }
+
+    #[test]
+    fn attached_objects_follow_the_tcp() {
+        let mut r = RobotModel::panda();
+        let plain = r.clone();
+        let pairs = r.self_collision.len();
+        r.attach_object("box", &[[0.0, 0.0, 0.05, 0.03], [0.0, 0.0, 0.1, 0.03]])
+            .unwrap();
+        assert!(r.attach_object("box", &[[0.0, 0.0, 0.0, 0.1]]).is_err());
+        assert!(r.attach_object("bad", &[[0.0, 0.0, 0.0, -0.1]]).is_err());
+        assert_eq!(r.num_spheres(), 61);
+        // Checked against the 7 links that are not on frame 7 (link0 to link6).
+        assert_eq!(r.self_collision.len(), pairs + 7);
+        let q = [0.3, -0.4, 0.2, -2.1, 0.3, 1.9, 0.4];
+        let tcp = r.tcp_pose(&q);
+        let s = r.spheres_world(&q);
+        let expect = tcp.transform_point([0.0, 0.0, 0.1]);
+        for k in 0..3 {
+            assert!((s[60][k] - expect[k]).abs() < 1e-12);
+        }
+        assert!(r.detach_object("box"));
+        assert!(!r.detach_object("box"));
+        assert_eq!(r, plain);
     }
 
     #[test]
