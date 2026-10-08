@@ -87,8 +87,10 @@ cargo bench -p motionamigo --bench collision
 ### Browser demo
 
 The demo in [`web/`](web/) runs the planner as WebAssembly (with `simd128`) next to a three.js
-scene: pick a scene and a goal, press Plan, drag obstacles around and plan again. The robot is drawn
-as capsules; the collision spheres can be shown as an overlay.
+scene: pick a scene and a goal, press Plan, drag obstacles around and plan again. With an
+"above <object>" goal selected, Pick animates the full pick (approach, grasp, lift, return home)
+with the object following the hand. The robot is drawn as capsules; the collision spheres can be
+shown as an overlay.
 
 ```bash
 web/build.sh                          # needs wasm-pack, optionally wasm-opt >= 116
@@ -119,6 +121,27 @@ uv run python ../../examples/python/pregrasp.py                  # with a stand-
 
 In the browser demo, the goal list offers "above <object>" entries that run the same IK in
 WebAssembly.
+
+### Pick: approach, grasp, lift
+
+`plan_pick` extends this to a complete top-down pick: plan to the pre-grasp pose, move the TCP
+straight down to the grasp (dense IK in 5 mm steps, each seeded with the previous solution, joint
+jumps bounded, every segment collision checked, the target object excluded because the fingers
+enclose it), attach the object to the hand as spheres, move straight back up with the object held,
+and optionally plan to a place or home configuration with the object attached.
+
+```python
+pick = ma.plan_pick(robot, "../../examples/scenes/tabletop.json", "mug_1", ma.PANDA_READY, place=ma.PANDA_READY)
+segments = [pick.to_pregrasp.path, pick.approach, pick.retreat, pick.place.path]
+held = robot.with_attached("mug_1", pick.attached_spheres)  # a robot model carrying the mug
+```
+
+Attached objects are a general feature of the robot model (`RobotModel::attach_object`,
+`Robot.with_attached`): their spheres take part in forward kinematics and in the scalar and SIMD
+collision kernels, bit for bit identical, and in self-collision checks against every link except
+those on the last joint frame. Run `uv run python ../../examples/python/pick.py` for an example.
+`mug_2`, at the edge of the Panda workspace, has a reachable pre-grasp pose but no straight-line
+approach, and `plan_pick` reports that.
 
 ## Benchmarks
 
@@ -156,10 +179,10 @@ VAMP's URDF.
 
 | planner | success | planning median | planning P95 | simplification median | total median | total P95 | path length median |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| VAMP, default (dynamic domain) | 100% | 56 µs | 753 µs | 142 µs | 211 µs | 937 µs | 6.53 rad |
-| VAMP, dynamic domain off | 100% | 61 µs | 1.27 ms | 163 µs | 235 µs | 1.57 ms | 6.71 rad |
-| **motionAmigo, AVX2** | 100% | 95 µs | 1.56 ms | 296 µs | 453 µs | 1.96 ms | 6.74 rad |
-| motionAmigo, scalar reference | 100% | 539 µs | 7.71 ms | 2.15 ms | 3.04 ms | 10.32 ms | 6.74 rad |
+| VAMP, default (dynamic domain) | 100% | 56 Âµs | 753 Âµs | 142 Âµs | 211 Âµs | 937 Âµs | 6.53 rad |
+| VAMP, dynamic domain off | 100% | 61 Âµs | 1.27 ms | 163 Âµs | 235 Âµs | 1.57 ms | 6.71 rad |
+| **motionAmigo, AVX2** | 100% | 95 Âµs | 1.56 ms | 296 Âµs | 453 Âµs | 1.96 ms | 6.74 rad |
+| motionAmigo, scalar reference | 100% | 539 Âµs | 7.71 ms | 2.15 ms | 3.04 ms | 10.32 ms | 6.74 rad |
 
 On the UR5 VAMP is clearly ahead: 1.6x faster at the median planning time and about 2x faster in
 total. Per-scenario tables: [`bench/results/mbm-ur5-comparison.md`](bench/results/mbm-ur5-comparison.md).
@@ -258,14 +281,16 @@ flowchart LR
 
 * **Two robots are bundled** (Panda and UR5). The robot format supports any serial chain with
   revolute joints in (modified) DH convention, but every new robot needs a sphere model first.
-* **The gripper is fixed** at the MotionBenchMaker opening and there are no attached objects, so
-  carrying a grasped object is not modeled yet.
+* **The gripper is fixed** at the MotionBenchMaker opening; opening and closing it during a pick is
+  not modeled. Grasped objects are approximated by spheres inside their box (edges and corners are
+  rounded off), and only top-down grasps of box-shaped scene objects are generated.
 * **Collision checking is discrete** along edges (32 checks per radian, like VAMP), not continuous.
   Thin obstacles between two checked configurations can be missed; the sphere model is
   conservative, which mitigates this.
 * **Single-query planning only:** no PRM or asymptotically optimal planner, no trajectory
-  timing (velocities, accelerations), no constrained or Cartesian motions. The final approach of a
-  grasp is only checked as a straight joint-space motion.
+  timing (velocities, accelerations), no constrained planning. Cartesian motions are straight
+  lines with fixed orientation followed by dense IK, which fails rather than detours when the line
+  leaves the workspace or hits an obstacle.
 * **Nearest neighbours by linear scan.** Fast for the tree sizes of these benchmarks; very large
   trees would profit from a kd-tree or GNAT.
 * **Point clouds** use a uniform grid; VAMP's CAPT structure is faster for large clouds.
@@ -276,8 +301,8 @@ flowchart LR
 
 * **Coupling with spatialAmigo:** read its resolved target object directly and expose the chain
   "instruction in, trajectory out" as one Python call and in the browser demo.
-* **Grasping:** attached objects (spheres for the held object), gripper width as a parameter,
-  Cartesian approach and retreat motions.
+* **Grasping:** gripper width as a parameter, side grasps, placing an object at a target pose
+  (not only a joint configuration).
 * **More robots:** a robot description importer from URDF plus sphere decomposition.
 * **Faster planning:** kd-tree or GNAT nearest neighbours, Halton sampling, dynamic-domain
   RRT-Connect, an AVX-512 backend with 16 lanes, multi-threaded batch planning.

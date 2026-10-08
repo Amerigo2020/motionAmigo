@@ -261,3 +261,46 @@ Newest entries are appended at the bottom of each section.
 * **Not covered for the UR5:** the pre-grasp helper (`grasp.rs`) is untested with it. The UR5 TCP is
   the flange, not the grasp point between the fingers, and the gripper width constant is the
   Panda's. The browser demo still shows only the Panda.
+
+## Attached objects and pick (B)
+
+* **An attached object is just another collision link.** `RobotModel::attach_object` transforms
+  the spheres from the TCP frame into the frame of the last joint (the TCP is a constant offset from
+  it) and appends a link on that frame. Forward kinematics, the hierarchical environment check and
+  the self-collision code therefore needed no change at all, and the scalar and SIMD kernels stay
+  bit-identical by construction. The SIMD equivalence tests (proptest blocks and edges, identical
+  plans) now also run for both robots holding an object.
+* **Self-collision exclusion: links on the last frame.** The held object is checked against every
+  link that is not on the last joint frame. Links on that frame (Panda `link7`, hand and fingers;
+  UR5 `wrist_3_link`, FT sensor and gripper) move rigidly with the object, so their distance never
+  changes and a check would report either always or never; the fingers touch the object by design.
+  This is the same rule that removes rigidly attached pairs from the pair list of the robot itself.
+* **Attach and detach on the robot model, not on the checker.** Checkers are immutable and cheap to
+  build, so a pick builds one checker per phase. Python follows its frozen style:
+  `Robot.with_attached` and `Robot.without_attached` return modified copies.
+* **The limits stay as they were:** at most 64 spheres per attached object (the self-collision
+  bitmask is a `u64`) and the robot-wide limits of 128 spheres and 24 links.
+* **Note on the UR5 TCP.** The UR5 TCP is the `tool0` flange, not a point between the fingers, so
+  spheres attached to the UR5 must be placed about 0.15 m further out along the tool axis.
+* **Linear approach and retreat by dense IK.** The line is cut into 5 mm steps. Each step runs the
+  damped least squares solver seeded with the previous solution and without random restarts, so it
+  cannot jump to another IK branch; a joint change above 0.1 rad per step is rejected anyway. Every
+  joint-space segment between steps is checked with `motion_valid`, so the whole motion is covered
+  at the planner resolution, not only the step configurations. The orientation is held fixed.
+* **Pick sequence.** Pre-grasp candidates are tried in order (vertical first, then tilted) until
+  one admits a collision-free approach and retreat; only then is the motion to the pre-grasp pose
+  planned. The approach is checked without the target object, because the fingers enclose it. The
+  TCP stops 2 cm below the top face (at most half the object height). The retreat is the approach
+  in reverse, which keeps it exactly on the line, and it is checked again with the object attached,
+  still without its old box. The optional place motion is planned with the object attached.
+* **Box to spheres, inside the box.** The sphere radius is half the smallest box side minus 3 mm,
+  and the centers form a grid along the other two sides (at most 8 per side, so at most 64
+  spheres). The spheres stay inside the box: an enclosing approximation would penetrate the table
+  the object rests on and make the grasp configuration invalid. The price is rounded edges and
+  corners, documented as a limitation. A mug becomes 2 spheres of 3.7 cm radius.
+* **No gripper actuation.** Finger opening and closing is not modeled, like the fixed gripper
+  model of the robots. The browser demo animates the same segments and lets the box follow the TCP
+  after the grasp sample; the headless smoke test checks that a mug ends up in the hand.
+* **mug_2 is not pickable for the Panda** with these settings: its tilted pre-grasp poses are
+  reachable, but going straight down along the tool axis leaves the workspace after about 6 cm.
+  A test pins this behaviour (`NoApproach`) so that a change is noticed.
