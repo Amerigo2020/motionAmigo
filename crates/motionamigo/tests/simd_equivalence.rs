@@ -28,25 +28,29 @@ fn env() -> Environment {
     env
 }
 
-fn checkers() -> (ScalarChecker, Vec<SimdChecker>) {
-    let robot = RobotModel::panda();
+/// Every bundled robot: the 7-DoF Panda and the 6-DoF UR5 (a partially filled joint block).
+fn robots() -> [RobotModel; 2] {
+    [RobotModel::panda(), RobotModel::ur5()]
+}
+
+fn checkers(robot: &RobotModel) -> (ScalarChecker, Vec<SimdChecker>) {
     let env = env();
     let simd = Backend::available()
         .into_iter()
-        .map(|b| SimdChecker::with_backend(&robot, &env, 32.0, b))
+        .map(|b| SimdChecker::with_backend(robot, &env, 32.0, b))
         .collect();
-    (ScalarChecker::new(&robot, &env, 32.0), simd)
+    (ScalarChecker::new(robot, &env, 32.0), simd)
 }
 
 fn random_config(rng: &mut Rng, c: &ScalarChecker) -> Vec<f32> {
-    (0..7)
+    (0..c.lower().len())
         .map(|k| rng.uniform(c.lower()[k], c.upper()[k]))
         .collect()
 }
 
 #[test]
 fn all_backends_are_tested() {
-    let (_, simd) = checkers();
+    let (_, simd) = checkers(&RobotModel::panda());
     let names: Vec<String> = simd.iter().map(|c| c.name()).collect();
     assert!(names.contains(&"simd-portable".to_string()));
     #[cfg(target_arch = "aarch64")]
@@ -61,12 +65,13 @@ proptest! {
 
     #[test]
     fn blocks_agree_with_scalar(seed in any::<u64>()) {
-        let (scalar, simd) = checkers();
+        for robot in robots() {
+        let (scalar, simd) = checkers(&robot);
         let mut rng = Rng::new(seed);
         let configs: Vec<Vec<f32>> = (0..LANES).map(|_| random_config(&mut rng, &scalar)).collect();
         let expected: Vec<bool> = configs.iter().map(|q| scalar.in_collision(q)).collect();
         let block: Vec<[f32; LANES]> =
-            (0..7).map(|k| core::array::from_fn(|lane| configs[lane][k])).collect();
+            (0..robot.dof()).map(|k| core::array::from_fn(|lane| configs[lane][k])).collect();
         for c in &simd {
             // The block as a whole...
             prop_assert_eq!(c.any_in_collision(&block), expected.iter().any(|&e| e));
@@ -76,11 +81,13 @@ proptest! {
                 prop_assert_eq!(c.any_in_collision(&single), e);
             }
         }
+        }
     }
 
     #[test]
     fn edges_agree_with_scalar(seed in any::<u64>()) {
-        let (scalar, simd) = checkers();
+        for robot in robots() {
+        let (scalar, simd) = checkers(&robot);
         let mut rng = Rng::new(seed);
         let a = random_config(&mut rng, &scalar);
         // Mix of short and long edges.
@@ -94,12 +101,19 @@ proptest! {
         for c in &simd {
             prop_assert_eq!(c.motion_valid(&a, &b), expected, "{}", c.name());
         }
+        }
     }
 }
 
 #[test]
 fn plans_are_identical_across_checkers() {
-    let (scalar, simd) = checkers();
+    for robot in robots() {
+        plans_are_identical(&robot);
+    }
+}
+
+fn plans_are_identical(robot: &RobotModel) {
+    let (scalar, simd) = checkers(robot);
     let mut rng = Rng::new(2024);
     let mut compared = 0;
     for seed in 0..12 {
