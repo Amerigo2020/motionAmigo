@@ -342,3 +342,9 @@ Newest entries are appended at the bottom of each section.
   second the anchor) and one relation. Left, right, front and behind are half-planes in the
   viewpoint frame (viewpoint looks along +x by default, so "left" means larger y); "near" is the
   closest candidate. No colors: the scene format has no color attribute.
+
+## Release (v0.1.0)
+
+* **Wheels on the GitHub release** come from the regular Python CI run (Linux x86_64, macOS arm64, Windows x86_64).
+* **Registry publishing is prepared but off.** No PyPI or crates.io credentials exist yet. `release.yml` publishes to PyPI via Trusted Publishing and to crates.io with `CARGO_REGISTRY_TOKEN`, each gated by a repository variable (`PYPI_ENABLED`, `CRATES_ENABLED`) so a release never fails for missing setup.
+* **The commit history was imported unchanged** from the original bundle (11 commits, not 12 as assumed in the brief).
