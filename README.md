@@ -143,6 +143,22 @@ those on the last joint frame. Run `uv run python ../../examples/python/pick.py`
 `mug_2`, at the edge of the Panda workspace, has a reachable pre-grasp pose but no straight-line
 approach, and `plan_pick` reports that.
 
+### Instruction in, pick out
+
+`plan_from_instruction` resolves the object an instruction refers to and plans the pick with
+`plan_pick`. The resolver is pluggable (any callable `(scene_dict, instruction) -> object_id`).
+By default, spatialAmigo is used when the `spatialamigo` package is importable (its
+`Resolver(Scene(...)).resolve(text).best`); otherwise a small built-in resolver handles object ids,
+labels and one relation (left, right, in front of, behind, near), seen from the scene viewpoint.
+Unresolvable or ambiguous instructions raise `ResolutionError`.
+
+```python
+out = ma.plan_from_instruction(scene, "pick up the mug right of the laptop", robot=robot, start=ma.PANDA_READY)
+print(out.object_id, len(out.pick.approach))
+```
+
+Run `uv run python ../../examples/python/plan_from_instruction.py` for an example.
+
 ## Benchmarks
 
 All Panda numbers below were measured on the same machine: a cloud VM with an Intel Xeon @ 2.80 GHz,
@@ -301,8 +317,8 @@ flowchart LR
 
 ## Roadmap
 
-* **Coupling with spatialAmigo:** read its resolved target object directly and expose the chain
-  "instruction in, trajectory out" as one Python call and in the browser demo.
+* **Coupling with spatialAmigo:** the chain "instruction in, trajectory out" in the browser demo
+  (the Python call exists, see above).
 * **Grasping:** gripper width as a parameter, side grasps, placing an object at a target pose
   (not only a joint configuration).
 * **More robots:** a robot description importer from URDF plus sphere decomposition.

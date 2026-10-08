@@ -326,3 +326,19 @@ Newest entries are appended at the bottom of each section.
   checking dominates. Numbers: `bench/results/nn-linear-vs-kdtree.md`.
 * **No recursion.** The search uses an explicit stack, so degenerate (deep) trees cannot overflow
   the call stack, which matters on WebAssembly.
+
+## spatialAmigo coupling (D)
+
+* **spatialAmigo is not public on GitHub yet.** The coupling was written against its Python API as
+  read from a local copy (`spatialamigo.Resolver(Scene(dict)).resolve(text)` returning a
+  `Resolution` with `best`, `margin` and `explanation`). It is an optional import, not a
+  dependency, and the adapter is tested with a stub module.
+* **A protocol, not a dependency.** `Resolver` is any callable `(scene_dict, instruction) -> id`.
+  `plan_from_instruction` loads the scene once, resolves, then calls `plan_pick` unchanged, so the
+  scene format v0.1 did not change and the Rust side was not touched.
+* **Ambiguity is an error.** spatialAmigo always returns a best candidate; the adapter rejects a
+  margin below 0.05 (adjustable) so that a robot asks back instead of guessing.
+* **Fallback resolver.** Pure Python: ids, labels in order of appearance (first is the target,
+  second the anchor) and one relation. Left, right, front and behind are half-planes in the
+  viewpoint frame (viewpoint looks along +x by default, so "left" means larger y); "near" is the
+  closest candidate. No colors: the scene format has no color attribute.
