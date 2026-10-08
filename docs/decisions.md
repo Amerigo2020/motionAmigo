@@ -97,8 +97,8 @@ Newest entries are appended at the bottom of each section.
 
 * **RRT-Connect** with balanced trees, VAMP's Panda defaults (range 1.0 rad, direct start-goal
   connection attempted first, multiple goals as roots of the goal tree).
-* **Nearest neighbours by linear scan** over a flat array. Trees for typical problems hold tens to
-  a few hundred nodes, where a scan beats a kd-tree. A GNAT or kd-tree is on the roadmap.
+* **Nearest neighbours by linear scan** over a flat array for small trees, a kd-tree for large
+  ones; see "Nearest neighbours (C)".
 * **Own deterministic RNG** (xoshiro256** seeded by SplitMix64) instead of the `rand` crate, so a
   seed gives the same plan on every platform and in every version. A test checks the first output
   against the reference implementation.
@@ -304,3 +304,25 @@ Newest entries are appended at the bottom of each section.
 * **mug_2 is not pickable for the Panda** with these settings: its tilted pre-grasp poses are
   reachable, but going straight down along the tool axis leaves the workspace after about 6 cm.
   A test pins this behaviour (`NoApproach`) so that a change is noticed.
+
+## Nearest neighbours (C)
+
+* **Kd-tree, not GNAT.** RRT-Connect only ever inserts and queries one nearest neighbour, in 6 or
+  7 dimensions with the plain L2 metric. An incremental kd-tree whose nodes are the points
+  themselves needs two child indices per node, no rebalancing and no distance evaluations to
+  insert. GNAT pays off for expensive or non-Euclidean metrics, which motionAmigo does not have.
+  Random samples are inserted in random order, so the unbalanced tree stays shallow in practice.
+* **Exactly the linear scan's result.** Distances are the same f32 sum of squares in dimension
+  order, ties go to the lowest index. Pruning compares a lower bound (squared offsets of `q` to the
+  subtree's cell, summed in dimension order) against the best distance and only skips when it is
+  strictly larger. Rounded f32 subtraction, squaring and adding non-negative values are monotone,
+  so no point's computed distance can fall below the bound: the result is identical, not only
+  within a tolerance. Property tests compare against the scan with many ties and duplicate points,
+  and a test checks that RRT-Connect plans are identical with the scan, the kd-tree and the hybrid.
+* **Hybrid by measurement.** The kd-tree is always maintained (insertion is cheap), but queries
+  scan linearly below 2048 nodes per tree. Criterion puts the crossover there for 7 DOF; below it
+  the scan is up to 5x faster, at 16384 nodes the kd-tree is 4.8x faster. On the own scenes the
+  effect is within noise for tabletop and shelf and a few percent for the cage, because collision
+  checking dominates. Numbers: `bench/results/nn-linear-vs-kdtree.md`.
+* **No recursion.** The search uses an explicit stack, so degenerate (deep) trees cannot overflow
+  the call stack, which matters on WebAssembly.

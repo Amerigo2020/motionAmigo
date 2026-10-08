@@ -28,6 +28,14 @@ cargo bench -p motionamigo --bench collision
 
 Results: `results/criterion-scalar-vs-simd.md`.
 
+Nearest-neighbour queries, linear scan against the kd-tree:
+
+```bash
+cargo bench -p motionamigo --bench nn
+```
+
+Results: `results/nn-linear-vs-kdtree.md`.
+
 ## 3. VAMP on the MotionBenchMaker problems
 
 `vamp/run_vamp.sh` installs `vamp-planner` from PyPI into a uv environment, clones the VAMP

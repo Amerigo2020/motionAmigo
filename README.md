@@ -210,6 +210,10 @@ inside and outside the cage; problems a straight line solves are excluded), 10 s
 
 With the scalar checker the median totals are 1.90 ms, 4.43 ms and 8.42 ms.
 
+Nearest neighbours use a linear scan below 2048 nodes per tree and an exact kd-tree above (same
+plans, measured crossover); on these scenes that changes timings only within a few percent, see
+[`bench/results/nn-linear-vs-kdtree.md`](bench/results/nn-linear-vs-kdtree.md).
+
 ## How it works
 
 ```mermaid
@@ -291,8 +295,6 @@ flowchart LR
   timing (velocities, accelerations), no constrained planning. Cartesian motions are straight
   lines with fixed orientation followed by dense IK, which fails rather than detours when the line
   leaves the workspace or hits an obstacle.
-* **Nearest neighbours by linear scan.** Fast for the tree sizes of these benchmarks; very large
-  trees would profit from a kd-tree or GNAT.
 * **Point clouds** use a uniform grid; VAMP's CAPT structure is faster for large clouds.
 * **VAMP is still faster** at the 95th percentile and in path simplification; see the benchmarks.
 * **Not published** on crates.io, PyPI or npm yet.
@@ -304,7 +306,7 @@ flowchart LR
 * **Grasping:** gripper width as a parameter, side grasps, placing an object at a target pose
   (not only a joint configuration).
 * **More robots:** a robot description importer from URDF plus sphere decomposition.
-* **Faster planning:** kd-tree or GNAT nearest neighbours, Halton sampling, dynamic-domain
+* **Faster planning:** Halton sampling, dynamic-domain
   RRT-Connect, an AVX-512 backend with 16 lanes, multi-threaded batch planning.
 * **Better paths:** B-spline smoothing and time parameterization.
 * **Perception:** CAPT-style point cloud structure and depth image input.
