@@ -19,6 +19,7 @@
 // Lane loops index several arrays in lockstep; iterators would obscure that.
 #![allow(clippy::needless_range_loop)]
 
+pub mod cartesian;
 pub mod checker;
 mod collision;
 pub mod environment;
