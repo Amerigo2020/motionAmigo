@@ -39,6 +39,6 @@ pub use checker::{CollisionChecker, ScalarChecker, SimdChecker};
 pub use environment::{Capsule, Cuboid, Environment, Sphere};
 pub use plan::{plan, plan_with, CheckerKind, Plan, PlanError, PlanSettings};
 pub use pointcloud::PointCloud;
-pub use robot::{RobotModel, PANDA_READY};
+pub use robot::{RobotModel, PANDA_READY, UR5_HOME};
 pub use scene::Scene;
 pub use simd::Backend;

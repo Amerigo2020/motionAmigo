@@ -1,7 +1,8 @@
 //! Robot models: kinematic chain, joint limits and collision spheres.
 //!
-//! Robots are described by TOML files. The bundled Franka Emika Panda lives in
-//! `crates/motionamigo/robots/panda.toml` and is available via [`RobotModel::panda`].
+//! Robots are described by TOML files. Two robots are bundled: the Franka Emika Panda
+//! (`crates/motionamigo/robots/panda.toml`, [`RobotModel::panda`]) and the Universal Robots UR5
+//! with a Robotiq 2F-85 gripper (`crates/motionamigo/robots/ur5.toml`, [`RobotModel::ur5`]).
 //!
 //! ```toml
 //! name = "my_arm"
@@ -144,11 +145,19 @@ pub struct RobotModel {
 }
 
 const PANDA_TOML: &str = include_str!("../robots/panda.toml");
+const UR5_TOML: &str = include_str!("../robots/ur5.toml");
 
 impl RobotModel {
     /// The bundled Franka Emika Panda (7 DoF) with 59 collision spheres.
     pub fn panda() -> RobotModel {
         RobotModel::from_toml(PANDA_TOML).expect("bundled panda.toml is valid")
+    }
+
+    /// The bundled Universal Robots UR5 (6 DoF) with a Robotiq 2F-85 gripper and 40 collision
+    /// spheres. Frame 0 is the DH base frame of Universal Robots, which is the ROS `base_link`
+    /// rotated by pi about z.
+    pub fn ur5() -> RobotModel {
+        RobotModel::from_toml(UR5_TOML).expect("bundled ur5.toml is valid")
     }
 
     /// Parses a robot description (see the module docs for the format).
@@ -367,6 +376,16 @@ pub const PANDA_READY: [f64; 7] = [
     core::f64::consts::FRAC_PI_4,
 ];
 
+/// A collision-free UR5 configuration with the arm raised and the gripper pointing down.
+pub const UR5_HOME: [f64; 6] = [
+    0.0,
+    -core::f64::consts::FRAC_PI_2,
+    core::f64::consts::FRAC_PI_2,
+    -core::f64::consts::FRAC_PI_2,
+    -core::f64::consts::FRAC_PI_2,
+    0.0,
+];
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -386,8 +405,23 @@ mod tests {
     }
 
     #[test]
+    fn ur5_loads() {
+        let r = RobotModel::ur5();
+        assert_eq!(r.dof(), 6);
+        assert_eq!(r.num_spheres(), 40);
+        assert_eq!(r.links.len(), 17);
+        assert_eq!(r.self_collision.len(), 55);
+        assert!(r.within_limits(&UR5_HOME));
+    }
+
+    #[test]
     fn bounding_spheres_enclose_link_spheres() {
-        let r = RobotModel::panda();
+        for r in [RobotModel::panda(), RobotModel::ur5()] {
+            bounding_spheres_enclose(&r);
+        }
+    }
+
+    fn bounding_spheres_enclose(r: &RobotModel) {
         for l in &r.links {
             let b = l.bounding;
             for s in &l.spheres {

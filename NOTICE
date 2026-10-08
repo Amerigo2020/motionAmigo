@@ -16,6 +16,12 @@ No VAMP source code is included. The following third-party data is used:
   robowflex_resources (https://github.com/KavrakiLab/robowflex_resources, MIT License,
   Copyright (c) 2020 Kavraki Lab). The self-collision pairs are derived from the
   panda.srdf in the same repositories.
+* crates/motionamigo/robots/ur5.toml: the collision sphere decomposition of the Universal
+  Robots UR5 with a Robotiq 2F-85 gripper is derived from resources/ur5/ur5_spherized.urdf in
+  the VAMP repository (Apache-2.0, Copyright Kavraki Lab, Rice University), which in turn
+  originates from robowflex_resources (MIT License, Copyright (c) 2020 Kavraki Lab). The
+  self-collision pairs are derived from the ur5.srdf in the same repositories. The standard DH
+  parameters of the UR5 are taken from the public Universal Robots documentation.
 * The Denavit-Hartenberg parameters and joint limits of the Panda are taken from the
   public Franka robot documentation.
 * bench/vamp/: scripts that download the MotionBenchMaker problem set shipped with VAMP
