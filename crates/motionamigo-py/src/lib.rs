@@ -58,6 +58,14 @@ impl Robot {
         }
     }
 
+    /// The bundled Universal Robots UR5 with a Robotiq 2F-85 gripper (6 DoF, 40 collision spheres).
+    #[staticmethod]
+    fn ur5() -> Robot {
+        Robot {
+            inner: Arc::new(ma::RobotModel::ur5()),
+        }
+    }
+
     /// Loads a robot from a TOML description (see the Rust docs for the format).
     #[staticmethod]
     fn from_toml(text: &str) -> PyResult<Robot> {
@@ -702,6 +710,7 @@ fn simd_backend() -> &'static str {
 fn _motionamigo(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add("__version__", env!("CARGO_PKG_VERSION"))?;
     m.add("PANDA_READY", ma::PANDA_READY.to_vec())?;
+    m.add("UR5_HOME", ma::UR5_HOME.to_vec())?;
     m.add("PlanningError", m.py().get_type::<PlanningError>())?;
     m.add_class::<Robot>()?;
     m.add_class::<Environment>()?;

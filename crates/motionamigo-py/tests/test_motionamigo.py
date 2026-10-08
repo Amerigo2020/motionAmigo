@@ -69,6 +69,24 @@ def test_environment_from_scene_variants():
         ma.Environment.from_scene({"version": "9.9", "frame": "world", "objects": []})
 
 
+def test_ur5_model_and_planning():
+    ur5 = ma.Robot.ur5()
+    assert ur5.name == "ur5"
+    assert ur5.dof == 6
+    assert ur5.num_spheres == 40
+    assert ur5.lower_limits.shape == (6,)
+    assert ur5.within_limits(ma.UR5_HOME)
+    np.testing.assert_allclose(ur5.fk(np.zeros(6))[:3, 3], [-0.81725, -0.19145, -0.005491], atol=1e-9)
+    results = {}
+    for checker in ("simd", "scalar"):
+        planner = ma.Planner(ur5, ma.Environment(), checker=checker)
+        assert planner.config_valid(ma.UR5_HOME)
+        goal = np.array(ma.UR5_HOME) + [1.5, 0.3, -0.4, 0.2, 0.5, -1.0]
+        results[checker] = planner.plan(ma.UR5_HOME, goal, seed=3).path
+        assert results[checker].shape[1] == 6
+    np.testing.assert_array_equal(results["simd"], results["scalar"])
+
+
 def test_plan_in_tabletop(robot):
     env = ma.Environment.from_scene(TABLETOP)
     planner = ma.Planner(robot, env)

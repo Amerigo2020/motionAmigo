@@ -25,10 +25,15 @@ from ._motionamigo import (
     simd_backend,
 )
 from ._motionamigo import PANDA_READY as _PANDA_READY
+from ._motionamigo import UR5_HOME as _UR5_HOME
 
 #: The common "ready" configuration of the Panda.
 PANDA_READY = _np.array(_PANDA_READY, dtype=float)
 PANDA_READY.setflags(write=False)
+
+#: A collision-free UR5 configuration with the arm raised and the gripper pointing down.
+UR5_HOME = _np.array(_UR5_HOME, dtype=float)
+UR5_HOME.setflags(write=False)
 
 __all__ = [
     "Environment",
@@ -41,4 +46,5 @@ __all__ = [
     "plan_to_pregrasp",
     "__version__",
     "simd_backend",
+    "UR5_HOME",
 ]

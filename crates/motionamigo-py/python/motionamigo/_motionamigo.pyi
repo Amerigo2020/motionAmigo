@@ -9,6 +9,7 @@ SceneLike = Union[str, PathLike, dict]
 
 __version__: str
 PANDA_READY: list[float]
+UR5_HOME: list[float]
 
 class PlanningError(RuntimeError): ...
 
@@ -17,6 +18,8 @@ def simd_backend() -> str: ...
 class Robot:
     @staticmethod
     def panda() -> Robot: ...
+    @staticmethod
+    def ur5() -> Robot: ...
     @staticmethod
     def from_toml(text: str) -> Robot: ...
     @property
