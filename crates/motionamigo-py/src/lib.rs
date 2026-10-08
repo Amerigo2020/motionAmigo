@@ -184,6 +184,47 @@ impl Robot {
         Ok(sol.map(|s| PyArray1::from_vec(py, s.q)))
     }
 
+    /// A copy of the robot with an object attached to the tool center point. `spheres` has
+    /// shape (N, 4): `x, y, z, r` in the TCP frame. The object takes part in collision checking
+    /// with the environment and with every link except those on the last joint frame (hand and
+    /// fingers move rigidly with it).
+    fn with_attached(&self, name: &str, spheres: ArrayIn2<'_>) -> PyResult<Robot> {
+        let s: Vec<[f64; 4]> = spheres
+            .as_array()
+            .rows()
+            .into_iter()
+            .map(|r| {
+                r.to_vec()
+                    .try_into()
+                    .map_err(|_| PyValueError::new_err("spheres must have shape (N, 4)"))
+            })
+            .collect::<PyResult<_>>()?;
+        let mut model = (*self.inner).clone();
+        model
+            .attach_object(name, &s)
+            .map_err(|e| PyValueError::new_err(e.to_string()))?;
+        Ok(Robot {
+            inner: Arc::new(model),
+        })
+    }
+
+    /// A copy of the robot without the attached object `name` (KeyError if there is none).
+    fn without_attached(&self, name: &str) -> PyResult<Robot> {
+        let mut model = (*self.inner).clone();
+        if !model.detach_object(name) {
+            return Err(pyo3::exceptions::PyKeyError::new_err(name.to_string()));
+        }
+        Ok(Robot {
+            inner: Arc::new(model),
+        })
+    }
+
+    /// Names of the attached objects.
+    #[getter]
+    fn attached(&self) -> Vec<String> {
+        self.inner.attached.clone()
+    }
+
     fn __repr__(&self) -> String {
         format!(
             "Robot(name={:?}, dof={}, spheres={})",
@@ -390,6 +431,25 @@ struct PlanResult {
     checker: String,
 }
 
+impl From<ma::Plan> for PlanResult {
+    fn from(p: ma::Plan) -> Self {
+        PlanResult {
+            length: p.length,
+            initial_length: p.initial_length,
+            iterations: p.iterations,
+            tree_sizes: (p.tree_sizes[0], p.tree_sizes[1]),
+            planning_time: p.planning_time.as_secs_f64(),
+            simplify_time: p.simplify_time.as_secs_f64(),
+            checker: p.checker,
+            path: p.path,
+        }
+    }
+}
+
+fn matrix2<'py>(py: Python<'py>, rows: &[Vec<f64>]) -> PyResult<Bound<'py, PyArray2<f64>>> {
+    PyArray2::from_vec2(py, rows).map_err(|e| PyValueError::new_err(e.to_string()))
+}
+
 #[pymethods]
 impl PlanResult {
     /// Waypoints, shape (K, dof). Straight joint-space segments between them are collision-free.
@@ -580,19 +640,9 @@ impl Planner {
         }
         let checker = self.checker.clone();
         let result = py.detach(move || ma::plan_with(checker.as_ref(), &start, &goals, &settings));
-        match result {
-            Ok(p) => Ok(PlanResult {
-                length: p.length,
-                initial_length: p.initial_length,
-                iterations: p.iterations,
-                tree_sizes: (p.tree_sizes[0], p.tree_sizes[1]),
-                planning_time: p.planning_time.as_secs_f64(),
-                simplify_time: p.simplify_time.as_secs_f64(),
-                checker: p.checker,
-                path: p.path,
-            }),
-            Err(e) => Err(PlanningError::new_err(e.to_string())),
-        }
+        result
+            .map(PlanResult::from)
+            .map_err(|e| PlanningError::new_err(e.to_string()))
     }
 
     fn __repr__(&self) -> String {
@@ -677,25 +727,131 @@ fn plan_to_pregrasp(
     let r = py
         .detach(move || ma::grasp::plan_to_pregrasp(&model, &scene, &id, &start, &settings))
         .map_err(|e| PlanningError::new_err(e.to_string()))?;
-    let p = r.plan;
-    let plan = Py::new(
-        py,
-        PlanResult {
-            length: p.length,
-            initial_length: p.initial_length,
-            iterations: p.iterations,
-            tree_sizes: (p.tree_sizes[0], p.tree_sizes[1]),
-            planning_time: p.planning_time.as_secs_f64(),
-            simplify_time: p.simplify_time.as_secs_f64(),
-            checker: p.checker,
-            path: p.path,
-        },
-    )?;
+    let plan = Py::new(py, PlanResult::from(r.plan))?;
     Ok(PregraspResult {
         pose: r.pose,
         goal: r.goal,
         grasp_width: r.grasp_width,
         plan,
+    })
+}
+
+/// Result of :func:`plan_pick`: the segments of a pick, executed in order.
+#[pyclass(module = "motionamigo", name = "PickResult", frozen)]
+struct PickResult {
+    inner: ma::grasp::PickPlan,
+    #[pyo3(get)]
+    to_pregrasp: Py<PlanResult>,
+    #[pyo3(get)]
+    place: Option<Py<PlanResult>>,
+}
+
+#[pymethods]
+impl PickResult {
+    /// 4x4 pre-grasp pose of the tool center point.
+    #[getter]
+    fn pregrasp_pose<'py>(&self, py: Python<'py>) -> Bound<'py, PyArray2<f64>> {
+        pose_to_numpy(py, &self.inner.pregrasp_pose)
+    }
+
+    /// 4x4 grasp pose of the tool center point.
+    #[getter]
+    fn grasp_pose<'py>(&self, py: Python<'py>) -> Bound<'py, PyArray2<f64>> {
+        pose_to_numpy(py, &self.inner.grasp_pose)
+    }
+
+    /// Width of the object across the fingers in meters.
+    #[getter]
+    fn grasp_width(&self) -> f64 {
+        self.inner.grasp_width
+    }
+
+    /// Linear approach from pre-grasp to grasp, shape (K, dof).
+    #[getter]
+    fn approach<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyArray2<f64>>> {
+        matrix2(py, &self.inner.approach)
+    }
+
+    /// Linear retreat from grasp back to pre-grasp with the object held, shape (K, dof).
+    #[getter]
+    fn retreat<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyArray2<f64>>> {
+        matrix2(py, &self.inner.retreat)
+    }
+
+    /// Spheres approximating the held object in the TCP frame, shape (N, 4).
+    #[getter]
+    fn attached_spheres<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyArray2<f64>>> {
+        let rows: Vec<Vec<f64>> = self
+            .inner
+            .attached_spheres
+            .iter()
+            .map(|s| s.to_vec())
+            .collect();
+        matrix2(py, &rows)
+    }
+
+    /// 4x4 pose of the object (box center) in the TCP frame while it is held.
+    #[getter]
+    fn object_in_tcp<'py>(&self, py: Python<'py>) -> Bound<'py, PyArray2<f64>> {
+        pose_to_numpy(py, &self.inner.object_in_tcp)
+    }
+
+    fn __repr__(&self) -> String {
+        format!(
+            "PickResult(approach={}, retreat={}, place={}, grasp_tcp={:.3?})",
+            self.inner.approach.len(),
+            self.inner.retreat.len(),
+            self.place.is_some(),
+            self.inner.grasp_pose.trans
+        )
+    }
+}
+
+/// Plans a top-down pick of `object_id`: a motion to a pre-grasp pose `clearance` above the
+/// object, a linear approach to the grasp (`grasp_depth` below the top face, the object itself
+/// excluded from collisions), attaching the object as spheres, a linear retreat back to the
+/// pre-grasp pose with the object held and, if `place` is given, a motion there with the object
+/// held.
+#[pyfunction]
+#[pyo3(signature = (robot, scene, object_id, start, *, place=None, clearance=0.1, grasp_depth=0.02, seed=0))]
+#[allow(clippy::too_many_arguments)]
+fn plan_pick(
+    py: Python<'_>,
+    robot: &Robot,
+    scene: &Bound<'_, PyAny>,
+    object_id: &str,
+    start: ArrayIn1<'_>,
+    place: Option<ArrayIn1<'_>>,
+    clearance: f64,
+    grasp_depth: f64,
+    seed: u64,
+) -> PyResult<PickResult> {
+    let scene = parse_scene(py, scene)?;
+    let start = robot.check_q(&start)?;
+    let place = place.map(|q| robot.check_q(&q)).transpose()?;
+    let mut settings = ma::grasp::PickSettings {
+        grasp_depth,
+        place,
+        ..ma::grasp::PickSettings::default()
+    };
+    settings.pregrasp.clearance = clearance;
+    settings.pregrasp.plan.seed = seed;
+    settings.pregrasp.ik.seed = seed;
+    let model = robot.inner.clone();
+    let id = object_id.to_string();
+    let mut r = py
+        .detach(move || ma::grasp::plan_pick(&model, &scene, &id, &start, &settings))
+        .map_err(|e| PlanningError::new_err(e.to_string()))?;
+    let to_pregrasp = Py::new(py, PlanResult::from(r.to_pregrasp.clone()))?;
+    let place = r
+        .place
+        .take()
+        .map(|p| Py::new(py, PlanResult::from(p)))
+        .transpose()?;
+    Ok(PickResult {
+        inner: r,
+        to_pregrasp,
+        place,
     })
 }
 
@@ -717,6 +873,8 @@ fn _motionamigo(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<Planner>()?;
     m.add_class::<PlanResult>()?;
     m.add_class::<PregraspResult>()?;
+    m.add_class::<PickResult>()?;
+    m.add_function(wrap_pyfunction!(plan_pick, m)?)?;
     m.add_function(wrap_pyfunction!(plan_to_pregrasp, m)?)?;
     m.add_function(wrap_pyfunction!(simd_backend, m)?)?;
     Ok(())

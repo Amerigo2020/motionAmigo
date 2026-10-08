@@ -15,12 +15,14 @@ import numpy as _np
 
 from ._motionamigo import (
     Environment,
+    PickResult,
     PlanningError,
     PlanResult,
     Planner,
     PregraspResult,
     Robot,
     __version__,
+    plan_pick,
     plan_to_pregrasp,
     simd_backend,
 )
@@ -38,11 +40,13 @@ UR5_HOME.setflags(write=False)
 __all__ = [
     "Environment",
     "PANDA_READY",
+    "PickResult",
     "PlanningError",
     "PlanResult",
     "Planner",
     "PregraspResult",
     "Robot",
+    "plan_pick",
     "plan_to_pregrasp",
     "__version__",
     "simd_backend",

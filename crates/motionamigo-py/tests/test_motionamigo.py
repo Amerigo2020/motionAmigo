@@ -205,3 +205,35 @@ def test_plan_to_pregrasp(robot):
     np.testing.assert_allclose(result.plan.path[-1], result.goal, atol=1e-6)
     with pytest.raises(ma.PlanningError):
         ma.plan_to_pregrasp(robot, TABLETOP, "unicorn", ma.PANDA_READY)
+
+
+def test_attached_object(robot):
+    held = robot.with_attached("box", [[0.0, 0.0, 0.05, 0.03], [0.0, 0.0, 0.1, 0.03]])
+    assert held.attached == ["box"]
+    assert robot.attached == []
+    assert held.num_spheres == robot.num_spheres + 2
+    tcp = held.fk(ma.PANDA_READY)
+    expected = tcp[:3, :3] @ [0.0, 0.0, 0.1] + tcp[:3, 3]
+    np.testing.assert_allclose(held.spheres(ma.PANDA_READY)[-1, :3], expected, atol=1e-9)
+    # A box hanging below the hand into an obstacle makes the configuration invalid.
+    env = ma.Environment()
+    env.add_sphere(expected, 0.02)
+    assert ma.Planner(robot, env).config_valid(ma.PANDA_READY)
+    assert not ma.Planner(held, env).config_valid(ma.PANDA_READY)
+    assert held.without_attached("box").num_spheres == robot.num_spheres
+    with pytest.raises(KeyError):
+        robot.without_attached("box")
+    with pytest.raises(ValueError):
+        robot.with_attached("bad", [[0.0, 0.0, 0.0]])
+
+
+def test_plan_pick(robot):
+    result = ma.plan_pick(robot, TABLETOP, "mug_1", ma.PANDA_READY, place=ma.PANDA_READY)
+    np.testing.assert_allclose(result.grasp_pose[:3, 3], [0.4, -0.2, 0.48], atol=1e-3)
+    np.testing.assert_allclose(result.retreat[0], result.approach[-1])
+    np.testing.assert_allclose(result.retreat[-1], result.approach[0])
+    assert result.attached_spheres.shape[1] == 4
+    assert result.place is not None
+    np.testing.assert_allclose(result.place.path[-1], ma.PANDA_READY, atol=1e-6)
+    with pytest.raises(ma.PlanningError):
+        ma.plan_pick(robot, TABLETOP, "mug_2", ma.PANDA_READY)
